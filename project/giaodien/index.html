@@ -4,10 +4,13 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		 <!-- Use bootrap cho sửa giao diện -->
+		 <!-- Use bootrap,font awesome cho sửa giao diện -->
 		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
 		<title>WebMag HTML Template</title>
 
 		<!-- Google font -->
@@ -1041,8 +1044,8 @@ RESPONSIVE
 
 						<!-- search & aside toggle -->
 						<div class="nav-btns">
-							<button class="aside-btn"><i class="fa fa-bars"></i></button>
-							<button class="search-btn"><i class="fa fa-search"></i></button>
+							<button class="aside-btn"><i class="fas fa-angle-double-down"></i></button>
+							<button class="search-btn" ><i class="fa fa-search" style="color: #90f115"></i></button>
 							<div class="search-form">
 								<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
 								<button class="search-close"><i class="fa fa-times"></i></button>
@@ -1188,48 +1191,19 @@ RESPONSIVE
   </div>
   	</div>
   		</div>
-							
-						<!-- <div class="post post-thumb">
-							<a class="post-img" href="blog-post.html"><img src="./img/post-1.jpg" alt=""></a>
-							<div class="post-body">
-								<div class="post-meta">
-									<a class="post-category cat-2" href="category.html">JavaScript</a>
-									<span class="post-date">March 27, 2018</span>
-								</div>
-								<h3 class="post-title"><a href="blog-post.html">Chrome Extension Protects Against JavaScript-Based CPU Side-Channel Attacks</a></h3>
-							</div>
-						</div> -->
-						
-					<!-- <div class="col-md-6">
-						<div class="post post-thumb">
-							<a class="post-img" href="blog-post.html"><img src="./img/post-2.jpg" alt=""></a>
-							<div class="post-body">
-								<div class="post-meta">
-									<a class="post-category cat-3" href="category.html">Jquery</a>
-									<span class="post-date">March 27, 2018</span>
-								</div>
-								<h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use JQuery?</a></h3>
-							</div>
-						</div>
-					</div> -->
-					<!-- /post -->
+					
 			
 				<!-- /row -->
 <!-- ------------------------het 2 o vuong to -->
 				<!-- row -->
 				<div class="container">
 				<div class="row">
-					<!-- <div class="col-md-12">
-						<div class="section-title">
-							<h2 style="color: brown">Top 10 bài viết mới nhất</h2>
-						</div>
-					</div> -->
-
-					<!-- post -->
+					
 					<div class="col-md-8">
 						<div class="col-md-12">
 						<div class="section-title text-center">
-							<h2 style="color: brown">Top 10 bài viết mới nhất</h2>
+							<h2 style="color: brown"><i class="fas fa-bars" style="    font-size: 19px;
+    color: #e08989;"></i>&nbsp;Top 10 bài viết mới nhất</h2>
 						</div>
 						</div> <!-- #col-12 -->
 					<div class="col-md-6">
@@ -1362,7 +1336,8 @@ RESPONSIVE
 <!-- --------------xem nhiều nhất------------------- -->
 <div class="col-md-12">
 						<div class="section-title text-center">
-							<h2 style="color: green">Top 10 bài viết xem nhiều nhất</h2>
+							<h2 style="color: green"><i class="fas fa-bars" style="    font-size: 19px;
+    color: #e08989;"></i>&nbsp;Top 10 bài viết xem nhiều nhất</h2>
 						</div>
 						</div> <!-- #col-12 -->
 <div class="col-md-6">
@@ -1504,7 +1479,7 @@ RESPONSIVE
 						<!-- post widget -->
 						<div class="aside-widget">
 							<div class="section-title">
-								<h2>Top 10 Chuyên Mục</h2>
+								<h3 style="color: #cca3c7;"><i class="fas fa-play" style="font-size: 17px; color: black;"></i>Top 10 Chuyên Mục</h3>
 							</div>
 							<div class="post post-thumb">
 								<a class="post-img" href="blog-post.html"><img src="./img/post-2.jpg" alt=""></a>
@@ -1630,7 +1605,7 @@ RESPONSIVE
 						<div class="row">
 							<div class="col-md-12">
 								<div class="section-title">
-									<h2 style="color: red">Xem danh sách bài viết</h2>
+									<h2 style="color: red"><i class="fas fa-angle-double-right" style="font-size: 23px;    color: gainsboro;"></i>Xem danh sách bài viết</h2>
 								</div>
 							</div>
 							<!-- post -->
@@ -1717,7 +1692,8 @@ RESPONSIVE
 						<!-- catagories -->
 						<div class="aside-widget">
 							<div class="section-title">
-								<h2>Catagories</h2>
+								<h2><i class="fas fa-bars" style="    font-size: 16px;
+    color: #714d4d7a;"></i>&nbsp;Catagories</h2>
 							</div>
 							<div class="category-widget">
 								<ul>
@@ -1835,15 +1811,6 @@ RESPONSIVE
 
 	</body>
 </html>
-
-
-<!-- <div class="footer-copyright"> -->
-							<!-- 	<span>&copy; --> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-<!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --><!-- span>
-							</div> -->
-
-
 
 
 <!-- -----------het html--------- -->
