@@ -25,24 +25,24 @@
 	});
 
 	// Aside Nav
-	$(document).click(function(event) {
-		if (!$(event.target).closest($('#nav-aside')).length) {
-			if ( $('#nav-aside').hasClass('active') ) {
-				$('#nav-aside').removeClass('active');
-				$('#nav').removeClass('shadow-active');
-			} else {
-				if ($(event.target).closest('.aside-btn').length) {
-					$('#nav-aside').addClass('active');
-					$('#nav').addClass('shadow-active');
-				}
-			}
-		}
-	});
+	// $(document).click(function(event) {
+	// 	if (!$(event.target).closest($('#nav-aside')).length) {
+	// 		if ( $('#nav-aside').hasClass('active') ) {
+	// 			$('#nav-aside').removeClass('active');
+	// 			$('#nav').removeClass('shadow-active');
+	// 		} else {
+	// 			if ($(event.target).closest('.aside-btn').length) {
+	// 				$('#nav-aside').addClass('active');
+	// 				$('#nav').addClass('shadow-active');
+	// 			}
+	// 		}
+	// 	}
+	// });
 
-	$('.nav-aside-close').on('click', function () {
-		$('#nav-aside').removeClass('active');
-		$('#nav').removeClass('shadow-active');
-	});
+	// $('.nav-aside-close').on('click', function () {
+	// 	$('#nav-aside').removeClass('active');
+	// 	$('#nav').removeClass('shadow-active');
+	// });
 
 	// Sticky Shares
 	var $shares = $('.sticky-container .sticky-shares'),
@@ -89,3 +89,40 @@
 	setStickyPos();
 
 })(jQuery);
+
+//---------------------Menu
+jQuery(document).ready(function () {
+    jQuery('.menu-box .main-menu>li.menu-item-has-children>a').append('<i class="fa fa-angle-down"></i>');
+    jQuery('.menu-box .main-menu .sub-menu>li.menu-item-has-children>a').append('<i class="fa fa-angle-right"></i>');
+
+    jQuery('.menu-site .btn-show-menu').click(function () {
+        jQuery(this).parents('.menu-site').find('.menu-box').css('width','100%');
+    });
+    jQuery('.menu-box .btn-hide-menu, .menu-box .bg-menu').click(function () {
+        jQuery(this).parents('.menu-box ').css('width','0');
+    });
+
+    if($(window).width()<992){
+        jQuery('.main-menu li.menu-item-has-children>a>i').click(function (e) {
+            e.preventDefault();
+            jQuery(this).parent().parent().children('.sub-menu').slideToggle('fast');
+        });
+    }
+
+	$(window).on('scroll', function() {
+		
+		var menutop= jQuery('body,html').scrollTop();
+		console.log(menutop);
+		if (menutop >= 250){
+			jQuery('.menu-site').addClass('buido');
+		}else{
+			jQuery('.menu-site').removeClass('buido');
+			
+		}
+	});
+    
+    jQuery('.treeview-item>a').on("click",function(e){
+            e.preventDefault();
+            jQuery(this).parent().children('.sub-treeview').slideToggle('fast');
+        });
+});

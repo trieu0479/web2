@@ -10,5 +10,6 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', dashboardController.index);
+router.get('/baiviet',dashboardController.baiviet);
 
 module.exports = router;
