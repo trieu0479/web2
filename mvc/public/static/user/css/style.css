@@ -1327,3 +1327,12 @@
         margin: 0 !important;
     }
 }
+/* ===============================button dang nhap dang ky search================ */
+.dangkys {
+    margin-top: 12px !important;
+    margin-left: 311px !important;
+}
+.dangnhaps {
+    margin-top: -58px !important;
+    margin-left: 417px !important;
+}
