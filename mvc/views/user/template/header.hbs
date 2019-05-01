@@ -26,27 +26,68 @@
 
     <!-- Custom stlylesheet -->
 
-     <link type="text/css" rel="stylesheet" href="/static/user/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="/static/user/css/style.css" />
 
-    
+    <style>
+        body {
+            padding-top: 20px
+        }
+
+        #custom_carousel .item {
+
+            color: #000;
+            padding: 20px 0;
+        }
+
+        #custom_carousel .controls {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0;
+            margin: 0;
+            white-space: nowrap;
+            text-align: center;
+            position: relative;
+        }
+
+        #custom_carousel .controls li {
+            display: table-cell;
+            width: 1%;
+            max-width: 150px;
+        }
+
+        #custom_carousel .controls li.active {
+            border-top: 3px solid orange;
+        }
+
+        #custom_carousel .controls a small {
+            overflow: hidden;
+            display: block;
+            font-size: 10px;
+            margin-top: 5px;
+            font-weight: bold
+        }
+    </style>
+
+
 </head>
 
 <body>
 
     <!-- Header -->
     <header id="header">
-         <div class="menu-site">
+        <div class="menu-site">
             <div class="container">
                 <button class="btn btn-show-menu hidden-md hidden-lg"><i class="fa fa-bars"></i></button>
                 <div class="menu-box">
                     <div class="bg-menu hidden-md hidden-lg"></div>
                     <ul class="main-menu">
-                         <li><a href="/views/user/index.hbs" class="logo"><img src="/static/user/img/logo1.png" alt=""></a></li>
+                        <li><a href="/views/user/index.hbs" class="logo"><img src="/static/user/img/logo1.png"
+                                    alt=""></a></li>
                         <li class="current-menu-item"><a href="#">Home</a></li>
                         <li class="menu-item-has-children">
                             <a href="#">Products</a>
                             <ul class="sub-menu">
-                                <li><a href="#">Tablet</a></li>                              
+                                <li><a href="#">Tablet</a></li>
                                 <li><a href="#">Mobile</a></li>
                             </ul>
                         </li>
@@ -61,33 +102,20 @@
                             </ul>
                         </li>
                         <li><a href="#">Contact us</a></li>
-                      
+
                         <li>
                             <button type="submit" class="btn btn-success dangkys" formaction="/user/dangkyuser.html">
-                            <i class="fas fa-user-plus"></i>&nbsp;Đăng Ký</button>
+                                <i class="fas fa-user-plus"></i>&nbsp;Đăng Ký</button>
                         </li>
-                         <li>
+                        <li>
                             <button type="submit" class="btn btn-danger dangnhaps" formaction="/user/dangkyuser.html">
-                            <i class="fas fa-user-plus"></i>&nbsp;Đăng Nhập</button>
+                                <i class="fas fa-user-plus"></i>&nbsp;Đăng Nhập</button>
                         </li>
                     </ul>
                     <button class="btn btn-hide-menu hidden-md hidden-lg"><i class="fa fa-times"></i></button>
                 </div>
             </div>
-        </div> {{!--#menu site --}
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        </div> {{!--#menu site --}    
         {{!-- <!-- Nav -->
         <div id="nav">
             <!-- Main Nav -->
@@ -117,24 +145,24 @@
 <p>Click on the "Dropdown" link to see the dropdown menu.</p>
 
 <script>
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("myDropdown");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
     }
-  }
-}
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (e) {
+        if (!e.target.matches('.dropbtn')) {
+            var myDropdown = document.getElementById("myDropdown");
+            if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+            }
+        }
+    }
 </script> --}}
-                    <!-- nav -->
-                    {{!-- <ul class="nav-menu nav navbar-nav">
+        <!-- nav -->
+        {{!-- <ul class="nav-menu nav navbar-nav">
                         <li><a href="#">Newse</a>
                            <ul class="submenu">
                                <li><a href="#">PHP</a></li>
@@ -146,8 +174,8 @@ window.onclick = function(e) {
                                      
                         
                         {{!-- </li> --}}
-                        {{!-- <li><a href="#">Popular</a></li> --}}
-                        {{!-- <li class="cat-1"><a href="#">Web Design</a>
+        {{!-- <li><a href="#">Popular</a></li> --}}
+        {{!-- <li class="cat-1"><a href="#">Web Design</a>
                             <ul class="submenu">
                                <li><a href="#">PHP</a></li>
                                <li><a href="#">NodeJS</a></li>

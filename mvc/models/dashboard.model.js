@@ -5,7 +5,7 @@ module.exports = {
         return db.load(sql);
     },
     get3PostForDashborad: () => {
-        let sql = 'SELECT * FROM `baiviet` WHERE YEARWEEK(`NgayDang`, 1) = YEARWEEK(CURDATE(), 1) ORDER BY SoLuotXem DESC LIMIT 3';
+        let sql = 'SELECT * FROM `baiviet` WHERE YEARWEEK(`NgayDang`, 1) = YEARWEEK(CURDATE(), 1) ORDER BY SoLuotXem DESC LIMIT 5';
         return db.load(sql);
     }
 
