@@ -1,5 +1,5 @@
 {{> userHeader }}
-
+  {{!-- {{#each this.baiviet}} --}}
     <!-- section -->
     <div class="section">
         <!-- container carousel-->
@@ -15,11 +15,12 @@
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol> -->
-
+                  
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-                            <div class="item active ">
-                                <img src="/static/user/img/post-1.jpg" alt="Los Angeles" style="width:100%; height: 350px">
+                            {{#each baiVietNoiBat}}
+                            <div class="item {{#unless @index}}active{{/unless}}" >
+                                <img src="/images/{{AnhURL}}" alt="Los Angeles" style="width:100%; height: 350px">
                                 <div class="post post-thumb text-center">
                                     <a class="post-img" href="blog-post.html"></a>
                                     <div class="post-body">
@@ -33,8 +34,8 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="item">
+                            {{/each}}
+                            {{!-- <div class="item">
                                 <img src="/static/user/img/post-2.jpg" alt="Chicago" style="width:100%; height: 350px">
                                 <div class="post post-thumb text-center">
                                     <a class="post-img" href="blog-post.html"></a>
@@ -64,7 +65,7 @@
                                                 JavaScript-Based CPU Side-Channel Attacks</a></h3>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div> <!-- #carousel-inner -->
 
                         <!-- Left and right controls -->
@@ -656,4 +657,5 @@
         <!-- /container -->
     </div>
     <!-- /section -->
-{{> userFooter }}
+    {{!-- {{/each}} --}}
+{{> userFooter}}

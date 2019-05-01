@@ -1,15 +1,20 @@
 var express             = require('express');
-const path              = require('path');
-const controllerPath    = path.join(__dirname, '..', 'controller', 'user');
-
-// const controllerPath    = '../controller/user';
-
-var dashboardController = require(path.join(controllerPath, 'dashboard.js'));
+//require model
+var dashboardModel =require ("../models/dashboard.model");
 
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', dashboardController.index);
-router.get('/baiviet',dashboardController.baiviet);
+router.get('/', async function (req, res, next) {
+    let data = {};
+    data.baiVietNoiBat = await dashboardModel.get3PostForDashborad();
+    res.render('user/index', data);
+});
+
+router.get('/baiviet',function baiviet(req,res,next) {
+    res.render('user/baiviet')
+});
+//load datbase
+
 
 module.exports = router;
