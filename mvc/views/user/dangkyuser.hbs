@@ -189,22 +189,55 @@ button.social-signin.google {
 </head>
 
 <body>
-
+    <script>
+      function CheckSubmit() {  
+        var username=document.getElementById("tentk");              
+        if (username.value=="") 
+        {
+          alert("Yêu cầu nhập username");
+          return false;  
+        }
+        var displayname1 =document.getElementById("tenhienthi");
+        if (displayname1.value=="")
+        {
+          alert ("Yêu cầu nhập Tên hiển thị");
+          return false
+        }
+        
+        var mail1 =document.getElementById("mail");
+        if (mail1.value=="")
+        {
+          alert ("Yêu cầu nhập Email");
+          return false;
+        }
+        var matkhau1 =document.getElementById("matkhau");
+        if (matkhau1.value=="")
+        {
+          alert ("Yêu cầu nhập Password");
+          return false;
+        }
+        var namsinh1 =document.getElementById("namsinh");
+        if (namsinh1.value=="")
+        {
+          alert ("Yêu cầu nhập Năm sinh");
+          return false;
+        }
+        return true;
+      } 
+    </script>
+    <form action="" name="frmdangky" onsubmit="return CheckSubmit()">
   <div id="login-box">
   <div class="left">
-    <h1 style="color:chocolate">Sign up</h1>
-    
-    <input type="text" name="username" placeholder="Username" />
-    <input type="text" name="displayname" placeholder="Displayname" />
-    <input type="text" name="email" placeholder="E-mail" />
-    <input type="password" name="password" placeholder="Password" />
-    <input type="text" name="yearbirth" placeholder="YearofBirth" />    
-    <input type="submit" name="signin_submit" value="SUBMIT" />
+    <h1 style="color:chocolate">Sign up</h1>    
+    <input type="text" name="username" placeholder="Username" id="tentk" />
+    <input type="text" name="displayname" placeholder="Displayname" id="tenhienthi" />
+    <input type="text" name="email" placeholder="E-mail" id="mail"/>
+    <input type="password" name="password" placeholder="Password" id="matkhau"/>
+    <input type="text" name="yearbirth" placeholder="YearofBirth" id="namsinh"/>    
+    <input type="submit" name="signin_submit" value="SUBMIT"  />
   </div>
-  <div class="doyou">
-  
-    
-      Do you have already account ?<a href="dangnhapuser.html"> Sign In</a>     
+  <div class="doyou">      
+      Do you have already account ?<a href="dangnhap"> Sign In</a>     
   </div> 
 
   <div class="right">
@@ -215,7 +248,7 @@ button.social-signin.google {
   </div>
   <div class="or">OR</div>
 </div>
-  
+</form>
   
 
 </body>

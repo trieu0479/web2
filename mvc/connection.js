@@ -5,7 +5,7 @@ var createConnection = () =>
     host: "localhost",
     user: "root",
     password: "",
-    database: "webabc",
+    database: "webtest",
     port: 3306
   }); //createconnection thứ 2 is  phương thức kết nối
 

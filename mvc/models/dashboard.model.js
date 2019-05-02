@@ -15,6 +15,7 @@ module.exports = {
     lay10baimoinhat: () =>{
         let sql = 'select * from `baiviet` join `danhmuc` on baiviet.IDDanhMuc =  danhmuc.IDDanhMuc order by SoLuotXem desc limit 0,10';
         return db.load(sql);
-    }
+    },
+    
 
 }

@@ -16,9 +16,15 @@ router.get('/', async function (req, res, next) {
 
 
 
-router.get('/baiviet',function baiviet(req,res,next) {
+router.get('/baiviet',function(req,res,next) {
     res.render('user/baiviet')
 });
+router.get('/dangky',function (req,res,next) {
+res.render ("../views/user/dangkyuser")
+});
+router.get('/dangnhap',function (req,res,next) {
+    res.render ("../views/user/dangnhapuser")
+    });
 //load datbase
 
 

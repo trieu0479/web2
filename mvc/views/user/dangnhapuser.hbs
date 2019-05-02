@@ -128,8 +128,24 @@
 </style>
 </head>
 <body>
+	{{!-- <script>
+		function CheckDangnhap() {
+		var userdn=document.getElementById("userdn");
+		if(userdn.value=="") {
+			alert("Yêu cầu nhập Tài khoản");
+			return false;
+		}
+		var passdang=document.getElementById("passdn");
+		if(passdang.value=="") {
+			alert("Yêu cầu nhập Mật khẩu");
+			return false;
+		}
+		return true;
+	}
+	</script> --}}
 <div class="signin-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+
+    <form action="" method="post" onsubmit="return CheckDangnhap()">
 		<h2>Sign in</h2>
         <p class="hint-text">Sign in with your social media account</p>
 		<div class="social-btn text-center">
@@ -139,17 +155,17 @@
 		</div>
 		<div class="or-seperator"><b>or</b></div>
         <div class="form-group">
-        	<input type="text" class="form-control input-lg" name="username" placeholder="Username" required="required">
+        	<input type="text" class="form-control input-lg" name="username" placeholder="Username" required="required" id="userdn">
         </div>
 		<div class="form-group">
-            <input type="password" class="form-control input-lg" name="password" placeholder="Password" required="required">
+            <input type="password" class="form-control input-lg" name="password" placeholder="Password" required="required" id="passdn">
         </div>  
         <div class="form-group">
             <button type="submit" class="btn btn-success btn-lg btn-block signup-btn">Sign in</button>
         </div>
         <div class="text-center small"><a href="#">Forgot Your password?</a></div>
     </form>
-    <div class="text-center small">Don't have an account? <a href="#">Sign up</a></div>
+    <div class="text-center small">Don't have an account? <a href="dangky">Sign up</a></div>
 </div>
 </body>
 </html>                            
