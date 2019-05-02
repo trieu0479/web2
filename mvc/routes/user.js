@@ -9,6 +9,7 @@ router.get('/', async function (req, res, next) {
     let data = {};
     data.baiVietNoiBat = await dashboardModel.get3PostForDashborad();
     data.lay10baimoinhat = await dashboardModel.lay10baimoinhat();
+    data.laymenu = await dashboardModel.laymenu();
     res.render('user/index', data);
 });
 

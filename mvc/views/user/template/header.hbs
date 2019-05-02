@@ -29,43 +29,7 @@
     <link type="text/css" rel="stylesheet" href="/static/user/css/style.css" />
 
     <style>
-        body {
-            padding-top: 20px
-        }
 
-        #custom_carousel .item {
-
-            color: #000;
-            padding: 20px 0;
-        }
-
-        #custom_carousel .controls {
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding: 0;
-            margin: 0;
-            white-space: nowrap;
-            text-align: center;
-            position: relative;
-        }
-
-        #custom_carousel .controls li {
-            display: table-cell;
-            width: 1%;
-            max-width: 150px;
-        }
-
-        #custom_carousel .controls li.active {
-            border-top: 3px solid orange;
-        }
-
-        #custom_carousel .controls a small {
-            overflow: hidden;
-            display: block;
-            font-size: 10px;
-            margin-top: 5px;
-            font-weight: bold
-        }
     </style>
 
 
@@ -74,7 +38,19 @@
 <body>
 
     <!-- Header -->
-    <header id="header">
+    <header id="heade containerr">
+        <div class="header-top">
+            <div class="container">
+                <div class="row ">
+                    <ul class="list-inline">
+                        <li><i class="fas fa-calendar-alt"> <span id="Console"></span></i></li>
+                        <li><a href="/login">Sign in/ join</a></li>
+                        <li><a href="#">Advertise</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="menu-site">
             <div class="container">
                 <button class="btn btn-show-menu hidden-md hidden-lg"><i class="fa fa-bars"></i></button>
@@ -83,15 +59,15 @@
                     <ul class="main-menu">
                         <li><a href="/views/user/index.hbs" class="logo"><img src="/static/user/img/logo1.png"
                                     alt=""></a></li>
-                        <li class="current-menu-item"><a href="#">Home</a></li>
+                        {{#each laymenu}}
                         <li class="menu-item-has-children">
-                            <a href="#">Products</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">Tablet</a></li>
-                                <li><a href="#">Mobile</a></li>
-                            </ul>
+                            <a href="#">{{TenDanhMuc}}</a>
+                            {{!-- <ul class="sub-menu">
+                                <li><a href="#"></a></li>      
+                            </ul>                           --}}
                         </li>
-                        <li><a href="#">Blog</a></li>
+                        {{/each}}
+                        {{!-- <li><a href="#">Blog</a></li>
                         <li class="menu-item-has-children">
                             <a href="#">Portfolio</a>
                             <ul class="sub-menu">
@@ -110,7 +86,7 @@
                         <li>
                             <button type="submit" class="btn btn-danger dangnhaps" formaction="/user/dangkyuser.html">
                                 <i class="fas fa-user-plus"></i>&nbsp;Đăng Nhập</button>
-                        </li>
+                        </li> --}}
                     </ul>
                     <button class="btn btn-hide-menu hidden-md hidden-lg"><i class="fa fa-times"></i></button>
                 </div>

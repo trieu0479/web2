@@ -18,14 +18,19 @@
                             <div class="item {{#unless @index}}active{{/unless}}">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4"><img src="/images/{{AnhURL}}" class="img-fluid">
-                                        </div>
-                                        <div class="col-md-8 col-sm-8">
-                                            <a class="badge badge-danger" href="category.html">{{TenDanhMuc}}</a>
-                                            <span class="post-date">{{NgayDang}}</span>
-                                            <h2>{{TieuDeBaiViet}}</h2>
-                                            <p>{{NDTomTat}}...</p>
-                                        </div>
+                                        <a href="{{IDBaiViet}}">
+                                            <div class="col-md-4 col-sm-4"><img src="/images/{{AnhURL}}"
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="col-md-8 col-sm-8">
+                                                <a class="badge badge-danger" href="{{IDDanhMuc}}">{{TenDanhMuc}}</a>
+                                                <span class="post-date">{{NgayDang}}</span>
+                                                <a href="{{IDBaiViet}}">
+                                                    <h2>{{TieuDeBaiViet}}</h2>
+                                                </a>
+                                                <p>{{NDTomTat}}...</p>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -71,14 +76,19 @@
                 {{#each lay10baimoinhat}}
                 <div class="col-md-4 col-sm-4 d-flex pb-3">
                     <div class="card">
-                        <img class="img-fluid" src="/images/{{AnhURL}}" alt="">
-                        <div class="card-img-overlay"> <span class="badge badge-pill badge-danger">{{TenDanhMuc}}</span> </div>
-                        <div class="card-body">
-                            <div class="news-title">
-                                <h4 class=" title-small"><a href="#">{{TieuDeBaiViet}} </a></h4>
+                        <a href="{{IDBaiViet}}">
+                            <img class="img-fluid img-responsive" src="/images/{{AnhURL}}" alt="">
+                            <div class="card-img-overlay"> <span
+                                    class="badge badge-pill badge-danger">{{TenDanhMuc}}</span>
                             </div>
-                            <p class="card-text"><small class="text-time"><em>{{NgayDang}}</em></small></p>
-                        </div>
+                            <div class="card-body">
+                                <div class="news-title">
+                                    <h4 class=" title-small"> {{TieuDeBaiViet}}</h4>
+                                </div>
+                               
+                            </div>
+                        </a>
+                         <p class="card-text"><small class="text-time"><em>{{NgayDang}}</em></small></p>
                     </div>
                 </div>
                 {{/each}}
