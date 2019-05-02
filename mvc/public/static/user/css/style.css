@@ -254,11 +254,9 @@
             color: #fff;
             opacity: 0.9;
         }
-
-        .section {
-            padding-top: 40px;
+        .banner{
+            background-color: #F4f4f9;
         }
-
         .section.section-grey {
             background-color: #fbfbfd;
             border-bottom: 1px solid #eceef2;
