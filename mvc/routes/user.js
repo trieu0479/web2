@@ -1,6 +1,6 @@
-var express             = require('express');
+var express           = require('express');
 //require model
-var dashboardModel =require ("../models/dashboard.model");
+var dashboardModel   =require ("../models/dashboard.model");
 
 var router = express.Router();
 
