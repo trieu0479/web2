@@ -151,6 +151,33 @@
             padding: 10px 20px 0px 20px;
             background-color: #F4f4f9;
         }
+        .topcm{
+            background-color: #F4f4f9;
+            padding:9px 0px 1px 10px;
+            margin-bottom: 10px;
+        }
+        .media img {
+            width: 120px;
+            height: 100px;
+        }
+        
+        .tab-content>.active {
+            display: block;
+        }
+        .media {
+            display: flex;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #F4f4f9;
+        }
+        .media-body{
+            padding-left: 10px;
+        }
+        .d-flex {
+            display: flex!important;
+        }
         .top10bvmn{
             display: flex;
             display: -webkit-flex;

@@ -45,10 +45,10 @@
                                     class="{{#unless @index}}active{{/unless}}">
                                     <a href="#">
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-3 ">
+                                            <div class="col-md-3 col-sm-3">
                                                 <img src="/images/{{AnhURL}}" style="width: 100%">
                                             </div>
-                                            <div class="col-lg-9 col-md-9 ">
+                                            <div class="col-md-9 col-sm-9">
                                                 <small>{{TieuDeBaiViet}}</small>
                                             </div>
                                         </div>
@@ -68,11 +68,38 @@
     <div class="container bv">
         <div class="row">
             <div class="col-md-8 top10bvmn">
-                <div class="col-sm-12  col-xs-12 top">
-                    <h3><i class="fas fa-bars" style="font-size: 19px;color: #e08989;"></i>
-                        Top 10 bài viết mới nhất
+                <div class="col-sm-12 col-xs-12 top">
+                    <h3 style="color:#e08989"><i class="fas fa-bars" style="font-size: 19px;"></i>
+                        Top 10 Bài Viết Xem Nhiều Nhất
                     </h3>
                 </div>
+                {{#each lay10baixemnhieu}}
+                <div class="col-md-4 col-sm-4 col-xs-6 d-flex pb-3">
+                    <div class="card">
+                        <a href="{{IDBaiViet}}">
+                            <img class="img-fluid img-responsive" src="/images/{{AnhURL}}" alt="">
+                            <div class="card-img-overlay"> <span
+                                    class="badge badge-pill badge-danger">{{TenDanhMuc}}</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="news-title">
+                                    <h4 class=" title-small"> {{TieuDeBaiViet}}</h4>
+                                </div>
+
+                            </div>
+                        </a>
+                        <p class="card-text"><small class="text-time"><em>{{NgayDang}}</em></small></p>
+                    </div>
+                </div>
+                {{/each}}
+                <!--        top 10 xem nhiều nhất       --->
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-sm-12 col-xs-12 top">
+                        <h3 style="color:green"><i class="fas fa-bars" style="font-size: 19px;"></i>
+                            Top 10 Bài Viết Mới Nhất
+                        </h3>
+                    </div>
+                </div> <!-- #col-12 -->
                 {{#each lay10baimoinhat}}
                 <div class="col-md-4 col-sm-4 col-xs-6 d-flex pb-3">
                     <div class="card">
@@ -85,162 +112,23 @@
                                 <div class="news-title">
                                     <h4 class=" title-small"> {{TieuDeBaiViet}}</h4>
                                 </div>
-                               
                             </div>
                         </a>
-                         <p class="card-text"><small class="text-time"><em>{{NgayDang}}</em></small></p>
+                        <p class="card-text"><small class="text-time"><em>{{NgayDang}}</em></small></p>
                     </div>
                 </div>
                 {{/each}}
-                <!--        top 10 xem nhiều nhất       --->
-                <div class="col-md-12">
-                    <div class="section-title text-center">
-                        <h2 style="color: green"><i class="fas fa-bars"
-                                style="font-size: 19px;color: #e08989;"></i>&nbsp;Top 10 bài viết xem nhiều nhất
-                        </h2>
-                    </div>
-                </div> <!-- #col-12 -->
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On
-                                    The Backend Development Block!</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On
-                                    The Backend Development Block!</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On
-                                    The Backend Development Block!</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On
-                                    The Backend Development Block!</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On
-                                    The Backend Development Block!</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On
-                                    The Backend Development Block!</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On
-                                    The Backend Development Block!</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On
-                                    The Backend Development Block!</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On
-                                    The Backend Development Block!</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="post">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On
-                                    The Backend Development Block!</a></h3>
-                        </div>
-                    </div>
-                </div>
                 <!---/ Top 10 chuyen muc	nằm bên phải	 -->
             </div> <!-- #col-8 -->
             <div class="col-md-4">
                 <!-- post widget -->
                 <div class="aside-widget">
-                    <div class="section-title">
-                        <h3 style="color: #cca3c7;"><i class="fas fa-play"
-                                style="font-size: 17px; color: black;"></i>Top 10
-                            Chuyên Mục</h3>
+                    <div class="topcm">
+                        <h3 style="color:#cca3c7"><i class="fas fa-play" style="font-size: 17px; color: black;"></i>
+                            Top 10 Chuyên Mục
+                        </h3>
                     </div>
-                    <div class="post post-thumb">
+                    {{!-- <div class="post post-thumb">
                         <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-2.jpg" alt=""></a>
                         <div class="post-body">
                             <div class="post-meta">
@@ -250,250 +138,173 @@
                             <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use
                                     JQuery?</a></h3>
                         </div>
-                    </div>
-                    <div class="post post-thumb">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-2.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-3" href="category.html">Jquery</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use
-                                    JQuery?</a></h3>
-                        </div>
-                    </div>
-                    <div class="post post-thumb">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-2.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-3" href="category.html">Jquery</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use
-                                    JQuery?</a></h3>
-                        </div>
-                    </div>
-                    <div class="post post-thumb">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-2.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-3" href="category.html">Jquery</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use
-                                    JQuery?</a></h3>
-                        </div>
-                    </div>
-                    <div class="post post-thumb">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-2.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-3" href="category.html">Jquery</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use
-                                    JQuery?</a></h3>
-                        </div>
-                    </div>
-                    <div class="post post-thumb">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-2.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-3" href="category.html">Jquery</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use
-                                    JQuery?</a></h3>
-                        </div>
-                    </div>
-                    <div class="post post-thumb">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-2.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-3" href="category.html">Jquery</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use
-                                    JQuery?</a></h3>
-                        </div>
-                    </div>
-                    <div class="post post-thumb">
-                        <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-1.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-meta">
-                                <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                <span class="post-date">March 27, 2018</span>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Chrome Extension Protects Against
-                                    JavaScript-Based CPU Side-Channel Attacks</a></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="post post-thumb">
-                    <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-2.jpg" alt=""></a>
-                    <div class="post-body">
-                        <div class="post-meta">
-                            <a class="post-category cat-3" href="category.html">Jquery</a>
-                            <span class="post-date">March 27, 2018</span>
-                        </div>
-                        <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use
-                                JQuery?</a></h3>
-                    </div>
-                </div>
-                <div class="post post-thumb">
-                    <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-2.jpg" alt=""></a>
-                    <div class="post-body">
-                        <div class="post-meta">
-                            <a class="post-category cat-3" href="category.html">Jquery</a>
-                            <span class="post-date">March 27, 2018</span>
-                        </div>
-                        <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still Use
-                                JQuery?</a></h3>
-                    </div>
-                </div>
-            </div> <!-- #aside-widget -->
-            <!-- /postwidged -->
-        </div> <!-- #row -->
-    </div> <!-- #container -->
-</div>
-<!-- -----xem danh sach bai viet -->
-
-<!-- section -->
-<div class="section">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-title">
-                            <h2 style="color: red"><i class="fas fa-angle-double-right"
-                                    style="font-size: 23px;    color: gainsboro;"></i>Xem danh sách bài viết
-                            </h2>
-                        </div>
-                    </div>
-                    <!-- post -->
-                    <div class="col-md-12">
-                        <div class="post post-row">
-                            <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-4.jpg" alt=""></a>
-                            <div class="post-body">
-                                <div class="post-meta">
-                                    <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                    <span class="post-date">March 27, 2018</span>
+                    </div> --}}
+                    {{#each top10chuyenmuc}}
+                    <div class="tab-pane active" role="tabpanel">
+                        <a href="{{IDBaiViet}}">
+                            <div class="media">
+                                <img class="d-flex mr-3" src="/images/{{AnhURL}}" alt="{{TieuDeBaiViet}}">
+                                <div class="media-body">
+                                    <div>
+                                        <span class="badge badge-pill badge-danger">{{TenDanhMuc}}</span>
+                                        <div class="news-title">
+                                            <h4 class=" title-small"> {{TieuDeBaiViet}}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="news-auther"><small class="text-time"><em>{{NgayDang}}</em></small>
+                                    </div>
                                 </div>
-                                <h3 class="post-title"><a href="blog-post.html">Chrome Extension Protects
-                                        Against JavaScript-Based CPU Side-Channel Attacks</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                    veniam...</p>
                             </div>
-                        </div>
-                    </div> <!-- #col-12 -->
-                    <!-- /post -->
-                    <!-- post -->
-                    <div class="col-md-12">
-                        <div class="post post-row">
-                            <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg" alt=""></a>
-                            <div class="post-body">
-                                <div class="post-meta">
-                                    <a class="post-category cat-2" href="category.html">JavaScript</a>
-                                    <span class="post-date">March 27, 2018</span>
-                                </div>
-                                <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest
-                                        Kid On The Backend Development Block!</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                    veniam...</p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                    <!-- /post -->
-                    <!-- post -->
-                    <div class="col-md-12">
-                        <div class="post post-row">
-                            <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-1.jpg" alt=""></a>
-                            <div class="post-body">
-                                <div class="post-meta">
-                                    <a class="post-category cat-4" href="category.html">Css</a>
-                                    <span class="post-date">March 27, 2018</span>
-                                </div>
-                                <h3 class="post-title"><a href="blog-post.html">CSS Float: A Tutorial</a>
-                                </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                    veniam...</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /post -->
-                    <!-- post -->
-                    <div class="col-md-12">
-                        <div class="post post-row">
-                            <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-2.jpg" alt=""></a>
-                            <div class="post-body">
-                                <div class="post-meta">
-                                    <a class="post-category cat-3" href="category.html">Jquery</a>
-                                    <span class="post-date">March 27, 2018</span>
-                                </div>
-                                <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still
-                                        Use JQuery?</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                    veniam...</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /post -->
-
-                    <div class="col-md-12">
-                        <div class="section-row">
-                            <button class="primary-button center-block">Load More</button>
-                        </div>
-                    </div>
-                </div> <!-- #rows -->
-            </div> <!-- #col-8 -->
-
-            <div class="col-md-4">
-                <!-- catagory -->
-                <div class="aside-widget">
-                    <div class="section-title">
-                        <h2><i class="fas fa-bars" style="    font-size: 16px;
-    color: #714d4d7a;"></i>&nbsp;Catagories</h2>
-                    </div>
-                    <div class="category-widget">
-                        <ul>
-                            <li><a href="#" class="cat-1">Web Design<span>340</span></a></li>
-                            <li><a href="#" class="cat-2">JavaScript<span>74</span></a></li>
-                            <li><a href="#" class="cat-4">JQuery<span>41</span></a></li>
-                            <li><a href="#" class="cat-3">CSS<span>35</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /catagories -->
-                <!-- tags -->
-                <div class="aside-widget">
-                    <div class="tags-widget">
-                        <ul>
-                            <li><a href="#">Chrome</a></li>
-                            <li><a href="#">CSS</a></li>
-                            <li><a href="#">Tutorial</a></li>
-                            <li><a href="#">Backend</a></li>
-                            <li><a href="#">JQuery</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">JavaScript</a></li>
-                            <li><a href="#">Website</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /tags -->
-            </div>
-        </div>
-        <!-- /row -->
+                    {{/each}}
+                </div> <!-- #aside-widget -->
+                <!-- /postwidged -->
+            </div> <!-- #row -->
+        </div> <!-- #container -->
     </div>
-    <!-- /container -->
-</div>
-<!-- /section -->
-{{!-- {{/each}} --}}
-{{> userFooter}}
+    <!-- -----xem danh sach bai viet -->
+
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-title">
+                                <h2 style="color: red"><i class="fas fa-angle-double-right"
+                                        style="font-size: 23px;    color: gainsboro;"></i>Xem danh sách bài viết
+                                </h2>
+                            </div>
+                        </div>
+                        <!-- post -->
+                        <div class="col-md-12">
+                            <div class="post post-row">
+                                <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-4.jpg"
+                                        alt=""></a>
+                                <div class="post-body">
+                                    <div class="post-meta">
+                                        <a class="post-category cat-2" href="category.html">JavaScript</a>
+                                        <span class="post-date">March 27, 2018</span>
+                                    </div>
+                                    <h3 class="post-title"><a href="blog-post.html">Chrome Extension Protects
+                                            Against JavaScript-Based CPU Side-Channel Attacks</a></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                        veniam...</p>
+                                </div>
+                            </div>
+                        </div> <!-- #col-12 -->
+                        <!-- /post -->
+                        <!-- post -->
+                        <div class="col-md-12">
+                            <div class="post post-row">
+                                <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-6.jpg"
+                                        alt=""></a>
+                                <div class="post-body">
+                                    <div class="post-meta">
+                                        <a class="post-category cat-2" href="category.html">JavaScript</a>
+                                        <span class="post-date">March 27, 2018</span>
+                                    </div>
+                                    <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest
+                                            Kid On The Backend Development Block!</a></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                        veniam...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /post -->
+                        <!-- post -->
+                        <div class="col-md-12">
+                            <div class="post post-row">
+                                <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-1.jpg"
+                                        alt=""></a>
+                                <div class="post-body">
+                                    <div class="post-meta">
+                                        <a class="post-category cat-4" href="category.html">Css</a>
+                                        <span class="post-date">March 27, 2018</span>
+                                    </div>
+                                    <h3 class="post-title"><a href="blog-post.html">CSS Float: A Tutorial</a>
+                                    </h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                        veniam...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /post -->
+                        <!-- post -->
+                        <div class="col-md-12">
+                            <div class="post post-row">
+                                <a class="post-img" href="blog-post.html"><img src="/static/user/img/post-2.jpg"
+                                        alt=""></a>
+                                <div class="post-body">
+                                    <div class="post-meta">
+                                        <a class="post-category cat-3" href="category.html">Jquery</a>
+                                        <span class="post-date">March 27, 2018</span>
+                                    </div>
+                                    <h3 class="post-title"><a href="blog-post.html">Ask HN: Does Anybody Still
+                                            Use JQuery?</a></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                        veniam...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /post -->
+
+                        <div class="col-md-12">
+                            <div class="section-row">
+                                <button class="primary-button center-block">Load More</button>
+                            </div>
+                        </div>
+                    </div> <!-- #rows -->
+                </div> <!-- #col-8 -->
+
+                <div class="col-md-4">
+                    <!-- catagory -->
+                    <div class="aside-widget">
+                        <div class="section-title">
+                            <h2><i class="fas fa-bars" style="    font-size: 16px;
+    color: #714d4d7a;"></i>&nbsp;Catagories</h2>
+                        </div>
+                        <div class="category-widget">
+                            <ul>
+                                <li><a href="#" class="cat-1">Web Design<span>340</span></a></li>
+                                <li><a href="#" class="cat-2">JavaScript<span>74</span></a></li>
+                                <li><a href="#" class="cat-4">JQuery<span>41</span></a></li>
+                                <li><a href="#" class="cat-3">CSS<span>35</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /catagories -->
+                    <!-- tags -->
+                    <div class="aside-widget">
+                        <div class="tags-widget">
+                            <ul>
+                                <li><a href="#">Chrome</a></li>
+                                <li><a href="#">CSS</a></li>
+                                <li><a href="#">Tutorial</a></li>
+                                <li><a href="#">Backend</a></li>
+                                <li><a href="#">JQuery</a></li>
+                                <li><a href="#">Design</a></li>
+                                <li><a href="#">Development</a></li>
+                                <li><a href="#">JavaScript</a></li>
+                                <li><a href="#">Website</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /tags -->
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+    {{!-- {{/each}} --}}
+    {{> userFooter}}
