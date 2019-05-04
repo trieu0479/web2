@@ -1,3 +1,4 @@
+// const config = require('./config.json');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,6 +7,8 @@ var logger = require('morgan');
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
+
+var passport = require('./passport');
 
 var hbs = require('hbs');
 var fs = require('fs');
@@ -21,6 +24,10 @@ let footer = fs.readFileSync(path.join(__dirname,"views","user","template","foot
 
 hbs.registerPartial('userHeader',  header);
 hbs.registerPartial('userFooter',  footer);
+hbs.registerHelper('getDate', function(date) { //bỏ múi giờ
+  return date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+});
+
 
 app.use(logger('dev'));
 app.use(express.json());

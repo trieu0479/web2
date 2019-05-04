@@ -24,6 +24,20 @@ module.exports = {
       });
     });
   },
+  loadBind: (sql, bind) => { //dang ky user
+    return new Promise((resolve, reject) => {
+      var connection = createConnection();
+      connection.connect();
+      connection.query(sql, bind, (error, results, fields) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results);
+        }
+        connection.end();
+      });
+    });
+  },
   add: (tableName, entity) => {
     return new Promise((resolve, reject) => {
       var connection = createConnection();

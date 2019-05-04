@@ -24,7 +24,7 @@
                                             </div>
                                             <div class="col-md-8 col-sm-8">
                                                 <a class="badge badge-danger" href="{{IDDanhMuc}}">{{TenDanhMuc}}</a>
-                                                <span class="post-date">{{NgayDang}}</span>
+                                                <span class="post-date">{{getDate NgayDang}}</span>
                                                 <a href="{{IDBaiViet}}">
                                                     <h2>{{TieuDeBaiViet}}</h2>
                                                 </a>
@@ -88,7 +88,7 @@
 
                             </div>
                         </a>
-                        <p class="card-text"><small class="text-time"><em>{{NgayDang}}</em></small></p>
+                        <p class="card-text"><small class="text-time"><em>{{getDate NgayDang}}</em></small></p>
                     </div>
                 </div>
                 {{/each}}
@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                         </a>
-                        <p class="card-text"><small class="text-time"><em>{{NgayDang}}</em></small></p>
+                        <p class="card-text"><small class="text-time"><em>{{getDate NgayDang}}</em></small></p>
                     </div>
                 </div>
                 {{/each}}
@@ -151,7 +151,7 @@
                                             <h4 class=" title-small"> {{TieuDeBaiViet}}</h4>
                                         </div>
                                     </div>
-                                    <div class="news-auther"><small class="text-time"><em>{{NgayDang}}</em></small>
+                                    <div class="news-auther"><small class="text-time"><em>{{getDate NgayDang}}</em></small>
                                     </div>
                                 </div>
                             </div>
