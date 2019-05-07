@@ -1,4 +1,4 @@
-// const config = require('./config.json');
+//tìm hiểu về mô hình https://code.tutsplus.com/vi/tutorials/site-authentication-in-nodejs-user-sign-up--cms-29933
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -9,6 +9,9 @@ var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 
 var passport = require('./passport');
+var session = require("express-session"),
+    bodyParser = require("body-parser");
+
 
 var hbs = require('hbs');
 var fs = require('fs');
@@ -34,6 +37,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({ secret: "cats" }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', userRouter);
 app.use('/admin', adminRouter);

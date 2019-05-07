@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Đăng Ký</title>
   <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <style>
     @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 
@@ -183,6 +184,20 @@
       text-decoration: none;
 
     }
+    /* ======bao loi dang ky */
+.mess_msg {
+    height: 200px; 
+    position: absolute;
+    left: 319px;
+    list-style-type:none;
+ 
+}
+.mess_msg li {
+  font-size: 13.5px;
+    line-height: 20px;
+
+ 
+}
   </style>
 
 
@@ -221,29 +236,35 @@
       }
       return true;
     } 
+    
+  const signUp =()=>{
+    $.post("/dangky", {
+      username:$("#tentk").val(),
+      displayname:$("#tenhienthi").val(),
+      email:$("#mail").val(),
+      password:$("#matkhau").val(),
+      yearbirth:$("#namsinh").val()},
+      (data,tus)=>{
+      alert("Đăng ký thành công.Chuyển sang đăng nhập nhé");
+      window.location.href = "/dangnhap"
+    })
+  }
   </script>
-  <form action="" onsubmit="return CheckSubmit()" method="POST">
+  <form id="main-form" action="" onsubmit=" CheckSubmit()" method="POST">
     <div id="login-box">
-      <div class="left">
-        {{#if errors}}
-          <ul>
-            {{#each errors}}
-            <li>{{msg}}</li>
-            {{/each}}
-          </ul>
-        {{/if}}
+      <div class="left">        
         <h1 style="color:chocolate">Sign up</h1>
         <input type="text" name="username" placeholder="Username" id="tentk" />
         <input type="text" name="displayname" placeholder="Displayname" id="tenhienthi" />
         <input type="text" name="email" placeholder="E-mail" id="mail" />
         <input type="password" name="password" placeholder="Password" id="matkhau" />
         <input type="text" name="yearbirth" placeholder="YearofBirth" id="namsinh" />
-        <input type="submit" name="signin_submit" value="SUBMIT" />
+        <input type="submit" name="signin_submit" id="signUp_btn" value="SUBMIT" >
       </div>
       <div class="doyou">
         Do you have already account ?<a href="dangnhap"> Sign In</a>
       </div>
-
+      
       <div class="right">
         <span class="loginwith">Sign in with<br />social network</span>
         <button class="social-signin facebook">Log in with facebook</button>
@@ -251,9 +272,27 @@
         <button class="social-signin google">Log in with Google+</button>
       </div>
       <div class="or">OR</div>
+      {{#if errors}}
+          <ul class="mess_msg">
+            {{#each errors}}
+            <li style="color:red"><i class="far fa-thumbs-up"></i> {{msg}} !</li>
+            {{/each}}
+          </ul>
+        {{/if}}
     </div>
+    
   </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+document.getElementById('main-form').onsubmit = function () {
+  if (CheckSubmit()) {
+    signUp()
+  }
+  return false
+}
 
+
+</script>
 
 </body>
 

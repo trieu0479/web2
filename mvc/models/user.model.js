@@ -27,7 +27,16 @@ module.exports = {
         ]
         db1.loadBind(sql, data)
     },
-    dangnhap:(username, password)=> {
-        
+    dangnhap: async (username, password)=> {
+        let sql = "SELECT *FROM TAIKHOAN WHERE TenDangNhap = ?";
+        let user = await db1.loadBind(sql, [username])
+        if (!user) {
+            return false;
+        }
+        user = user[0];
+        if (!bcrypt.compareSync(password, user.MatKhau)) {
+            return false
+        }
+        return user
     }
 };

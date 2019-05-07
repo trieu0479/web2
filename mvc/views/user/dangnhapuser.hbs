@@ -125,6 +125,14 @@
 	.social-btn .btn i {
 		font-size: 20px;
 	}
+	.dk {
+		font-size: 17px;
+	}
+	.backid {
+		font-size: 15px !important;
+		color: #df4930 !important;
+		padding-top: 12px;
+	}
 </style>
 </head>
 <body>
@@ -154,6 +162,13 @@
 			<a href="#" class="btn btn-danger btn-lg" title="Google"><i class="fa fa-google"></i></a>
 		</div>
 		<div class="or-seperator"><b>or</b></div>
+		{{#if errors}}
+		   {{#each errors}}
+			<div class="mess_errlogin">
+				<li style="color:salmon">{{msg}}</li>
+			{{/each}}	
+			</div>
+		{{/if}}
         <div class="form-group">
         	<input type="text" class="form-control input-lg" name="username" placeholder="Username" required="required" id="userdn">
         </div>
@@ -164,8 +179,9 @@
             <button type="submit" class="btn btn-success btn-lg btn-block signup-btn">Sign in</button>
         </div>
         <div class="text-center small"><a href="#">Forgot Your password?</a></div>
+		  <div class="text-center small"><a href="/" class="backid"> << Back Home</a></div>
     </form>
-    <div class="text-center small">Don't have an account? <a href="dangky">Sign up</a></div>
+    <div class="text-center small">Don't have an account? <a href="dangky" class="dk">Sign up</a></div>
 </div>
 </body>
 </html>                            
