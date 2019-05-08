@@ -54,8 +54,14 @@ router.post('/dangky',[
     check('yearbirth').isLength({min: 4, max: 4}).isNumeric().withMessage('The year of birth must be a number and have 4 characters'),
     // check('pass')
     check('email').isEmail().withMessage('Email invalid'), ]
-    
     ,
+    check('email').custom(value => {
+        return User.findUserByEmail(value).then(user => { 
+          if (user) {
+            return Promise.reject('E-mail already in use');
+          }
+        });
+    }),
     async function (req,res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -70,7 +76,7 @@ router.post('/dangky',[
         //1 hộp thoại alert báo dang ký thành công
         // res.status(200).send()
         res.send({
-            message:'signup success',
+            message:'signup success', //ajax alert
             data:returnToUser
         }) 
         
