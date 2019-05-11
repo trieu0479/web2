@@ -27,9 +27,25 @@ module.exports = {
         ]
         db1.loadBind(sql, data)
     },
+    kiemtratrung:async  (comparedc, column) => {
+        let sql = `SELECT * FROM taikhoan WHERE \`${column}\` = ?`;
+        // let doichieu =
+        let data = [comparedc];
+        try {
+            let user = await db1.loadBind(sql,data);
+            if (user.length > 0) { //user already
+                return false;
+            } else {
+                return true;
+            }
+        } catch (error) {
+            console.log(error);
+            
+        }
+    },
     dangnhap: async (username, password)=> {
         let sql = "SELECT *FROM TAIKHOAN WHERE TenDangNhap = ?";
-        let user = await db1.loadBind(sql, [username])
+        let user = await db1.loadBind(sql, [username]);
         if (!user) {
             return false;
         }

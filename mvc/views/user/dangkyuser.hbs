@@ -243,14 +243,18 @@
       displayname:$("#tenhienthi").val(),
       email:$("#mail").val(),
       password:$("#matkhau").val(),
-      yearbirth:$("#namsinh").val()},
-      (data,tus)=>{
-      alert("Đăng ký thành công.Chuyển sang đăng nhập nhé");
-      window.location.href = "/dangnhap"
-    })
+      yearbirth:$("#namsinh").val()
+      }).then((data,tus)=>{
+        if (data.status) {
+          alert("Đăng ký thành công.Chuyển sang đăng nhập nhé");
+          window.location.href = "/dangnhap"
+        } else {
+          alert(data.errors[0].msg)
+        }
+      })
   }
   </script>
-  <form id="main-form" action="" onsubmit=" CheckSubmit()" method="POST">
+  <form id="main-form" action="" onsubmit="CheckSubmit()" method="POST">
     <div id="login-box">
       <div class="left">        
         <h1 style="color:chocolate">Sign up</h1>
@@ -275,7 +279,7 @@
       {{#if errors}}
           <ul class="mess_msg">
             {{#each errors}}
-            <li style="color:red"><i class="far fa-thumbs-up"></i> {{msg}} !</li>
+            <li style="color:red"><i class="far fa-thumbs-up"></i>{{msg}} !</li>
             {{/each}}
           </ul>
         {{/if}}

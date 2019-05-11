@@ -4,6 +4,8 @@ var dashboardModel   = require ("../models/dashboard.model");
 var userModel =  require ("../models/user.model");
 
 var passport = require('passport')
+//xac thuc username,email ,..giong nhau Expressvalidator
+var customValidate = require("../customValidate")
 
 //use validator
 const { check, validationResult } = require('express-validator/check');
@@ -47,45 +49,38 @@ router.get('/dangky',function (req,res) {
 
 
 // Cái này hiển thị dữ liệu gửi lên
-router.post('/dangky',[
+router.post('/dangky', [
 // express-validator
     check('username').isLength({min:3,max:15}).withMessage('Username is (3-15) characters'),
     check('displayname').isLength({max: 40}).withMessage('Display name is no larger than 40 characters'),
+    check("password").isLength({min:3,max:50}).withMessage("Password length is 3-50.Try again"),
     check('yearbirth').isLength({min: 4, max: 4}).isNumeric().withMessage('The year of birth must be a number and have 4 characters'),
-    // check('pass')
-    check('email').isEmail().withMessage('Email invalid'), ]
-    ,
-    check('email').custom(value => {
-        return User.findUserByEmail(value).then(user => { 
-          if (user) {
-            return Promise.reject('E-mail already in use');
-          }
-        });
-    }),
+    
+    check('email').isEmail().withMessage('Email invalid'),
+    //check issue same as   
+    check('username').custom((data)=>customValidate.checkDuplicate(data, "TenDangNhap")).withMessage('Username already used.Try Username other! '), 
+    check("displayname").custom((hihi)=>customValidate.checkDuplicate(hihi,"TenHienThi")).withMessage("Displayname already exists.Try Enter displayname other!"),
+    check('email').custom((data) => customValidate.checkDuplicate(data, "Email")).withMessage('Email already use.Try Email other!'), 
+    check("password").custom((hihi) =>customValidate.checkDuplicate(hihi,"MatKhau")).withMessage("Password already exists.Try passwod other!")    
+],     
     async function (req,res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        let viewData = { 
+        res.send({
+            status: false,
             errors: errors.array(),
-            input: req.body
-        }
-        res.render("user/dangkyuser", viewData)
+        })
     } else {
         let data = req.body;
         let returnToUser=await userModel.dangky(data);
-        //1 hộp thoại alert báo dang ký thành công
-        // res.status(200).send()
         res.send({
+            status: true,
             message:'signup success', //ajax alert
             data:returnToUser
         }) 
-        
- 
-               
-        // res.render("user/dangnhapuser");
-        
+       
     }
-});
+})
 
 
 // ===============rouuter Login================================
@@ -118,8 +113,6 @@ router.post("/dangnhap",[
             }
         })(req, res, next);
     }
-}
-)
-
+})
 
 module.exports = router;
