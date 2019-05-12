@@ -16,7 +16,11 @@ const { check, validationResult } = require('express-validator/check');
 //  const someOtherPlaintextPassword = 'not_bacon';
 //  ----------------------------------------
 var router = express.Router();
-
+//truyền req.session qua tất cả các view
+router.use(function (req, res, next) {
+	res.locals.req = req;
+	next();
+})
 
 /* GET home page. */
 router.get('/', async function (req, res) {
@@ -85,12 +89,14 @@ router.post('/dangky', [
 
 // ===============rouuter Login================================
 
-router.get('/dangnhap',function (req,res) {
+router.get('/dangnhap',function (req,res) {    
     res.render ("../views/user/dangnhapuser")
 });
 router.post("/dangnhap",[
-    check("username").isLength({min:3,max:15}).withMessage('Username is (3-15) characters and must valid')
+    check("username").isLength({min:3,max:15}).withMessage('Username is (3-15) characters and must valid'),
+    check("password").isLength({min:3,max:50}).withMessage('Password is length 3-50.Try again')
 ],function(req,res, next) {
+    
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         let viewData = { 
@@ -105,14 +111,35 @@ router.post("/dangnhap",[
                     errors: [{msg: "Sai ten dang nhap hoac mat khau"}],
                     input: req.body
                 }
-                res.render("user/dangnhapuser", viewData)
+                // res.render("user/dangnhapuser", viewData)
             } else {
-                req.session.user = user
-                res.send()
+                req.session.user = user;            
+                res.redirect("/");
                 // xử lý khi thành công ...
             }
+            // if (req.session.user) {
+            //     console.log("coo");                        
+            // }
+            // else console.log("kko");
         })(req, res, next);
+        
     }
 })
 
+// router.get("/dangnhapsession",(req,res)=> {
+   
+
+// })
+router.post("dangxuat",(req,res)=>{
+    if (req.session) {
+        // delete session object
+        req.session.destroy(function(err) {
+            if(err) {
+                return res.json({err});
+            } else {
+                return res.json({'logout': "Success"});
+            }
+        });
+    }
+})
 module.exports = router;

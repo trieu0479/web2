@@ -48,6 +48,10 @@
                         <li><a href="dangnhap">Sign In</a></li>
                         <li><a href="#">Advertise</a></li>
                         <li><a href="#">Contact us</a></li>
+                       
+                        {{#if req.session.user  }}
+                        <li><a href="#">Chào {{req.session.user.TenHienThi}} </a></li>
+                        {{/if}}
                     </ul>
                 </div>
             </div>

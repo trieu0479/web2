@@ -51,8 +51,8 @@ module.exports = {
         }
         user = user[0];
         if (!bcrypt.compareSync(password, user.MatKhau)) {
-            return false
+            return false;
         }
-        return user
+        return user;
     }
 };
