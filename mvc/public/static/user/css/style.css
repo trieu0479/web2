@@ -137,6 +137,10 @@
             left: 0;
             padding: 1.25rem;
         }
+        .main-post,.noidung{
+            margin-top: 10px;
+
+        }
         .top10bvmn .card-img-overlay {
             padding: 0;
             top: 3px;
@@ -292,6 +296,7 @@
 
         .section .section-title {
             margin-bottom: 40px;
+            margin-top: 40px;
         }
 
         .section .section-title h2 {
@@ -715,7 +720,8 @@
 	post
 \*----------------------------*/
         .post {
-            margin-bottom: 40px;
+            padding:5px;
+            border-bottom: 1px solid #ccc;
         }
 
         .post .post-img {

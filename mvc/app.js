@@ -7,6 +7,7 @@ var logger = require('morgan');
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
+var baivietRouter = require('./routes/baiviet');
 
 var passport = require('./passport');
 var session = require("express-session"),
@@ -45,6 +46,7 @@ app.use(passport.session());
 
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
+app.use('/baiviet',baivietRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -64,5 +66,9 @@ app.use(function(err, req, res, next) {
     err: err
   });
 });
-
+var port = process.env.PORT || 78;
+app.listen(port, () => {
+  var env = app.get('env');
+  console.log(`server is running in ${env} mode at http://localhost:${port}`);
+});
 module.exports = app;

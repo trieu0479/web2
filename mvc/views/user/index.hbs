@@ -18,14 +18,14 @@
                             <div class="item {{#unless @index}}active{{/unless}}">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <a href="{{IDBaiViet}}">
+                                        <a href="/baiviet/{{IDBaiViet}}">
                                             <div class="col-md-4 col-sm-4"><img src="/images/{{AnhURL}}"
                                                     class="img-fluid">
                                             </div>
                                             <div class="col-md-8 col-sm-8">
                                                 <a class="badge badge-danger" href="{{IDDanhMuc}}">{{TenDanhMuc}}</a>
                                                 <span class="post-date">{{getDate NgayDang}}</span>
-                                                <a href="{{IDBaiViet}}">
+                                                <a href="/baiviet/{{IDBaiViet}}">
                                                     <h2>{{TieuDeBaiViet}}</h2>
                                                 </a>
                                                 <p>{{NDTomTat}}...</p>
@@ -76,7 +76,7 @@
                 {{#each lay10baixemnhieu}}
                 <div class="col-md-4 col-sm-4 col-xs-6 d-flex pb-3">
                     <div class="card">
-                        <a href="{{IDBaiViet}}">
+                        <a href="/baiviet/{{IDBaiViet}}">
                             <img class="img-fluid img-responsive" src="/images/{{AnhURL}}" alt="">
                             <div class="card-img-overlay"> <span
                                     class="badge badge-pill badge-danger">{{TenDanhMuc}}</span>
@@ -103,7 +103,7 @@
                 {{#each lay10baimoinhat}}
                 <div class="col-md-4 col-sm-4 col-xs-6 d-flex pb-3">
                     <div class="card">
-                        <a href="{{IDBaiViet}}">
+                        <a href="/baiviet/{{IDBaiViet}}">
                             <img class="img-fluid img-responsive" src="/images/{{AnhURL}}" alt="">
                             <div class="card-img-overlay"> <span
                                     class="badge badge-pill badge-danger">{{TenDanhMuc}}</span>
@@ -141,7 +141,7 @@
                     </div> --}}
                     {{#each top10chuyenmuc}}
                     <div class="tab-pane active" role="tabpanel">
-                        <a href="{{IDBaiViet}}">
+                        <a href="/baiviet/{{IDBaiViet}}">
                             <div class="media">
                                 <img class="d-flex mr-3" src="/images/{{AnhURL}}" alt="{{TieuDeBaiViet}}">
                                 <div class="media-body">

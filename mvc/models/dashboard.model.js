@@ -13,7 +13,7 @@ module.exports = {
         return db.load(sql);
     },
     lay10baixemnhieu: () =>{
-        let sql = 'select * from `baiviet` join `danhmuc` on baiviet.IDDanhMuc =  danhmuc.IDDanhMuc order by SoLuotXem desc limit 0,10';
+        let sql = 'select * from `baiviet` join `danhmuc` on baiviet.IDDanhMuc =  danhmuc.IDDanhMuc order by  SoLuotXem desc limit 0,10';
         return db.load(sql);
     },
     lay10baimoinhat:() =>{
