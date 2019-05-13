@@ -5,7 +5,7 @@ module.exports = {
         return db.load(sql);
     },
     laymenu:()  =>{
-        let sql = `select * from danhmuc`;
+        let sql = `select TenDanhMuc, danhmuc.IDDanhMuc, count(baiviet.IDBaiViet) as sl from danhmuc join baiviet where danhmuc.IDDanhMuc = baiviet.IDDanhMuc group by TenDanhMuc,IDDanhMuc `;
         return db.load(sql);
     },
     get3PostForDashborad: () => {

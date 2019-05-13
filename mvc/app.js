@@ -8,6 +8,7 @@ var logger = require('morgan');
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 var baivietRouter = require('./routes/baiviet');
+var danhsachRouter = require('./routes/danhsach');
 
 var passport = require('./passport');
 var session = require("express-session"),
@@ -29,7 +30,7 @@ let footer = fs.readFileSync(path.join(__dirname,"views","user","template","foot
 hbs.registerPartial('userHeader',  header);
 hbs.registerPartial('userFooter',  footer);
 hbs.registerHelper('getDate', function(date) { //bỏ múi giờ
-  return date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear();
+  return date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
 });
 
 
@@ -47,6 +48,7 @@ app.use(passport.session());
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
 app.use('/baiviet',baivietRouter);
+app.use('/danhsach',danhsachRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

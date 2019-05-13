@@ -1,7 +1,7 @@
 var express = require('express');
 var chitietModel = require('../models/baiviet.model');
 var router = express.Router();
-
+var dashboardModel   = require ("../models/dashboard.model");
 
 router.get('/:id', async function (req, res) {
     const viewName = 'user/baiviet';
@@ -18,6 +18,7 @@ router.get('/:id', async function (req, res) {
     data.baiviet = await chitietModel.chitiet(id);
     data.binhluan = await chitietModel.binhluan(id);
     data.nambaiviet =await chitietModel.nambaiviet(id);
+    data.laymenu = await dashboardModel.laymenu();
     res.render(viewName, data);
     // chitietModel.chitiet(id)
     //     .then(rows => {
@@ -43,5 +44,4 @@ router.get('/:id', async function (req, res) {
     //     })
     //     .catch(next);
 });
-
 module.exports = router;

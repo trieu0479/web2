@@ -255,7 +255,6 @@
             word-wrap: break-word;
             background-color: #fff;
             background-clip: border-box;
-            border: 1px solid rgba(0,0,0,.125);
             border-radius: .25rem;
             text-indent:5px;
             
@@ -720,7 +719,7 @@
 	post
 \*----------------------------*/
         .post {
-            padding:5px;
+            padding:15px;
             border-bottom: 1px solid #ccc;
         }
 
@@ -736,7 +735,8 @@
         }
 
         .post .post-img>img {
-            width: 100%;
+            width: 350px;
+            height: 90px;
         }
 
         .post .post-meta {
@@ -852,7 +852,7 @@
         }
 
         .post.post-widget .post-img {
-            width: 90px;
+            width: 150px;
             float: left;
             margin-right: 15px;
         }
