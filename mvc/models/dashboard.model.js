@@ -8,6 +8,10 @@ module.exports = {
         let sql = `select TenDanhMuc, danhmuc.IDDanhMuc, count(baiviet.IDBaiViet) as sl from danhmuc join baiviet where danhmuc.IDDanhMuc = baiviet.IDDanhMuc group by TenDanhMuc,IDDanhMuc `;
         return db.load(sql);
     },
+    demchuyenmuc:() => {
+        let sql = `select TenChuyenMuc, chuyemuc.IDChuyenMuc, count(baiviet.IDBaiViet) as sl1 from chuyemuc join baiviet where chuyemuc.IDChuyenMuc = baiviet.IDChuyenMuc group by TenChuyenMuc,IDChuyenMuc`;
+        return db.load(sql);
+    },
     get3PostForDashborad: () => {
         let sql = 'SELECT * FROM `baiviet` join `danhmuc` on baiviet.IDDanhMuc =  danhmuc.IDDanhMuc WHERE YEARWEEK(`NgayDang`, 1) = YEARWEEK(CURDATE(), 1) ORDER BY SoLuotXem DESC LIMIT 5';
         return db.load(sql);
@@ -21,5 +25,6 @@ module.exports = {
     },
     top10chuyenmuc: ()=>{
         return db.load('SELECT * FROM `baiviet` join `danhmuc` on baiviet.IDDanhMuc =  danhmuc.IDDanhMuc GROUP BY IDChuyenMuc ORDER BY NgayDang DESC limit 0,10');
-    }
+    },
+    
 }

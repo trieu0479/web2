@@ -3,6 +3,7 @@ var chitietModel = require('../models/baiviet.model');
 var router = express.Router();
 var dashboardModel   = require ("../models/dashboard.model");
 
+//chi tiet bai viet
 router.get('/:id', async function (req, res) {
     const viewName = 'user/baiviet';
     var vm = {
@@ -19,7 +20,25 @@ router.get('/:id', async function (req, res) {
     data.binhluan = await chitietModel.binhluan(id);
     data.nambaiviet =await chitietModel.nambaiviet(id);
     data.laymenu = await dashboardModel.laymenu();
+    data.tagindex = await chitietModel.tagindex(id);
+    data.demchuyenmuc = await chitietModel.demchuyenmuc();
     res.render(viewName, data);
+//load tag
+// router.get("/:id",async function (req,res) {
+//     const viewName ="user/baiviet";
+//     var vm = {
+//         error: true
+//     }
+//     var id =req.params.id;
+//     console.log(id);
+//     if (isNaN(id)) {
+//         res.render(viewName,vm);
+//         return;
+//     }
+//     let data ={};
+//     data.tagbaiviet = await chitietModel.tagbaiviet(id);
+
+// })
     // chitietModel.chitiet(id)
     //     .then(rows => {
     //         if (rows.length > 0) {

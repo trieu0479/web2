@@ -14,7 +14,19 @@ module.exports = {
         return db.load(`select * from baiviet bv1 join baiviet bv2 on bv1.IDChuyenMuc = bv2.IDChuyenMuc
         where bv1.IDBaiViet = ${id} order by rand() limit 5`);
     },
-    tag:(id) =>{
-        return db.load(`select * from tag`);
-    }
+    tag1: (id) =>{
+        // SELECT baiviet.IDBaiViet, lientkettag.IDBaiViet,tag.IDTag,lienkettag.IDTag FROM baiviet,tag,lienkettag WHERE tag.IDTag=lienkettag.IDTag and baiviet.IDBaiViet=lienkettag.IDBaiViet
+        // SELECT TenTag FROM baiviet,tag,lienkettag WHERE tag.IDTag=lienkettag.IDTag and baiviet.IDBaiViet=lienkettag.IDBaiViet and lienkettag.IDTag=2
+        return db.load(`SELECT tag.IDTag,TenTag FROM baiviet,tag,lienkettag 
+        WHERE tag.IDTag=lienkettag.IDTag and baiviet.IDBaiViet=lienkettag.IDBaiViet and lienkettag.IDTag=${id}`);
+    },
+    tagindex:() => {
+        return db.load(`SELECT tag.IDTag,tag.TenTag,baiviet.IDBaiViet FROM baiviet,tag,lienkettag 
+        WHERE tag.IDTag=lienkettag.IDTag and baiviet.IDBaiViet=lienkettag.IDBaiViet  `)
+      },
+      demchuyenmuc:() => {
+        let sql = `select TenChuyenMuc, chuyemuc.IDChuyenMuc, count(baiviet.IDBaiViet) as sl1 from chuyemuc join baiviet where chuyemuc.IDChuyenMuc = baiviet.IDChuyenMuc group by TenChuyenMuc,IDChuyenMuc`;
+        return db.load(sql);
+    },
+
 }

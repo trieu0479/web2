@@ -23,22 +23,29 @@ router.use(function (req, res, next) {
 })
 
 /* GET home page. */
-router.get('/', async function (req, res) {
+router.get('/', async function (req, res) {    
+    // const viewName = "user/index";
+    // var vm = {
+    //     error: true
+    // }
+    // var id = req.params.id;
+    // console.log(id);
+    // if (isNaN(id)) {
+    //     res.render(viewName, vm);
+    //     return;
+    // }
     let data = {};
     data.baiVietNoiBat = await dashboardModel.get3PostForDashborad();
     data.lay10baixemnhieu = await dashboardModel.lay10baixemnhieu();
     data.laymenu = await dashboardModel.laymenu();
     data.lay10baimoinhat = await dashboardModel.lay10baimoinhat();
     data.top10chuyenmuc = await dashboardModel.top10chuyenmuc();
+    data.laymenu1 = await dashboardModel.demchuyenmuc();
+ 
     res.render('user/index', data);
 });
 
 
-
-
-router.get('/baiviet',function(req,res) {
-    res.render('user/baiviet')
-});
 
 
 ///===================router Sign Up======
@@ -58,14 +65,13 @@ router.post('/dangky', [
     check('username').isLength({min:3,max:15}).withMessage('Username is (3-15) characters'),
     check('displayname').isLength({max: 40}).withMessage('Display name is no larger than 40 characters'),
     check("password").isLength({min:3,max:50}).withMessage("Password length is 3-50.Try again"),
-    check('yearbirth').isLength({min: 4, max: 4}).isNumeric().withMessage('The year of birth must be a number and have 4 characters'),
-    
+    check('yearbirth').isLength({min: 4, max: 4}).isNumeric().withMessage('The year of birth must be a number and have 4 characters'),    
     check('email').isEmail().withMessage('Email invalid'),
     //check issue same as   
     check('username').custom((data)=>customValidate.checkDuplicate(data, "TenDangNhap")).withMessage('Username already used.Try Username other! '), 
     check("displayname").custom((hihi)=>customValidate.checkDuplicate(hihi,"TenHienThi")).withMessage("Displayname already exists.Try Enter displayname other!"),
     check('email').custom((data) => customValidate.checkDuplicate(data, "Email")).withMessage('Email already use.Try Email other!'), 
-    check("password").custom((hihi) =>customValidate.checkDuplicate(hihi,"MatKhau")).withMessage("Password already exists.Try passwod other!")    
+    check("password").custom((data)=>customValidate.checkDuplicate(data,"MatKhau")).withMessage("Password already exists.Try passwod other!")    
 ],     
     async function (req,res) {
     const errors = validationResult(req);
@@ -130,7 +136,7 @@ router.post("/dangnhap",[
    
 
 // })
-router.post("dangxuat",(req,res)=>{
+router.post("/dangxuat",(req,res)=>{
     if (req.session) {
         // delete session object
         req.session.destroy(function(err) {

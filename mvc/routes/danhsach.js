@@ -17,7 +17,8 @@ router.get('/:id', async function (req, res) {
     }
     let data = {};
     data.baiviet = await danhsachModel.danhsach(id);
-    data.laymenu = await dashboardModel.laymenu();
+    // data.laymenu = await dashboardModel.laymenu();
+    data.laymenu1 = await dashboardModel.demchuyenmuc();
     res.render(viewName, data);
 });
 module.exports = router;

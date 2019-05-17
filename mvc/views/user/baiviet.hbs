@@ -14,12 +14,13 @@
 						Bài viết không có. <a href="/" class="alert-link">Click vào đây để về trang chủ</a>.
 					</div>
 					{{else}}
-					{{#each baiviet}}
+					{{#each baiviet}}  {{!--lay data tu router--}}
 					<div class="main-post">
 						<h2>{{TieuDeBaiViet}}</h2>
 						<div class="post-meta">
 							<span class="badge badge-pill badge-danger">{{TenDanhMuc}}</span>
 							<a class="post-category cat-2" href="#">{{TenChuyenMuc}}</a>
+							{{!-- <a class="post-category cat-2" href="#">{{TenTag}}</a> --}}
 							<span class="post-date">{{getDate NgayDang}}</span>
 						</div>
 						<br>
@@ -109,12 +110,12 @@
 				<!-- catagories -->
 				<div class="aside-widget">
 					<div class="section-title">
-						<h2><i class="fas fa-bars" style="font-size: 16px;color: #714d4d7a;"></i>&nbsp;Danh Mục</h2>
+						<h2><i class="fas fa-bars" style="font-size: 16px;color: #714d4d7a;"></i>&nbsp;Chuyên Mục</h2>
 					</div>
 					<div class="category-widget">
-						{{#each laymenu}}
+						{{#each demchuyenmuc}}
 						<ul>
-							<li><a href="/danhsach/{{IDDanhMuc}}" class="cat-1">{{TenDanhMuc}}<span>{{sl}}</span></a>
+							<li><a href="/danhsach/{{IDChuyenMuc}}" class="cat-1">{{TenChuyenMuc}}<span>{{sl1}}</span></a>
 							</li>
 						</ul>
 						{{/each}}
@@ -124,11 +125,13 @@
 				<!-- tags -->
 				<div class="aside-widget">
 					<div class="tags-widget">
+						{{#each tagindex}}
 						<ul>
-							<li><a href="#">Chrome</a></li>
-							<li><a href="#">CSS</a></li>
-							<li><a href="#">Tutorial</a></li>
+							<li><a href="/baiviet/{{IDBaiViet}}">{{TenTag}}</a></li>
+							{{!-- <li><a href="#">CSS</a></li>
+							<li><a href="#">Tutorial</a></li> --}}
 						</ul>
+						{{/each}}
 					</div>
 				</div>
 				<!-- /tags -->
