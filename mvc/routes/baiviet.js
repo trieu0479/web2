@@ -20,7 +20,7 @@ router.get('/:id', async function (req, res) {
     data.binhluan = await chitietModel.binhluan(id);
     data.nambaiviet =await chitietModel.nambaiviet(id);
     data.laymenu = await dashboardModel.laymenu();
-    data.tagindex = await chitietModel.tagindex(id);
+    data.tagindex = await chitietModel.tagindex();
     data.demchuyenmuc = await chitietModel.demchuyenmuc();
     res.render(viewName, data);
 //load tag

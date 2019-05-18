@@ -20,7 +20,7 @@ module.exports = {
         return db.load(`SELECT tag.IDTag,TenTag FROM baiviet,tag,lienkettag 
         WHERE tag.IDTag=lienkettag.IDTag and baiviet.IDBaiViet=lienkettag.IDBaiViet and lienkettag.IDTag=${id}`);
     },
-    tagindex:() => {
+    tagindex:() => { //lay tag
         return db.load(`SELECT tag.IDTag,tag.TenTag,baiviet.IDBaiViet FROM baiviet,tag,lienkettag 
         WHERE tag.IDTag=lienkettag.IDTag and baiviet.IDBaiViet=lienkettag.IDBaiViet  `)
       },

@@ -1,7 +1,7 @@
 var express = require('express');
 var danhsachModel = require('../models/danhsach.model');
 var dashboardModel   = require ("../models/dashboard.model");
-
+var chitietModel = require ("../models/baiviet.model");
 var router = express.Router();
 
 router.get('/:id', async function (req, res) {
@@ -19,6 +19,7 @@ router.get('/:id', async function (req, res) {
     data.baiviet = await danhsachModel.danhsach(id);
     // data.laymenu = await dashboardModel.laymenu();
     data.laymenu1 = await dashboardModel.demchuyenmuc();
+    data.tagindex = await chitietModel.tagindex();
     res.render(viewName, data);
 });
 module.exports = router;
