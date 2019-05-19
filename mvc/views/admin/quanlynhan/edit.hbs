@@ -1,0 +1,64 @@
+{{> adminHeader }}
+<div id="content-wrapper">
+
+    <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Tag</a>
+            </li>
+            <li class="breadcrumb-item active">Overview</li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-table"></i>
+                Chỉnh sửa
+            </div>
+            {{!-- <div class="card-body">
+                <div class="table-responsive"> --}}
+                    <form action="/quanlynguoidung/update" method="POST">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                {{#if this.error}}
+                                <div class="alert alert-danger" role="alert">
+                                    Invalid categoryId. <a href="/quanlynhan" class="alert-link">Back to List</a>.
+                                </div>
+                                {{else}}
+                                {{#each chitiet}}
+                                <div class="form-group">
+                                    <label for="txtID">#</label>
+                                    <input readonly type="text" class="form-control" id="txtID" name="ID"
+                                        value="{{IDTag}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtTenTag">Tên Tag</label>
+                                    <input type="text" class="form-control" id="txtTenTag" name="TenTag"
+                                        value="{{TenTag}}">
+                                </div>
+                                {{/each}}
+                                {{/if}}
+                            </div>
+                            <div class="card-footer text-right">
+                                <a class="btn btn-outline-primary" href="/quanlynhan" role="button" title="Back">
+                                    <i class="fa fa-backward" aria-hidden="true"></i>
+                                    List
+                                </a>
+                                {{#unless this.error}}
+                                <button type="submit" class="btn btn-danger" formaction="/quanglynhan/delete">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    Delete
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    Save
+                                </button>
+                                {{/unless}}
+                            </div>
+                        </div>
+                    </form>
+               
+        </div>
+<!-- /.container-fluid -->
+<!-- Sticky Footer -->
+{{> adminFooter}}

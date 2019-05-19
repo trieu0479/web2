@@ -1,0 +1,79 @@
+{{> adminHeader }}
+<div id="content-wrapper">
+
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Tag</a>
+            </li>
+            <li class="breadcrumb-item active">Overview</li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-table"></i>
+                Danh Sách Tag
+            </div>
+            <div class="text-right mt-3 pr-4">
+                <a class="btn btn-outline-success btn-sm" href="/quanlynhan/add" role="button" title="Edit">
+                    <i class="fa fa-plus" aria-hidden="true"> Thêm Tag</i>
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID </th>
+                                <th>Tên Tag</th>
+                                <th>Sửa</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID </th>
+                                <th>Tên Tag</th>
+                                <th>Edit</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {{#each tag}}
+                            <tr>
+                                <td>{{IDTag}}</td>
+                                <td>{{TenTag}}</td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm" href="/quanlynhan/edit/{{IDTag}}" role="button"
+                                        title="Edit">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+
+                    </table>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled ">
+                                        {{!-- <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a> --}}
+                                        <a class="page-link" href="?page=">Previous</a>
+                                    </li>
+                                    <li class="page-item  active ">
+                                        <a class="page-link" href="?page=">1</a>
+                                    </li>
+                                    <li class="page-item  disabled ">
+                                        <a class="page-link" href="?page=">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        {{> adminFooter}}

@@ -9,6 +9,10 @@ var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 var baivietRouter = require('./routes/baiviet');
 var danhsachRouter = require('./routes/danhsach');
+var tagRouter = require('./routes/quanlynhan');
+var chuyenmucRouter = require('./routes/quanlychuyenmuc');
+var nguoidungRouter = require('./routes/quanlynguoidung');
+var dsbaivietRouter = require('./routes/quanlybaiviet');
 // var tagRouter =require("./routes/tag");
 
 var passport = require('./passport');
@@ -27,9 +31,14 @@ app.set('view engine', 'hbs');
 
 let header = fs.readFileSync(path.join(__dirname,"views","user","template","header.hbs"), 'utf-8');
 let footer = fs.readFileSync(path.join(__dirname,"views","user","template","footer.hbs"), 'utf-8');
+let headeradmin = fs.readFileSync(path.join(__dirname,"views","admin","template","header.hbs"), 'utf-8');
+let footeradmin = fs.readFileSync(path.join(__dirname,"views","admin","template","footer.hbs"), 'utf-8');
 
 hbs.registerPartial('userHeader',  header);
 hbs.registerPartial('userFooter',  footer);
+hbs.registerPartial('adminHeader',  headeradmin);
+hbs.registerPartial('adminFooter',  footeradmin);
+
 hbs.registerHelper('getDate', function(date) { //bỏ múi giờ
   return date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
 });
@@ -50,6 +59,10 @@ app.use('/', userRouter);
 app.use('/admin', adminRouter);
 app.use('/baiviet',baivietRouter);
 app.use('/danhsach',danhsachRouter);
+app.use('/quanlynhan',tagRouter);
+app.use('/quanlychuyenmuc', chuyenmucRouter);
+app.use('/quanlynguoidung', nguoidungRouter);
+app.use('/quanlybaiviet', dsbaivietRouter);
 // app.use ('/tag',tagRouter);
 
 // catch 404 and forward to error handler
