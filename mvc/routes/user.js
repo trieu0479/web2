@@ -3,10 +3,11 @@ var express           = require('express');
 var dashboardModel   = require ("../models/dashboard.model");
 var userModel =  require ("../models/user.model");
 var chitietModel = require ("../models/baiviet.model");
+var tagindexModel = require ("../models/tag.model");
 var passport = require('passport');
 //xac thuc username,email ,..giong nhau Expressvalidator
 var customValidate = require("../customValidate")
-
+var moment = require("moment");
 //use validator
 const { check, validationResult } = require('express-validator/check');
 //use bcrybt
@@ -28,7 +29,7 @@ router.get('/', async function (req, res) {
     // var vm = {
     //     error: true
     // }
-    // var id = req.params.id;
+    var id = req.params.id;
     // console.log(id);
     // if (isNaN(id)) {
     //     res.render(viewName, vm);
@@ -41,8 +42,8 @@ router.get('/', async function (req, res) {
     data.lay10baimoinhat = await dashboardModel.lay10baimoinhat();
     data.top10chuyenmuc = await dashboardModel.top10chuyenmuc();
     data.laymenu1 = await dashboardModel.demchuyenmuc();
-    data.tagindex = await chitietModel.tagindex();
- 
+    data.tagindex = await tagindexModel.tagindex();
+    
     res.render('user/index', data);
 });
 
@@ -66,7 +67,7 @@ router.post('/dangky', [
     check('username').isLength({min:3,max:15}).withMessage('Username is (3-15) characters'),
     check('displayname').isLength({max: 40}).withMessage('Display name is no larger than 40 characters'),
     check("password").isLength({min:3,max:50}).withMessage("Password length is 3-50.Try again"),
-    check('yearbirth').isLength({min: 4, max: 4}).isNumeric().withMessage('The year of birth must be a number and have 4 characters'),    
+    check('ngaythangnamsinh').isLength({min: 7, max: 11}).withMessage('The date of birth must be invalid'),    
     check('email').isEmail().withMessage('Email invalid'),
     //check issue same as   
     check('username').custom((data)=>customValidate.checkDuplicate(data, "TenDangNhap")).withMessage('Username already used.Try Username other! '), 
@@ -79,10 +80,14 @@ router.post('/dangky', [
     if (!errors.isEmpty()) {
         res.send({
             status: false,
-            errors: errors.array(),
+            errors: errors.array()
         })
     } else {
-        let data = req.body;
+        var dob=moment(req.body.ngaythangnamsinh).format("YYYY-MM-DD");
+        let data = req.body;       
+        // console.log(data);
+        data.NgayThangNamSinh = dob;    
+        console.log(data);        
         let returnToUser=await userModel.dangky(data);
         res.send({
             status: true,
@@ -102,51 +107,63 @@ router.get('/dangnhap',function (req,res) {
 router.post("/dangnhap",[
     check("username").isLength({min:3,max:15}).withMessage('Username is (3-15) characters and must valid'),
     check("password").isLength({min:3,max:50}).withMessage('Password is length 3-50.Try again')
-],function(req,res, next) {
-    
+],function(req,res, next) {    
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        let viewData = { 
-            errors: errors.array(),
-            input: req.body
-        }
-        res.render("user/dangnhapuser", viewData)
+        // let viewData = { 
+        //     errors: errors.array(),
+        //     input: req.body
+        // } 
+        // res.json({
+        //     status: false,
+        //     errors: errors.array()
+        // })
+        // res.render("user/dangnhapuser");
+
+        return res.render('user/dangnhapuser', {                   
+                    errors:  errors.array()
+                  });
     } else {
         passport.authenticate('local', function(err, user, info) {
+            if (err) {
+                return next(err);
+              }
+     
             if (!user) {
-                let viewData = { 
+                // let viewData = { 
+                //     errors: [{msg: "Sai ten dang nhap hoac mat khau"}],
+                //     input: req.body,                    
+                // }
+                // console.log (viewData);
+                // res.render("user/dangnhapuser");
+                return res.render('user/dangnhapuser', {                   
                     errors: [{msg: "Sai ten dang nhap hoac mat khau"}],
-                    input: req.body
-                }
-                // res.render("user/dangnhapuser", viewData)
+                    msg: info.message
+                  });
+                  console.log(user);
             } else {
                 req.session.user = user;            
                 res.redirect("/");
                 // xử lý khi thành công ...
             }
-            // if (req.session.user) {
-            //     console.log("coo");                        
-            // }
-            // else console.log("kko");
+            
         })(req, res, next);
         
     }
 })
 
-// router.get("/dangnhapsession",(req,res)=> {
-   
 
-// })
-router.post("/dangxuat",(req,res)=>{
-    if (req.session) {
-        // delete session object
-        req.session.destroy(function(err) {
-            if(err) {
-                return res.json({err});
-            } else {
-                return res.json({'logout': "Success"});
-            }
-        });
-    }
-})
+router.get('/dangxuat',function(req,res){    
+    req.session.destroy(function(err){  
+        if(err){  
+            console.log(err);  
+        }  
+        else  
+        {  req.logout();
+           res.redirect('/');  
+        }  
+    });  
+
+});  
+
 module.exports = router;

@@ -4,7 +4,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-//
+// var hbssection = require ("express-handlebars-sections");
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 var baivietRouter = require('./routes/baiviet');
@@ -13,13 +13,14 @@ var tagRouter = require('./routes/quanlynhan');
 var chuyenmucRouter = require('./routes/quanlychuyenmuc');
 var nguoidungRouter = require('./routes/quanlynguoidung');
 var dsbaivietRouter = require('./routes/quanlybaiviet');
-// var tagRouter =require("./routes/tag");
+var tagindex = require ("./routes/tag");
+
 
 var passport = require('./passport');
 var session = require("express-session"),
     bodyParser = require("body-parser");
 
-
+var moment = require ("moment");
 var hbs = require('hbs');
 var fs = require('fs');
 
@@ -63,7 +64,7 @@ app.use('/quanlynhan',tagRouter);
 app.use('/quanlychuyenmuc', chuyenmucRouter);
 app.use('/quanlynguoidung', nguoidungRouter);
 app.use('/quanlybaiviet', dsbaivietRouter);
-// app.use ('/tag',tagRouter);
+app.use ('/tag',tagindex);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -83,9 +84,9 @@ app.use(function(err, req, res, next) {
     err: err
   });
 });
-var port = process.env.PORT || 78;
-app.listen(port, () => {
-  var env = app.get('env');
-  console.log(`server is running in ${env} mode at http://localhost:${port}`);
-});
+// var port = process.env.PORT || 78;
+// app.listen(port, () => {
+//   var env = app.get('env');
+//   console.log(`server is running in ${env} mode at http://localhost:${port}`);
+// });
 module.exports = app;

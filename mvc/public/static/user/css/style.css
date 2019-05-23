@@ -1468,3 +1468,13 @@
         margin: 0 !important;
     }
 }
+
+/* ==========================================trieu */
+.list-inline li:nth-child(2) a {
+    color:#32a566;
+    font-weight: 900;
+    text-transform: uppercase !important;
+}
+.list-inline>li>a {
+    color: red;
+}

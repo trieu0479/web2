@@ -2,7 +2,7 @@ var express = require('express');
 var chitietModel = require('../models/baiviet.model');
 var router = express.Router();
 var dashboardModel   = require ("../models/dashboard.model");
-
+var tagindexModel = require ("../models/tag.model");
 //chi tiet bai viet
 router.get('/:id', async function (req, res) {
     const viewName = 'user/baiviet';
@@ -20,8 +20,9 @@ router.get('/:id', async function (req, res) {
     data.binhluan = await chitietModel.binhluan(id);
     data.nambaiviet =await chitietModel.nambaiviet(id);
     data.laymenu = await dashboardModel.laymenu();
-    data.tagindex = await chitietModel.tagindex();
+    data.tagindex = await tagindexModel.tagindex();
     data.demchuyenmuc = await chitietModel.demchuyenmuc();
+    data.taglk = await tagindexModel.taglk(id);
     res.render(viewName, data);
 //load tag
 // router.get("/:id",async function (req,res) {
