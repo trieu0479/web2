@@ -82,12 +82,14 @@ router.post('/dangky', [
             status: false,
             errors: errors.array()
         })
-    } else {
-        var dob=moment(req.body.ngaythangnamsinh).format("YYYY-MM-DD");
+    } else {             
+        var dob=moment(req.body.ngaythangnamsinh).format("DD-MM-YY");        
         let data = req.body;       
         // console.log(data);
-        data.NgayThangNamSinh = dob;    
-        console.log(data);        
+        data.NgayThangNamSinh = dob;      
+        console.log(data);    
+        debugger
+            
         let returnToUser=await userModel.dangky(data);
         res.send({
             status: true,
@@ -113,40 +115,50 @@ router.post("/dangnhap",[
         // let viewData = { 
         //     errors: errors.array(),
         //     input: req.body
-        // } 
-        // res.json({
-        //     status: false,
-        //     errors: errors.array()
-        // })
-        // res.render("user/dangnhapuser");
-
+        // }        
         return res.render('user/dangnhapuser', {                   
-                    errors:  errors.array()
+                    errors: errors.array()
                   });
-    } else {
+                  
+    }                                 
+    else {
+        // console.log('vao day nhe')
         passport.authenticate('local', function(err, user, info) {
             if (err) {
                 return next(err);
-              }
-     
-            if (!user) {
-                // let viewData = { 
-                //     errors: [{msg: "Sai ten dang nhap hoac mat khau"}],
-                //     input: req.body,                    
-                // }
-                // console.log (viewData);
-                // res.render("user/dangnhapuser");
+              }        
+            // console.log('thongtin', user)                
+            // if (!user) {
+            //     // let viewData = { 
+            //     //     errors: [{msg: "Sai ten dang nhap hoac mat khau"}],
+            //     //     input: req.body,                    
+            //     // }
+            //     // console.log (viewData);
+            //     // res.render("user/dangnhapuser");                                                                  
+            //     //   console.log(user);
+            // } else {                
+            //     // xử lý khi thành công ...
+            // }
+            // neu user isvalid false 
+            // console.log('info', user)
+            if(user.isValid === false) {
                 return res.render('user/dangnhapuser', {                   
-                    errors: [{msg: "Sai ten dang nhap hoac mat khau"}],
-                    msg: info.message
+                    errors: [{msg: "Sai ten dang nhap hoac mat khau "}],                 
                   });
-                  console.log(user);
-            } else {
-                req.session.user = user;            
-                res.redirect("/");
-                // xử lý khi thành công ...
             }
-            
+             else if (user.isValid === true && user.user.Active === 0 && user.user.MaLoaiTaiKhoan === 2 ) {
+                return res.render('user/dangnhapuser', {                   
+                    errors: [{msg: "Tài khoản hiện tại của bạn là Sucbcriber hết hạn. Cần nạp card để kích hoạt"}],                   
+                  });
+            } 
+            // else if (user.isValid === true && user.user.MaLoaiTaiKhoan === 5) {
+            //     return res.render("admin/index")
+            // }
+            else {
+                req.session.user = user;      
+                console.log(user);                                      
+                res.redirect("/");
+            }
         })(req, res, next);
         
     }

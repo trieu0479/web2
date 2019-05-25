@@ -6,26 +6,39 @@ var moment = require ("moment");
 // const someOtherPlaintextPassword = 'not_bacon';
 module.exports = {
     dangky:(userData) => {    
+        function date(date){
+            return new Date().setDate(date);
+            }
         var salt = bcrypt.genSaltSync(10);
         var password = bcrypt.hashSync(userData.password, salt);
                 // Store hash in your password DB.          
         let sql =`INSERT INTO taikhoan
-        (TenDangNhap,TenHienThi,MatKhau,NgayThangNamSinh,NgayDangKy,Email,MaLoaiTaiKhoan,Active) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
-        let today = new Date;
+        (TenDangNhap,TenHienThi,MatKhau,NgayThangNamSinh,NgayDangKy,NgayHetHan,Email,MaLoaiTaiKhoan,Active) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`; 
+        // ===ngay het han==========          
+        current = new Date().getDate();
+        date = new Date(date(current + 7));      
+        let today = new Date;             
         let maLoaiTaiKhoan = 1;
-        let active = 1;
+        let active = "";  
+        if (date!==today) {
+            active="1";
+            }
+        else active ="0";      
         let data = [
             userData.username,
             userData.displayname,
             password,
             userData.ngaythangnamsinh,
             today,
+            date,
             userData.email,
             maLoaiTaiKhoan,
             active
-        ]
-        db1.loadBind(sql, data)
+        ];
+        
+      
+        db1.loadBind(sql, data);
     },
     kiemtratrung:async  (comparedc, column) => {
         let sql = `SELECT * FROM taikhoan WHERE \`${column}\` = ?`;
@@ -44,26 +57,25 @@ module.exports = {
         }
     },
     dangnhap: async (username, password)=> {
-        let sql = "SELECT * FROM TAIKHOAN WHERE TenDangNhap = ? ";
-        let user = await db1.loadBind(sql, [username]);
-
+        let sql = "SELECT * FROM TAIKHOAN WHERE TenDangNhap = ? ";        
+        let user = await db1.loadBind(sql, [username]);        
         // user is Array => object ko null
         // if (!user) { // Cai ! de check Object. Cai do viet dung se la (if user == null || user == underfined) 
         //     return false;
         // }
-
+        console.log(user);
         // user is Array. If user.length = 0 => ko tim thay user
         if (user.length == 0) {
-            return false;
-        }
-
-
-        user = user[0];
-        console.log(user);
-        // let MatKhau = MatKhau[0];
+            return {isValid: false}; //trả ve object để so sánh vs router
+        }                     
+        user = user[0];                   
         if (!bcrypt.compareSync(password, user.MatKhau)) {
-            return false;
-        }
-        return user;
+            return {isValid: false, user};
+        }    
+        // if (user.Active == 0) {
+        //     return {isValid: true, user};
+        // }     
+        console.log (user);;
+        return {isValid: true, user};
     }
 };
