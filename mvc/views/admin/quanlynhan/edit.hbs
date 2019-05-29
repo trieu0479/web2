@@ -36,8 +36,6 @@
                                     <input type="text" class="form-control" id="txtTenTag" name="TenTag"
                                         value="{{TenTag}}">
                                 </div>
-                                {{/each}}
-                                {{/if}}
                             </div>
                             <div class="card-footer text-right">
                                 <a class="btn btn-outline-primary" href="/quanlynhan" role="button" title="Back">
@@ -45,7 +43,7 @@
                                     List
                                 </a>
                                 {{#unless this.error}}
-                                <button type="submit" class="btn btn-danger" formaction="/quanglynhan/delete">
+                                <button type="submit" class="btn btn-danger" formaction="/quanlynhan/delete/{{IDTag}}">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     Delete
                                 </button>
@@ -54,6 +52,8 @@
                                     Save
                                 </button>
                                 {{/unless}}
+                                {{/each}}
+                                {{/if}}
                             </div>
                         </div>
                     </form>

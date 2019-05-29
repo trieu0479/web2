@@ -11,5 +11,5 @@ router.get('/', async function(req, res) {
     data.chuyenmuc = await adminModel.chuyenmuc();
   res.render('admin/index.hbs', data);
 });
-router.get ()
+//router.get ()
 module.exports = router;

@@ -84,9 +84,9 @@ app.use(function(err, req, res, next) {
     err: err
   });
 });
-// var port = process.env.PORT || 78;
-// app.listen(port, () => {
-//   var env = app.get('env');
-//   console.log(`server is running in ${env} mode at http://localhost:${port}`);
-// });
+var port = process.env.PORT || 78;
+app.listen(port, () => {
+  var env = app.get('env');
+  console.log(`server is running in ${env} mode at http://localhost:${port}`);
+});
 module.exports = app;
