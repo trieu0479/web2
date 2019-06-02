@@ -6,7 +6,7 @@ var router = express.Router();
 router.get('/', (req, res, next) => {
     var page = parseInt(req.query.page) || 1;
     var perPage = 3;
-  
+
     var start = (page - 1) * perPage;
     var end = perPage;
     //var Rows = 37;
@@ -14,34 +14,34 @@ router.get('/', (req, res, next) => {
         danhmucgModel.sl(),
         danhmucgModel.all(start, end)
     ]).then(([Rows, rows]) => {
-  
-      var total = Rows.length;
-  
-      var nPages = Math.floor(total / perPage);
-      if (total % perPage > 0)
-        nPages++;
-  
-      var page_numbers = [];
-      for (i = 1; i <= nPages; i++) {
-        page_numbers.push({
-          value: i,
-          active: i === +page
-        })
-      }
-  
-      const hasPrevPage = page > 1;
-      const hasNextPage = page < nPages;
-  
-      res.render('admin/quanlychuyenmuc/index', {
-        error: false,
-        danhmuc: rows,
-        page_numbers,
-        hasPrevPage,
-        prevPage: page - 1,
-        hasNextPage,
-        nextPage: page + 1
-      });
-  
+
+        var total = Rows.length;
+
+        var nPages = Math.floor(total / perPage);
+        if (total % perPage > 0)
+            nPages++;
+
+        var page_numbers = [];
+        for (i = 1; i <= nPages; i++) {
+            page_numbers.push({
+                value: i,
+                active: i === +page
+            })
+        }
+
+        const hasPrevPage = page > 1;
+        const hasNextPage = page < nPages;
+
+        res.render('admin/quanlychuyenmuc/index', {
+            error: false,
+            danhmuc: rows,
+            page_numbers,
+            hasPrevPage,
+            prevPage: page - 1,
+            hasNextPage,
+            nextPage: page + 1
+        });
+
     }).catch(next);
 });
 
@@ -150,5 +150,14 @@ router.post('/deletechm/:id', (req, res, next) => {
             res.redirect('/quanlychuyenmuc');
         }).catch(next);
 });
-
+router.post('/update', (req, res, next) => {
+    danhmucgModel.update(req.body).then(n => {
+        res.redirect('/quanlychuyenmuc');
+    }).catch(next);
+});
+router.post('/updatechm', (req, res, next) => {
+    danhmucgModel.updatechm(req.body).then(n => {
+        res.redirect('/quanlychuyenmuc');
+    }).catch(next);
+});
 module.exports = router;

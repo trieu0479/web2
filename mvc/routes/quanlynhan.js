@@ -81,6 +81,12 @@ router.post('/delete/:id', (req, res, next) => {
       .then(n => {
           res.redirect('/quanlynhan');
       }).catch(next);
+});
+router.post('/update', (req, res, next) => {
+  tagModel.update(req.body).then(n => {
+    res.redirect('/quanlynhan');
+  }).catch(next);
 })
+
 
 module.exports = router;

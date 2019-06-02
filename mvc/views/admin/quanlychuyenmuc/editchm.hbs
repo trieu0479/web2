@@ -15,7 +15,7 @@
                 <i class="fas fa-table"></i>
                 Chỉnh sửa</div>
 
-            <form action="/quanlychuyenmuc/update" method="POST">
+            <form action="/quanlychuyenmuc/updatechm" method="POST">
                 <div class="card shadow">
                     <div class="card-body">
                         {{#if this.error}}
@@ -26,12 +26,12 @@
                         {{#each chitiet}}
                         <div class="form-group">
                             <label for="txtID">#</label>
-                            <input readonly type="text" class="form-control" id="txtID" name="ID"
+                            <input readonly type="text" class="form-control" id="txtID" name="IDChuyenMuc"
                                 value="{{IDChuyenMuc}}">
                         </div>
                         <div class="form-group">
                             <label for="txtTenCM">Tên Tag</label>
-                            <input type="text" class="form-control" id="txtTenCM" name="TenCM" value="{{TenChuyenMuc}}">
+                            <input type="text" class="form-control" id="txtTenCM" name="TenChuyenMuc" value="{{TenChuyenMuc}}">
                         </div>
                         {{/each}}
                         {{/if}}

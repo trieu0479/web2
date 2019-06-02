@@ -17,48 +17,45 @@
             </div>
             {{!-- <div class="card-body">
                 <div class="table-responsive"> --}}
-                    <form action="/quanlynguoidung/update" method="POST">
-                        <div class="card shadow">
-                            <div class="card-body">
-                                {{#if this.error}}
-                                <div class="alert alert-danger" role="alert">
-                                    Invalid categoryId. <a href="/quanlynhan" class="alert-link">Back to List</a>.
-                                </div>
-                                {{else}}
-                                {{#each chitiet}}
-                                <div class="form-group">
-                                    <label for="txtID">#</label>
-                                    <input readonly type="text" class="form-control" id="txtID" name="ID"
-                                        value="{{IDTag}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtTenTag">Tên Tag</label>
-                                    <input type="text" class="form-control" id="txtTenTag" name="TenTag"
-                                        value="{{TenTag}}">
-                                </div>
-                            </div>
-                            <div class="card-footer text-right">
-                                <a class="btn btn-outline-primary" href="/quanlynhan" role="button" title="Back">
-                                    <i class="fa fa-backward" aria-hidden="true"></i>
-                                    List
-                                </a>
-                                {{#unless this.error}}
-                                <button type="submit" class="btn btn-danger" formaction="/quanlynhan/delete/{{IDTag}}">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    Delete
-                                </button>
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                    Save
-                                </button>
-                                {{/unless}}
-                                {{/each}}
-                                {{/if}}
-                            </div>
+            <form action="/quanlynhan/update" method="POST">
+                <div class="card shadow">
+                    <div class="card-body">
+                        {{#if this.error}}
+                        <div class="alert alert-danger" role="alert">
+                            Invalid categoryId. <a href="/quanlynhan" class="alert-link">Back to List</a>.
                         </div>
-                    </form>
-               
+                        {{else}}
+                        {{#each chitiet}}
+                        <div class="form-group">
+                            <label for="txtID">#</label>
+                            <input readonly type="text" class="form-control" id="txtID" name="IDTag" value="{{IDTag}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtTenTag">Tên Tag</label>
+                            <input type="text" class="form-control" id="txtTenTag" name="TenTag" value="{{TenTag}}">
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <a class="btn btn-outline-primary" href="/quanlynhan" role="button" title="Back">
+                            <i class="fa fa-backward" aria-hidden="true"></i>
+                            List
+                        </a>
+                        {{#unless this.error}}
+                        <button type="submit" class="btn btn-danger" formaction="/quanlynhan/delete/{{IDTag}}">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            Delete
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            Save
+                        </button>
+                        {{/unless}}
+                        {{/each}}
+                        {{/if}}
+                    </div>
+                </div>
+            </form>
         </div>
-<!-- /.container-fluid -->
-<!-- Sticky Footer -->
-{{> adminFooter}}
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        {{> adminFooter}}

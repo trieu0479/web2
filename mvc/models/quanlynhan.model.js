@@ -15,5 +15,11 @@ module.exports = {
     },
     delete: id =>{
         return db.delete('tag', 'IDTag', id);
-    }
+    },
+     
+    update: entity => {
+        var id = entity.IDTag;
+        delete entity.IDTag;
+        return db.update('tag', 'IDTag', entity, id);
+      },
 };

@@ -2,8 +2,6 @@ var express           = require('express');
 //require model
 var dashboardModel   = require ("../models/dashboard.model");
 var userModel =  require ("../models/user.model");
-var chitietModel = require ("../models/baiviet.model");
-var tagindexModel = require ("../models/tag.model");
 var passport = require('passport');
 //xac thuc username,email ,..giong nhau Expressvalidator
 var customValidate = require("../customValidate")
@@ -42,7 +40,6 @@ router.get('/', async function (req, res) {
     data.lay10baimoinhat = await dashboardModel.lay10baimoinhat();
     data.top10chuyenmuc = await dashboardModel.top10chuyenmuc();
     data.laymenu1 = await dashboardModel.demchuyenmuc();
-    data.tagindex = await tagindexModel.tagindex();
     
     res.render('user/index', data);
 });

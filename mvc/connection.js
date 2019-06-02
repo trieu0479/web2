@@ -53,19 +53,16 @@ module.exports = {
       });
     });
   },
-  update: (tableName, idField, nameField, entity, id) => {
-    //idField:CatID
+  update: (tableName, idField, entity, id) => {
     return new Promise((resolve, reject) => {
       var connection = createConnection();
-      // var tableName ="categories";
-      var sql = `update ${tableName} set ${nameField}= ? where ${idField} = ?`;
+      var sql = `update ${tableName} set ? where ${idField} = ?`;
       connection.connect();
       connection.query(sql, [entity, id], (error, results, fields) => {
         if (error) {
           reject(error);
-          console.log(error);
         } else {
-          resolve(results.changeRows);
+          resolve(results.changedRows);
         }
         connection.end();
       });
