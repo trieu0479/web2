@@ -3,11 +3,46 @@ var tagModel = require('../models/quanlynhan.model');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', async function (req, res) {
-  let data = {};
-  data.tag = await tagModel.all();
+router.get('/', (req, res, next)=>  {
+  var page = parseInt(req.query.page) || 1;
+    var perPage = 8;
 
-  res.render('admin/quanlynhan/index', data);
+    var start = (page - 1) * perPage;
+    var end = perPage;
+
+    Promise.all([
+      tagModel.sl(),
+      tagModel.all(start, end)
+    ]).then(([Rows, rows]) => {
+
+        var total = Rows.length;
+
+        var nPages = Math.floor(total / perPage);
+        if (total % perPage > 0)
+            nPages++;
+
+        var page_numbers = [];
+        for (i = 1; i <= nPages; i++) {
+            page_numbers.push({
+                value: i,
+                active: i === +page
+            })
+        }
+
+        const hasPrevPage = page > 1;
+        const hasNextPage = page < nPages;
+
+        res.render('admin/quanlynhan/index', {
+            error: false,
+            tag: rows,
+            page_numbers,
+            hasPrevPage,
+            prevPage: page - 1,
+            hasNextPage,
+            nextPage: page + 1
+        });
+
+    }).catch(next); 
 });
 
 router.get('/add', (req, res, next) => {

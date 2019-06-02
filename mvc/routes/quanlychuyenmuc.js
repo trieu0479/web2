@@ -3,11 +3,46 @@ var danhmucgModel = require('../models/quanlychuyenmuc.model');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', async function(req, res) {
-    let data = {};
-    data.danhmuc = await danhmucgModel.all();
-    
-  res.render('admin/quanlychuyenmuc/index.hbs', data);
+router.get('/', (req, res, next) => {
+    var page = parseInt(req.query.page) || 1;
+    var perPage = 3;
+  
+    var start = (page - 1) * perPage;
+    var end = perPage;
+    //var Rows = 37;
+    Promise.all([
+        danhmucgModel.sl(),
+        danhmucgModel.all(start, end)
+    ]).then(([Rows, rows]) => {
+  
+      var total = Rows.length;
+  
+      var nPages = Math.floor(total / perPage);
+      if (total % perPage > 0)
+        nPages++;
+  
+      var page_numbers = [];
+      for (i = 1; i <= nPages; i++) {
+        page_numbers.push({
+          value: i,
+          active: i === +page
+        })
+      }
+  
+      const hasPrevPage = page > 1;
+      const hasNextPage = page < nPages;
+  
+      res.render('admin/quanlychuyenmuc/index', {
+        error: false,
+        danhmuc: rows,
+        page_numbers,
+        hasPrevPage,
+        prevPage: page - 1,
+        hasNextPage,
+        nextPage: page + 1
+      });
+  
+    }).catch(next);
 });
 
 router.get('/detail/:id', async function (req, res) {
@@ -73,4 +108,47 @@ router.get('/editchm/:id', async function (req, res) {
     data.chitiet = await danhmucgModel.detailchm(id);
     res.render(viewName, data);
 });
+router.get('/add', (req, res, next) => {
+    res.render('admin/quanlychuyenmuc/add');
+})
+
+router.post('/add', (req, res, next) => {
+    var vm = {
+        success: true
+    }
+    danhmucgModel.add(req.body)
+        .then(n => {
+            res.render('admin/quanlychuyenmuc/add', vm);
+        })
+        .catch(next);
+});
+router.get('/addchm', (req, res, next) => {
+    res.render('admin/quanlychuyenmuc/addchm');
+});
+router.post('/addchm', (req, res, next) => {
+    var vm = {
+        success: true
+    }
+    danhmucgModel.addchm(req.body)
+        .then(id => {
+            res.render('admin/quanlychuyenmuc/addchm', vm);
+        })
+        .catch(next);
+});
+router.post('/delete/:id', (req, res, next) => {
+    var id = req.params.id;
+    danhmucgModel.delete(id)
+        .then(n => {
+            res.redirect('/quanlychuyenmuc');
+        }).catch(next);
+});
+
+router.post('/deletechm/:id', (req, res, next) => {
+    var id = req.params.id;
+    danhmucgModel.deletechm(id)
+        .then(n => {
+            res.redirect('/quanlychuyenmuc');
+        }).catch(next);
+});
+
 module.exports = router;

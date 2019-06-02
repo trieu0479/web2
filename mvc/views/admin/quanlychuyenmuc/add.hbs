@@ -1,0 +1,50 @@
+{{> adminHeader }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+
+
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Danh Mục</a>
+            </li>
+            <li class="breadcrumb-item active">Overview</li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-table"></i>
+                Thêm Danh Mục
+            </div>
+            <form id="add" novalidate method="POST">
+                <div class="card shadow">
+                    {{#if success}}
+                    <div class="alert alert-success" role="alert">
+                        Thêm danh mục thành công. <a href="./">Back</a>
+                    </div>
+                    {{else}}
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="TenDanhMuc">Tên Danh Mục</label>
+                            <input placeholder="Tên danh mục" required autofocus type="text" class="form-control" id="TenDanhMuc" name="TenDanhMuc" >
+                        </div>
+                    </div>
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            Save
+                        </button>
+                        <a class="btn btn-outline-primary" href="/quanlynhan" role="button" title="Back">
+                            <i class="fa fa-backward" aria-hidden="true"></i>
+                            List
+                        </a>
+                    </div>
+                    {{/if}}
+                </div>
+            </form>
+        </div>
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        {{> adminFooter}}

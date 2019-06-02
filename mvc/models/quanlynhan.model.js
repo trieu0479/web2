@@ -1,7 +1,10 @@
 var db =require("../connection");
 
 module.exports = {
-    all: () => {
+    all: (start, end) => {
+        return db.load(`select  *  from tag limit ${end} offset ${start}`);
+    },
+    sl: () => {
         return db.load('select  *  from tag ');
     },
     detail: id =>{

@@ -1,7 +1,10 @@
 var db =require("../connection");
 
 module.exports = {
-    all: () => {
+    all: (start, end) => {
+        return db.load(`select  *  from taikhoan join loaitaikhoan on taikhoan.MaLoaiTaiKhoan = loaitaikhoan.MaLoaiTaiKhoan limit ${end} offset ${start}`);
+    },
+    sl: () =>{
         return db.load('select  *  from taikhoan join loaitaikhoan on taikhoan.MaLoaiTaiKhoan = loaitaikhoan.MaLoaiTaiKhoan');
     },
     detail: id =>{

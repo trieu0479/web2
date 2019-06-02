@@ -31,9 +31,7 @@
                         <div class="form-group">
                             <label for="txtTenDM">Tên Tag</label>
                             <input type="text" class="form-control" id="txtTenDM" name="TenDM" value="{{TenDanhMuc}}">
-                        </div>
-                        {{/each}}
-                        {{/if}}
+                        </div>                    
                     </div>
                     <div class="card-footer text-right">
                         <a class="btn btn-outline-primary" href="/quanlychuyenmuc" role="button" title="Back">
@@ -41,7 +39,7 @@
                             List
                         </a>
                         {{#unless this.error}}
-                        <button type="submit" class="btn btn-danger" formaction="/quanlychuyenmuc/delete">
+                        <button type="submit" class="btn btn-danger" formaction="/quanlychuyenmuc/delete/{{IDDanhMuc}}">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                             Delete
                         </button>
@@ -50,6 +48,8 @@
                             Save
                         </button>
                         {{/unless}}
+                         {{/each}}
+                        {{/if}}
                     </div>
                 </div>
             </form>
