@@ -27,10 +27,10 @@
     <!-- Custom stlylesheet -->
 
     <link type="text/css" rel="stylesheet" href="/static/user/css/style.css" />
-
-    <style>
-
-    </style>
+    {{!-- ==link form search --}}
+    {{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
+    {{!-- ====api key ============ --}}
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=pemmoc08sgfahuaxeecwzbk72igpfl62c9rz67599h4x6nq0"></script>
 
 
 </head>
@@ -42,16 +42,29 @@
         <div class="header-top">
             <div class="container">
                 <div class="row ">
+                    <div class="col-sm-8">
                     <ul class="list-inline">
                         <li><i class="fas fa-calendar-alt"> <span id="Console"></span></i></li>                                                             
-                        {{#if req.session.user.user  }}
-                        <li ><a href= "" >Hello {{req.session.user.user.TenHienThi}}<p></p> </a></li>
-                        <li><a href="/dangxuat">Log Out</a></li>                                               
+                        {{#if req.session.user.user }}
+                        <li ><a href= "" >Hello {{req.session.user.user.TenHienThi}} </a></li>
+                        <li><a href="dangxuat">Log Out</a></li>                         
+                        <li><a href="doimatkhau">Đổi mật khẩu</a></li>                                                 
                         {{else}}
-                        <li><a href="/dangky">Đăng Ký</a></li>
-                        <li><a href="/dangnhap">Đăng nhập</a></li> 
+                        <li><a href="dangky">Đăng Ký</a></li>
+                        <li><a href="dangnhap">Đăng nhập</a></li> 
                         {{/if}}
                     </ul>
+                    </div>
+                <div class="col-sm-4">
+                   <div class="search-container">                      
+                    <form action="search">                         
+                    <input type="text" placeholder ="Search.." name="search">
+                    <button type="submit"  ><i class="fa fa-search" ></i></button>
+                      
+                    </form>
+                      
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -61,10 +74,14 @@
                 <div class="menu-box">
                     <div class="bg-menu hidden-md hidden-lg"></div>
                     <ul class="main-menu">
-                        <li><a href="/" class="logo"><img src="/static/user/img/logo1.png"
-                                    alt=""></a></li>
+                        <li><a href="/" class="logo"><img src="/static/user/img/logo1.png" alt=""></a></li>
                         {{#each laymenu}}
                         <li class="menu-item-has-children">
+                            <ul class="sub-menu">
+                                {{#each sub}}
+                                    <li><a href="/danhsach/{{IDChuyenMuc}}">{{TenChuyenMuc}}</a></li>
+                                {{/each}}
+                            </ul>
                             <a href="/danhsach/{{IDDanhMuc}}">{{TenDanhMuc}}</a>
                         </li>
                         {{/each}}               

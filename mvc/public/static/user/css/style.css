@@ -9,6 +9,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            background:#4af92024;
         }
         
         h1,
@@ -1160,19 +1161,23 @@
 	FOOTER
 ===========================================================*/
         #footer {
-            padding-bottom: 40px;
-            margin-top: -10px;
-
+            padding-bottom: 33px;
+            margin-top: 25px;
+            background: #e5c8ff;
         }
 
-        #footer .container {
-            padding-top: 80px;
-            border-top: 1px solid #F4f4f9;
-            background: #94748c59
+        #footer .container-fluid {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            /* background: #c9bbd6; */
+            padding-top: 18px;
         }
 
         .footer-widget {
             margin-bottom: 40px;
+            margin-left: 129px;
         }
 
         .footer-widget .footer-title {
@@ -1198,7 +1203,7 @@
         }
 
         .footer-nav li {
-            display: inline-block;
+            display: block;
             margin-right: 15px;
         }
 
@@ -1477,4 +1482,48 @@
 }
 .list-inline>li>a {
     color: red;
+}
+/* =======search=============================================== */
+
+.search-container {
+  float: right;
+}
+
+.search-container input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border:1px solid greenyellow; 
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background:green;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid greenyellow;  
+  }
 }
