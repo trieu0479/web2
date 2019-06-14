@@ -48,7 +48,7 @@ router.get("/", async function(req, res) {
   data.top10chuyenmuc = await dashboardModel.top10chuyenmuc();
   data.laymenu1 = await dashboardModel.demchuyenmuc();
   data.tagindex = await tagindexModel.tagindex();
-
+  
   res.render("user/index", data);
 });
 
@@ -173,12 +173,12 @@ router.post(
           user.isValid === true &&
           user.user.Active === 0 &&
           user.user.MaLoaiTaiKhoan === 2
-        ) {
+        )
+        {
           return res.render("user/dangnhapuser", {
             errors: [
               {
-                msg:
-                  "Tài khoản hiện tại của bạn là Sucbcriber hết hạn. Cần nạp card để kích hoạt"
+                msg:"Tài khoản hiện tại của bạn là Sucbcriber hết hạn. Cần nạp card để kích hoạt"
               }
             ]
           });
@@ -186,7 +186,7 @@ router.post(
           return res.render("admin/index");
         } else {
           req.session.user = user;
-          console.log(user);
+          // console.log(user);
           res.redirect("/");
         }
       })(req, res, next);

@@ -75,7 +75,7 @@
                 </div>
                 {{#each lay10baixemnhieu}}
                 <div class="col-md-4 col-sm-4 col-xs-6 d-flex pb-3">
-                    <div class="card">
+                    <spa class="card">
                         <a href="/baiviet/{{IDBaiViet}}">
                             <img class="img-fluid img-responsive" src="/images/{{AnhURL}}" alt="">
                             <div class="card-img-overlay"> <span
@@ -87,8 +87,9 @@
                                 </div>
                             </div>
                         </a>
-                        <p class="card-text"><small class="text-time"><em>{{getDate NgayDang}}</em></small></p>
-                    </div>
+                        <div class="card-text" style="top:220px;position:absolute"><small class="text-time"><em>{{getDate NgayDang}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-eye" style="color:#b98181"></i>&nbsp;{{SoLuotXem}}</em></small></div>
+                        {{!-- <span style="font-size: 16px;"><i class="fas fa-eye" style="color: red"></i>&nbsp;{{SoLuotXem}}</span> --}}
+                    {{!-- </spa> --}}
                 </div>
                 {{/each}}
                 <!--        top 10 xem nhiều nhất       --->
@@ -113,7 +114,7 @@
                                 </div>
                             </div>
                         </a>
-                        <p class="card-text"><small class="text-time"><em>{{getDate NgayDang}}</em></small></p>
+                        <div class="card-text" style="top:220px;position:absolute"><small class="text-time"><em>{{getDate NgayDang}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-eye" style="color:#b98181"></i>&nbsp;{{SoLuotXem}}</em></small></div>
                     </div>
                 </div>
                 {{/each}}

@@ -258,6 +258,7 @@
             background-clip: border-box;
             border-radius: .25rem;
             text-indent:5px;
+            height: 250px;
             
         }
         .pb-3{

@@ -12,7 +12,6 @@ router.use(async function (req, res, next) {
     res.locals.laymenu[x].sub = await danhsachModel.danhsachMain(res.locals.laymenu[x].IDDanhMuc)
   }
   // console.log(res.locals.laymenu);
-
 	next();
 })
 

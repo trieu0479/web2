@@ -20,11 +20,13 @@ module.exports = {
         date = new Date(date(current + 7));      
         let today = new Date;             
         let maLoaiTaiKhoan = 1;
-        let active = "";  
-        if (date!==today) {
-            active="1";
-            }
-        else active ="0";      
+        let active = 0;
+        //dùng mysql schedule để đối chiếu vs ngày hết hạn
+        //CREATE EVENT update_account_premium
+        // ON SCHEDULE every 1 day
+        // starts CURRENT_TIMESTAMP
+        // ON COMPLETION PRESERVE
+        // DO update taikhoan set active = 0 where ngayhethan < current_date    
         let data = [
             userData.username,
             userData.displayname,
@@ -35,9 +37,8 @@ module.exports = {
             userData.email,
             maLoaiTaiKhoan,
             active
-        ];
-        
-      
+        ];        
+      console.log(active);
         db1.loadBind(sql, data);
     },
     kiemtratrung:async  (comparedc, column) => {
@@ -87,7 +88,6 @@ doimatkhau: async (req)=> {
             }
         }
         console.log(req.session.user);
-
         var sqlPassword = `select MatKhau from taikhoan where MaTaiKhoan = ?`;
         var passwordDB;
         var salt = bcrypt.genSaltSync(10);
@@ -128,6 +128,8 @@ doimatkhau: async (req)=> {
         messages: "mat khau moi loi",
         success:false}
     }
-    }
+    },
+
+    
 };
 

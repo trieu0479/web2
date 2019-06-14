@@ -47,17 +47,17 @@
                         <li><i class="fas fa-calendar-alt"> <span id="Console"></span></i></li>                                                             
                         {{#if req.session.user.user }}
                         <li ><a href= "" >Hello {{req.session.user.user.TenHienThi}} </a></li>
-                        <li><a href="dangxuat">Log Out</a></li>                         
-                        <li><a href="doimatkhau">Đổi mật khẩu</a></li>                                                 
+                        <li><a href="/dangxuat">Log Out</a></li>                         
+                        <li><a href="/doimatkhau">Đổi mật khẩu</a></li>                                                 
                         {{else}}
-                        <li><a href="dangky">Đăng Ký</a></li>
-                        <li><a href="dangnhap">Đăng nhập</a></li> 
+                        <li><a href="/dangky">Đăng Ký</a></li>
+                        <li><a href="/dangnhap">Đăng nhập</a></li> 
                         {{/if}}
                     </ul>
                     </div>
                 <div class="col-sm-4">
                    <div class="search-container">                      
-                    <form action="search">                         
+                    <form action="/search">                         
                     <input type="text" placeholder ="Search.." name="search">
                     <button type="submit"  ><i class="fa fa-search" ></i></button>
                       

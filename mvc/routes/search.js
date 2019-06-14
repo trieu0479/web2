@@ -5,14 +5,7 @@ var dashboardModel = require("../models/dashboard.model");
 var chitietModel = require("../models/baiviet.model");
 var tagindexModel = require("../models/tag.model");
 var danhsachModel = require("../models/danhsach.model");
-/* GET users listing. */
-// router.get('/search/req', async function(req, res) {
-//   res.render('user/search.hbs');
-// });
-// router.use(function (req, res, next) {
-// 	res.locals.req = req;
-// 	next();
-// })
+
 router.use(async function (req, res, next) {
 	res.locals.req = req;
   res.locals.laymenu = await dashboardModel.laymenu();
