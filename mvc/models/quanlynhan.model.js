@@ -20,6 +20,7 @@ module.exports = {
     update: entity => {
         var id = entity.IDTag;
         delete entity.IDTag;
+        console.log(id);
         return db.update('tag', 'IDTag', entity, id);
       },
 };

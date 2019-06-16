@@ -5,7 +5,7 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', (req, res, next)=>  {
   var page = parseInt(req.query.page) || 1;
-    var perPage = 8;
+    var perPage = 10;
 
     var start = (page - 1) * perPage;
     var end = perPage;
@@ -16,7 +16,7 @@ router.get('/', (req, res, next)=>  {
     ]).then(([Rows, rows]) => {
 
         var total = Rows.length;
-
+        console.log(total);
         var nPages = Math.floor(total / perPage);
         if (total % perPage > 0)
             nPages++;

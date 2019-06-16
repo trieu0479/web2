@@ -2,14 +2,12 @@
         /* CSS cho web */
 
         body {
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-size: 16px;
-            font-weight: 300;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;      
             color: #3d455c;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-            background:#4af92024;
+            overflow-x: hidden;      
         }
         
         h1,
@@ -18,8 +16,7 @@
         h4,
         h5,
         h6 {
-            font-family: 'Open Sans', Arial, sans-serif;
-            font-weight: 700;
+            font-family: 'Open Sans', sans-serif;
             color: #212631;
             margin: 0px 0px 15px;
         }
@@ -41,14 +38,14 @@
         }
 
         a {
-            font-weight: 600;
+            
             color: #212631;
-            text-decoration: none;
+            text-decoration: none !important;
         }
 
         a:hover,
         a:focus {
-            color: #212631;
+            color: #989a9e;
             
             outline: none;
         }
@@ -88,7 +85,7 @@
 
         blockquote.blockquote:before {
             content: "``";
-            font-family: 'Open Sans', Arial, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             display: block;
             position: absolute;
             left: -5px;
@@ -118,12 +115,31 @@
             -webkit-transition: 0.2s border;
             transition: 0.2s border;
         }
-
+        .tags a {
+         
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #747474;
+            display: inline-block;
+            font-size: 12px;
+            margin-bottom: 10px;
+            padding: 5px;
+            text-transform: uppercase;
+            transition: .2s ease;
+            margin-right: 5px;
+        }
+        .list-inline>li {
+            display: inline-block;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+        .thongtin{
+            margin-top: 34px;
+        }
         .input:focus {
             border-color: #3d455c;
         }
         .badge-danger{
-            background-color: rgb(185, 20, 20);
+            background-color: #109be6;
             padding: 7px; 
         }
         textarea.input {
@@ -152,10 +168,7 @@
            padding-top: 10px;
           margin-bottom: 10px;
         }
-        .top{
-            padding: 10px 20px 0px 20px;
-            background-color: #F4f4f9;
-        }
+        
         .topcm{
             background-color: #F4f4f9;
             padding:9px 0px 1px 10px;
@@ -209,7 +222,7 @@
         }
 
         #custom_carousel .controls li.active {
-            border-top: 3px solid orange;
+            border-top: 3px solid #109be6;
         }
 
         #custom_carousel .controls a small {
@@ -226,17 +239,27 @@
             max-width: 100%;
             height: auto;
         }
+        .header-body{
+            padding: 20px;
+        }
+        .header-body img{
+            align-content: center;
+        }
+        #Console {
+            color:#fff;
+        }
         .header-top {
             border-bottom: 1px solid #e5e5e5e5;
             color: black;
             text-transform: uppercase;
             padding: 10px 0 15px 50px;
+            background-color: #19242f;
         }
         .list-inline>li>a {
             text-decoration: none;
         }
         .header-top a {
-            color: black;
+            color: #fff;
             text-decoration: none;
             font-size: 12px;
         }
@@ -286,9 +309,7 @@
             color: #fff;
             opacity: 0.9;
         }
-        .banner{
-            background-color: #F4f4f9;
-        }
+        
         .section.section-grey {
             background-color: #fbfbfd;
             border-bottom: 1px solid #eceef2;
@@ -422,7 +443,9 @@
             line-height: 70px;
             display: inline-block;
         }
-
+        .logo{
+            margin-top: 30px;
+        }
         .nav-logo .logo>img {
             width: 100%;
             max-height: 70px;
@@ -495,7 +518,7 @@
               /*display: none;*/
               width: 200px;
               height: 200px;
-              border: 1px solid red;
+              border: 1px solid #109be6;
         }
         .submenu li {
             margin: 0 !important;
@@ -584,8 +607,8 @@
         }
 
         .nav-aside-menu li a {
-            font-family: 'Nunito Sans', sans-serif;
-            font-weight: 700;
+            font-family: 'Open Sans', sans-serif;
+            
             font-size: 23px;
         }
 
@@ -1062,8 +1085,19 @@
             display: block;
             -webkit-transition: 0.2s color;
             transition: 0.2s color;
+            padding: 10px 0;
         }
-
+        h3.widget-title {
+            background: #19242f none repeat scroll 0 0;
+            border: 0 none;
+            border-radius: 0;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 200;
+            margin: 20px 0;
+            padding: 10px 15px;
+           
+        } 
         .category-widget ul li>a>span {
             float: right;
             color: #fff;
@@ -1122,22 +1156,17 @@
             margin-right: 3px;
             margin-bottom: 5px;
         }
-
-        .tags-widget ul li a {
-            display: block;
-            color: #fff;
-            background-color: #212631;
-            padding: 3px 10px;
-            font-weight: 600;
-            border-radius: 2px;
-            -webkit-transition: 0.2s opacity;
-            transition: 0.2s opacity;
+        .tags-widget .list-inline>li {
+            display: inline-block;
+            padding-right: 5px;
+            padding-left: 5px;
         }
+        
 
         .tags-widget ul li a:hover,
         .tags-widget ul li a:focus {
             opacity: 0.9;
-            color: #fff;
+            color: #747474;
             text-decoration: none;
         }
 
@@ -1308,7 +1337,8 @@
   /* ============================== Menu =============================== */
 
 .menu-site {
-    border-bottom: #ccc thin solid;
+    background-color: #109be6;
+    margin-bottom: 10px;
 }
 
 .menu-site.buido {
@@ -1325,12 +1355,19 @@
     float: left;
 }
 
+.banner{
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+}
 .menu-box .main-menu>li>a {
     display: block;
-    padding: 20px 15px;
-    font-size: 16px;
+    padding-right: 25px;
+    font-size: 14px;
     font-weight: bold;
     text-decoration: none;
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
 }
 
 .menu-box .main-menu li {
@@ -1476,14 +1513,7 @@
 }
 
 /* ==========================================trieu */
-.list-inline li:nth-child(2) a {
-    color:#32a566;
-    font-weight: 900;
-    text-transform: uppercase !important;
-}
-.list-inline>li>a {
-    color: red;
-}
+
 /* =======search=============================================== */
 
 .search-container {

@@ -110,7 +110,7 @@ var nguoidungRouter = require('./routes/quanlynguoidung');
 var dsbaivietRouter = require('./routes/quanlybaiviet');
 var tagindex = require ("./routes/tag");
 var searchRouter = require ("./routes/search");
-
+var thongtinRouter = require ("./routes/thongtin");
 
 var passport = require('./passport');
 var session = require("express-session"),
@@ -142,7 +142,12 @@ hbs.registerHelper('getDate', function(date) { //bỏ múi giờ
   }
   return date
 });
-
+hbs.registerHelper('Date', function(date) { //bỏ múi giờ
+  if (date instanceof Date) {
+    return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+  }
+  return date
+});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -165,7 +170,7 @@ app.use('/quanlynguoidung', nguoidungRouter);
 app.use('/quanlybaiviet', dsbaivietRouter);
 app.use ('/tag',tagindex);
 app.use ('/search',searchRouter);
-
+app.use('/thongtin', thongtinRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -185,9 +190,9 @@ app.use(function(err, req, res, next) {
     err: err
   });
 });
-// var port = process.env.PORT || 78;
-// app.listen(port, () => {
-//   var env = app.get('env');
-//   console.log(`server is running in ${env} mode at http://localhost:${port}`);
-// });
+var port = process.env.PORT || 78;
+app.listen(port, () => {
+  var env = app.get('env');
+  console.log(`server is running in ${env} mode at http://localhost:${port}`);
+});
 module.exports = app;

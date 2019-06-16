@@ -22,7 +22,8 @@
                         {{#each chitiet}}
                         <div class="form-group">
                             <label for="txtID">#</label>
-                            <input readonly type="text" class="form-control" id="txtID" name="IDBaiViet" value="{{IDBaiViet}}">
+                            <input readonly type="text" class="form-control" id="txtID" name="IDBaiViet"
+                                value="{{IDBaiViet}}">
                         </div>
                         <div class="form-group">
                             <h6 for="txtTieuDe">Tiêu đề bài viết</h6>
@@ -31,41 +32,53 @@
                         </div>
                         <div class="form-group">
                             <h6 for="txtTieuDe">Nội dung bài viết</h6>
-                            <textarea  class="input container-fluid" name="NoiDung" rows="10"
-                                placeholder="Message">{{NoiDung}}</textarea>
+                            <p class="border p-2">{{NoiDung}}</p>
                         </div>
                         <div class="form-group">
                             <h6 for="txtNgay">Ngày Đăng</h6>
-                            <input type="text" class="form-control" id="txtNgay" name="NgayDang"
-                                value="{{getDate NgayDang}}">
+                            <input readonly type="text" class="form-control" id="txtNgay" name="NgayDang"
+                                value="{{Date NgayDang}}">
                         </div>
+                        {{!-- <div class="form-group">
+                            <h6 for="txtTT">Trạng thái</h6>
+                            <input type="text" class="form-control" id="txtTT" name="TinhTrang" >
+                            <p>
+                                0. Đã được duyệt & chờ xuất bản
+                                1. Đã xuất bản
+                                2. Bị từ chối
+                                3. Chưa được duyệt
+                            </p>
+                        </div> --}}
                         <div class="form-group">
-                            <h6 for="txtDM">Thuộc danh mục</h6>
-                            <input type="text" class="form-control" id="txtDM" name="TenDanhMuc"
-                                value="{{TenDanhMuc}}">
-                        </div>                
-                        {{/each}}                      
+                            <h6 for="txtTT">Tình Trạng : {{TinhTrang}}</h6>
+                            <select id="txtTT" name="TinhTrang" class="form-control">
+                                <option  value="0">0. Đã được duyệt & chờ xuất bản</option>
+                                <option  value="1">1. Đã Xuất bản</option>
+                                <option  value="2">2. Bị từ chối</option>
+                                <option  value="3">3. Chưa được duyệt</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="card-footer text-right">
-                        <a class="btn btn-outline-primary" href="/quanlybaiviet" role="button" title="Back">
-                            <i class="fa fa-backward" aria-hidden="true"></i>
-                            List
-                        </a>
-                        {{#unless this.error}}
-                        <button type="submit" class="btn btn-danger" formaction="/quanlybaiviet/delete">
-                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            Delete
-                        </button>
-                        <button type="submit" class="btn btn-success">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                            Save
-                        </button>
-                        {{/unless}}
-                    </div>
+                    {{/each}}
                 </div>
-            </form>
-        </div>
+                <div class="card-footer text-right">
+                    <a class="btn btn-outline-primary" href="/quanlybaiviet" role="button" title="Back">
+                        <i class="fa fa-backward" aria-hidden="true"></i>
+                        List
+                    </a>
+                    {{#unless this.error}}
+                    <button type="submit" class="btn btn-danger" formaction="/quanlybaiviet/delete">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        Delete
+                    </button>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Save
+                    </button>
+                    {{/unless}}
+                </div>    
+        </form>
     </div>
-    <!-- /.container-fluid -->
-    <!-- Sticky Footer -->
-    {{> adminFooter}}a
+<!-- /.container-fluid -->
+<!-- Sticky Footer -->
+{{> adminFooter}}a

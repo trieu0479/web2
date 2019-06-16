@@ -17,42 +17,47 @@
             </div>
             <form action="/quanlynguoidung/update" method="POST">
                 <div class="card shadow">
+                    {{#if this.error}}
+                    <div class="alert alert-danger" role="alert">
+                        Invalid categoryId. <a href="/quanlynguoidung" class="alert-link">Back to List</a>.
+                    </div>
+                    {{else}}
+                    {{#each chitiet}}
                     <div class="card-body">
-                        {{#if this.error}}
-                        <div class="alert alert-danger" role="alert">
-                            Invalid categoryId. <a href="/quanlynguoidung" class="alert-link">Back to List</a>.
-                        </div>
-                        {{else}}
-                        {{#each chitiet}}
                         <div class="form-group">
                             <label for="txtID">#</label>
-                            <input readonly type="text" class="form-control" id="txtID" name="ID"
+                            <input readonly type="text" class="form-control" id="txtID" name="MaTaiKhoan"
                                 value="{{MaTaiKhoan}}">
                         </div>
                         <div class="form-group">
                             <label for="txtTenDangNhap">Tên Đăng nhập</label>
-                            <input type="text" class="form-control" id="txtTenDangNhap" name="TenDangNhap"
+                            <input readonly type="text" class="form-control" id="txtTenDangNhap" name="TenDangNhap"
                                 value="{{TenDangNhap}}">
                         </div>
                         <div class="form-group">
                             <label for="txtEmail">Email</label>
-                            <input type="text" class="form-control" id="txtEmail" name="Email" value="{{Email}}">
+                            <input readonly type="text" class="form-control" id="txtEmail" name="Email"
+                                value="{{Email}}">
                         </div>
                         <div class="form-group">
-                            <label for="txtNgay">Ngày Đăng Ký</label>
-                            <input type="text" class="form-control" id="txtNgay" name="Ngay"
-                                value="{{getDate NgayDangKy}}">
+                            <label for="txtNgayDangKy">Ngày đăng ký</label>
+                            <input readonly type="text" class="form-control" id="txtNgayDangKy" name="NgayDangKy"
+                                value="{{Date NgayDangKy}}">
                         </div>
-                       
-                        
+                        <div class="form-group">
+                            <label for="txtNgayHetHan">Ngày hết hạn</label>
+                            <input type="text" class="form-control" id="txtNgayHetHan" name="NgayHetHan"
+                                value="{{Date NgayHetHan}}">
+                        </div>
                     </div>
                     <div class="card-footer text-right">
                         <a class="btn btn-outline-primary" href="/quanlynguoidung" role="button" title="Back">
                             <i class="fa fa-backward" aria-hidden="true"></i>
                             List
                         </a>
-                        
-                        <button type="submit" class="btn btn-danger" formaction="/quanlynguoidung/delete/{{MaTaiKhoan}}">
+
+                        <button type="submit" class="btn btn-danger"
+                            formaction="/quanlynguoidung/delete/{{MaTaiKhoan}}">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                             Delete
                         </button>
@@ -60,13 +65,14 @@
                             <i class="fa fa-check" aria-hidden="true"></i>
                             Save
                         </button>
-                        {{/each}}
-                        {{/if}}
                     </div>
+                    {{/each}}
+                    {{/if}}
                 </div>
             </form>
         </div>
-    
-<!-- /.container-fluid -->
-<!-- Sticky Footer -->
-{{> adminFooter}}
+        </div>
+
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        {{> adminFooter}}

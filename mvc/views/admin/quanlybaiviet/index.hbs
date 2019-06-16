@@ -60,7 +60,29 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <nav aria-label="Page navigation example">
-                                
+                                <ul class="pagination justify-content-center">
+
+                                    <li class="page-item ">
+                                        <a class="page-link" href="?page={{prevPage}}">Previous</a>
+                                    </li>
+                                    {{#each this.page_numbers}}
+                                    {{#if active}}
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">
+                                            {{value}}
+                                            <span class="sr-only">(current)</span>
+                                        </span>
+                                    </li>
+                                    {{else}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{value}}">{{value}}</a>
+                                    </li>
+                                    {{/if}}
+                                    {{/each}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{nextPage}}">Next</a>
+                                    </li>
+                                </ul>
                             </nav>
                         </div>
                     </div>

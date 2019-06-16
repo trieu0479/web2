@@ -2,7 +2,6 @@ var express = require("express");
 //require model
 var dashboardModel = require("../models/dashboard.model");
 var userModel = require("../models/user.model");
-var chitietModel = require("../models/baiviet.model");
 var tagindexModel = require("../models/tag.model");
 var danhsachModel = require("../models/danhsach.model");
 var passport = require("passport");
@@ -59,8 +58,10 @@ router.get("/dangky", function(req, res) {
     errors: false,
     input: {}
   };
-  res.render("user/dangkyuser");
+  res.render("user/dangkyuser", viewData);
 });
+
+
 
 // Cái này hiển thị dữ liệu gửi lên
 router.post(
@@ -210,6 +211,14 @@ router.get("/doimatkhau", function(req, res) {
   res.render(viewName);
 });
 
+//update thong tin nguoi dung
+router.post('/update', (req, res, next) => {
+  userModel.update(req.body).then(n => {
+    res.redirect('/thongtin');
+  }).catch(next);
+})
+
+
 router.post(
   "/doimatkhau",
   [
@@ -256,6 +265,7 @@ router.post(
     }
   }
 );
+
 
 //  }
 // })

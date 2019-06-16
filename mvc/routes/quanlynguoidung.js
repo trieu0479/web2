@@ -42,7 +42,7 @@ router.get('/', (req, res, next) => {
             nextPage: page + 1
         });
 
-    }).catch(next); 
+    }).catch(next);
 });
 
 router.get('/edit/:id', async function (req, res) {
@@ -66,5 +66,11 @@ router.post('/delete/:id', (req, res, next) => {
         .then(n => {
             res.redirect('/quanlynguoidung');
         }).catch(next);
-})
+});
+router.post('/update', (req, res, next) => {
+    nguoidungModel.update(req.body).then(n => {
+        res.redirect('/quanlynguoidung');
+    }).catch(next);
+});
+
 module.exports = router;

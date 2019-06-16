@@ -38,5 +38,5 @@ module.exports = {
         delete entity.IDChuyenMuc;
         return db.update('chuyemuc', 'IDChuyenMuc', entity, id);
     },
-
+   
 };

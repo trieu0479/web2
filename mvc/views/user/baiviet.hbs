@@ -14,7 +14,7 @@
 						Bài viết không có. <a href="/" class="alert-link">Click vào đây để về trang chủ</a>.
 					</div>
 					{{else}}
-					{{#each baiviet}}  {{!--lay data tu router--}}
+					{{#each baiviet}} {{!--lay data tu router--}}
 					<div class="main-post">
 						<h2>{{TieuDeBaiViet}}</h2>
 						<div class="post-meta">
@@ -22,8 +22,9 @@
 							<a class="post-category cat-2" href="#">{{TenChuyenMuc}}</a>
 							{{!-- <a class="post-category cat-2" href="#">{{TenTag}}</a> --}}
 							<span class="post-date">{{getDate NgayDang}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-							<span class="post-date" style="font-size: 16px;"><i class="fas fa-eye" style="color: red"></i>&nbsp;{{SoLuotXem}}</span>
-						
+							<span class="post-date" style="font-size: 16px;"><i class="fas fa-eye"
+									style="color: red"></i>&nbsp;{{SoLuotXem}}</span>
+
 						</div>
 						<br>
 						<img src="/images/{{AnhURL}}" alt="anh đai dien bai viet" class="" width="100%" height="400px">
@@ -43,11 +44,11 @@
 					{{#if this.error}}
 					<div class="alert alert-danger" role="alert">
 						Bài viết không có. <a href="/" class="alert-link">Click vào đây để về trang chủ</a>.
-					</div>								
+					</div>
 					{{else}}
 					<div class="section-title">
 						<h2> Bình luận </h2>
-					</div>					
+					</div>
 					{{#each showbinhluan}}
 					<div class="post-comments">
 						<!-- comment -->
@@ -65,10 +66,8 @@
 							</div>
 						</div>
 					</div>
-					{{/each}}		
-					
-					
-					<form class="post-comments" method="POST" >
+					{{/each}}
+					<form class="post-comments" method="POST">
 						<div class="media">
 							<div class="media-left">
 								<img class="media-object" src="/static/user/img/avatar.png" alt="">
@@ -77,15 +76,15 @@
 								<div class="form-group">
 									<input class="input" type="text" name="binhluan" placeholder="Viết bình luận">
 								</div>
-								
+
 								<div class="text-right">
 									<button class="btn btn-primary">Bình luận</button>
 								</div>
 								{{#each errors}}
-					<div class="alert alert-danger" role="alert">
-						{{msg}}
-					</div>
-						{{/each}}
+								<div class="alert alert-danger" role="alert">
+									{{msg}}
+								</div>
+								{{/each}}
 							</div>
 						</div>
 					</form>
@@ -93,26 +92,14 @@
 					{{/if}}
 				</div>
 				<!-- /comments -->
-
-
-
-
-
-
-
-
 			</div>
-
-
-
-
 			<!-- /Post content -->
 			<!-- aside -->
 			<div class="col-md-4">
 				<!-- post widget -->
 				<div class="aside-widget">
 					<div class="section-title">
-						<h3>5 Bài Viết Cùng Chuyên Mục</h3>
+						<h3 class="widget-title">5 Bài Viết Cùng Chuyên Mục</h3>		
 					</div>
 					{{#if this.error}}
 					<div class="alert alert-danger" role="alert">
@@ -133,12 +120,13 @@
 				<!-- catagories -->
 				<div class="aside-widget">
 					<div class="section-title">
-						<h2><i class="fas fa-bars" style="font-size: 16px;color: #714d4d7a;"></i>&nbsp;Chuyên Mục</h2>
+						<h3 class="widget-title">Chuyên Mục</h3>
 					</div>
 					<div class="category-widget">
 						{{#each demchuyenmuc}}
 						<ul>
-							<li><a href="/danhsach/{{IDChuyenMuc}}" class="cat-1">{{TenChuyenMuc}}<span>{{sl1}}</span></a>
+							<li><a href="/danhsach/{{IDChuyenMuc}}"
+									class="cat-1">{{TenChuyenMuc}}<span>{{sl1}}</span></a>
 							</li>
 						</ul>
 						{{/each}}
@@ -146,16 +134,13 @@
 				</div>
 				<!-- /catagories -->
 				<!-- tags -->
-				<div class="aside-widget">
-					<div class="tags-widget">
-						{{#each tagindex}}
-						<ul>
-							<li><a href="/tag/{{IDBaiViet}}">{{TenTag}}</a></li>
-							{{!-- <li><a href="#">CSS</a></li>
-							<li><a href="#">Tutorial</a></li> --}}
-						</ul>
+				<div class="tags-widget">
+					<h3 class="widget-title">Tags</h3>
+					<ul class="list-unstyled list-inline tags">
+						{{#each taglk}}
+						<li><a href="/tag/{{IDBaiViet}}">{{TenTag}}</a></li>
 						{{/each}}
-					</div>
+					</ul>
 				</div>
 				<!-- /tags -->
 			</div>

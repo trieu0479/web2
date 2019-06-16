@@ -12,5 +12,11 @@ module.exports = {
     },
     delete: id =>{
         return db.delete('taikhoan', 'MaTaiKhoan', id);
-    }
+    },
+    update: entity => {
+        var id = entity.MaTaiKhoan;
+        delete entity.MaTaiKhoan;
+        console.log(id);
+        return db.update('taikhoan', 'MaTaiKhoan', entity, id);
+      },
 };
