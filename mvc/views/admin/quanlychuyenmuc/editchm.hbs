@@ -6,7 +6,7 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="#">Chuyên Mục</a>
+                <a href="">Chuyên Mục</a>
             </li>
             <li class="breadcrumb-item active">Overview</li>
         </ol>
@@ -18,9 +18,9 @@
             <form action="/quanlychuyenmuc/updatechm" method="POST">
                 <div class="card shadow">
                     <div class="card-body">
-                        {{#if this.error}}
-                        <div class="alert alert-danger" role="alert">
-                            Invalid categoryId. <a href="/quanlychuyenmuc" class="alert-link">Back to List</a>.
+                        {{#if success}}
+                        <div class="alert alert-success" role="alert">
+                            Thành công. <a href="./">Back</a>
                         </div>
                         {{else}}
                         {{#each chitiet}}
@@ -30,11 +30,11 @@
                                 value="{{IDChuyenMuc}}">
                         </div>
                         <div class="form-group">
-                            <label for="txtTenCM">Tên Tag</label>
-                            <input type="text" class="form-control" id="txtTenCM" name="TenChuyenMuc" value="{{TenChuyenMuc}}">
+                            <label for="txtTenCM">Tên chuyên mục</label>
+                            <input type="text" class="form-control" id="txtTenCM" name="TenChuyenMuc"
+                                value="{{TenChuyenMuc}}">
                         </div>
-                        {{/each}}
-                        {{/if}}
+
                     </div>
                     <div class="card-footer text-right">
                         <a class="btn btn-outline-primary" href="/quanlychuyenmuc" role="button" title="Back">
@@ -42,7 +42,8 @@
                             List
                         </a>
                         {{#unless this.error}}
-                        <button type="submit" class="btn btn-danger" formaction="/quanlychuyenmuc/deletechm/{{IDChuyenMuc}}">
+                        <button type="submit" class="btn btn-danger"
+                            formaction="/quanlychuyenmuc/deletechm/{{IDChuyenMuc}}">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                             Delete
                         </button>
@@ -51,6 +52,8 @@
                             Save
                         </button>
                         {{/unless}}
+                        {{/each}}
+                        {{/if}}
                     </div>
                 </div>
             </form>

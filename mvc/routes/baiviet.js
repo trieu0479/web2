@@ -35,39 +35,53 @@ router.get("/:id", async function(req, res) {
   data.result = await chitietModel.binhluan(data,req);   
   data.showbinhluan = await chitietModel.showbinhluan(id); 
   data.luotxem = await chitietModel.soluotxem(req);
-  data.baivietpremium = await chitietModel.baivietpremium(req);
-  res.render(viewName, data);  
+  data.baivietpremium = await chitietModel.baivietpremium(req);  
+
   console.log(req.session.user);
-  // =======================================
-  if (!req.session.user ) {
-    if (data.baivietpremium.status===201) {
-    console.log("ko co user dang nhap");    
-    console.log(data.baivietpremium.status);
+  if (data.baivietpremium.status===201) {
     
-    return res.render("user/khongtimthaytrang"); }
-    else res.render("user/baiviet");
-  }
-  if (req.session.user.MaLoaiTaiKhoan==2) {
-     if (data.baivietpremium.status===201) {
-        console.log("201");    
-     {
-      console.log("thanh cong");
-      return res.render("user/baiviet");
+    if (!req.session.user) {
+      res.render("user/khongtimthaytrang");
     }
+    else if (req.session.user.user.MaLoaiTaiKhoan==2) {
+      console.log("mltk =2 ");      
+      return res.render("user/baiviet",data);
+    }
+    else return res.render("user/khongtimthaytrang");
+ 
   }
-    else return res.render("user/khongtimthaytrang");    
-    // return res.redirect(`/baiviet/${id}`)  
-  }
-  else {
-    if (data.baivietpremium.status===201) {
-      console.log("401");    
-   {
-    console.log(" day la ma loai tai khoan khac");
-    return res.render("user/khongtimthaytrang");
-  }
-}
-  else return res.render("user/baiviet"); 
-}
+   else return res.render("user/baiviet",data);
+  
+  
+  // =======================================
+//   if (!req.session.user ) {
+//     if (data.baivietpremium.status===201) {
+//     console.log("ko co user dang nhap");    
+//     console.log(data.baivietpremium.status);    
+//     return res.render("user/khongtimthaytrang"); }
+//     else res.render("user/baiviet");
+//   }
+//   if (req.session.user.MaLoaiTaiKhoan==2) {
+//      if (data.baivietpremium.status===201) {
+//         console.log("201");    
+//      {
+//       console.log("thanh cong");
+//       return res.render("user/baiviet");
+//     }
+//   }
+//     else return res.render("user/khongtimthaytrang");    
+//     // return res.redirect(`/baiviet/${id}`)  
+//   }
+//   else {
+//     if (data.baivietpremium.status===201) {
+//       console.log("401");    
+//    {
+//     console.log(" day la ma loai tai khoan khac");
+//     return res.render("user/khongtimthaytrang");
+//   }
+// }
+//   else return res.render("user/baiviet"); 
+// }
 });
 // ==========================================================
 router.post("/:id", async function(req, res) {
@@ -75,9 +89,8 @@ router.post("/:id", async function(req, res) {
   var vm = {
     error: true
   };
-  
-  var id = req.params.id;
 
+  var id = req.params.id;
   if (isNaN(id)) {
     res.render(viewName,vm);
   }
@@ -93,7 +106,15 @@ router.post("/:id", async function(req, res) {
   data.baivietpremium = await chitietModel.baivietpremium(req);
 //  ====xu ly khi tai khoan là subcribers đc xem bai viết premium 
 // ========Xử lý bình luận=====================
-   if (data.result.status===400) {
+console.log(req.session.user);
+if (data.baivietpremium.status===201) {
+  if (req.session.user.MaLoaiTaiKhoan==2) {
+    console.log("mltk =2 ");      
+    return res.render("user/baiviet");
+  }
+  else return res.render("user/khongtimthaytrang");
+}
+if (data.result.status===400) {
     console.log("400");
     data.errors = [{ msg: data.result.messages }];
     return res.render("user/baiviet", data);
@@ -109,6 +130,7 @@ router.post("/:id", async function(req, res) {
   return res.redirect(`/baiviet/${id}`);  
   //thong bao alert cho nguoi dung bik la binh lan thanh cong roi
  }
+
  res.render(viewName, data);
 })  
 module.exports = router;

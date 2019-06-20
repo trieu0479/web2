@@ -6,42 +6,39 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="#">Người dùng</a>
+                <a href="#">Loại Tài Khoản</a>
             </li>
             <li class="breadcrumb-item active">Overview</li>
         </ol>
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-table"></i>
-                Danh Sách Người dùng
+                Danh Sách Loại Tài Khoản
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>ID </th>
-                                <th>Tên Tài Khoản</th>
-                                <th>Loại Tài Khoản</th>
-                                <th>Sửa</th>
+                                <th>STT</th>
+                                <th>Tên Loại Tài Khoản</th>
+                                <th>Chi Tiết</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
-                                <th>Tên Tài Khoản</th>
-                                <th>Loại Tài Khoản</th>
-                                <th>Sửa</th>
+                                <th>STT</th>
+                                <th>Tên Loại Tài Khoản</th>
+                                <th>Chi Tiết</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             {{#each nguoidung}}
                             <tr>
-                                <td>{{MaTaiKhoan}}</td>
-                                <td>{{TenDangNhap}}</td>
+                                <td>{{@index}}</td>
                                 <td>{{TenLoaiTaiKhoan}}</td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="/quanlynguoidung/edit/{{MaTaiKhoan}}"
+                                    <a class="btn btn-primary btn-sm" href="/quanlynguoidung/detail/{{MaLoaiTaiKhoan}}"
                                         role="button" title="Edit">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
@@ -49,41 +46,12 @@
                             </tr>
                             {{/each}}
                         </tbody>
-
                     </table>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-
-                                    <li class="page-item ">
-                                        <a class="page-link" href="?page={{prevPage}}">Previous</a>
-                                    </li>
-                                    {{#each this.page_numbers}}
-                                    {{#if active}}
-                                    <li class="page-item active" aria-current="page">
-                                        <span class="page-link">
-                                            {{value}}
-                                            <span class="sr-only">(current)</span>
-                                        </span>
-                                    </li>
-                                    {{else}}
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{value}}">{{value}}</a>
-                                    </li>
-                                    {{/if}}
-                                    {{/each}}
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{nextPage}}">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
-        <!-- /.container-fluid -->
-        <!-- Sticky Footer -->
-        {{> adminFooter}}
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
+    <!-- /.container-fluid -->
+    <!-- Sticky Footer -->
+    {{> adminFooter}}

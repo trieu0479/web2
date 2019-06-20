@@ -14,11 +14,11 @@
                 <i class="fas fa-table"></i> {{TenDanhMuc}}
                 {{/each}}
             </div>
-            <div class="text-right mt-3 pr-4">
+            {{!-- <div class="text-right mt-3 pr-4">
                 <a class="btn btn-outline-success btn-sm" href="/quanlychuyenmuc/addchm" role="button" title="Edit">
                     <i class="fa fa-plus" aria-hidden="true"> Thêm chuyên mục</i>
                 </a>
-            </div>
+            </div> --}}
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
@@ -34,10 +34,10 @@
                             <tr>
                                 <td>{{IDChuyenMuc}}</td>
                                 <td>
-                                    <a href="/quanlychuyenmuc/detailchm/{{IDChuyenMuc}}">{{TenChuyenMuc}}</a>
+                                    {{TenChuyenMuc}}
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="/quanlychuyenmuc/detailchm/{{IDChuyenMuc}}"
+                                    <a class="btn btn-primary btn-sm" href="/quanlychuyenmuc/editchm/{{IDChuyenMuc}}"
                                         role="button" title="Edit">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
@@ -66,8 +66,13 @@
                     </div>
                 </div>
             </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            <div class="card-footer small text-right">
+                <a class="btn btn-warning" href="/quanlychuyenmuc" role="button" title="Back">
+                    <i class="fa fa-backward" aria-hidden="true"></i>
+                    Back
+                </a>
+            </div>
         </div>
-    <!-- /.container-fluid -->
-    <!-- Sticky Footer -->
-    {{> adminFooter}}
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        {{> adminFooter}}

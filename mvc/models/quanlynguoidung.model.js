@@ -1,8 +1,11 @@
 var db =require("../connection");
 
 module.exports = {
-    all: (start, end) => {
-        return db.load(`select  *  from taikhoan join loaitaikhoan on taikhoan.MaLoaiTaiKhoan = loaitaikhoan.MaLoaiTaiKhoan limit ${end} offset ${start}`);
+    loai: () => {
+        return db.load('select * from loaitaikhoan');
+    },
+    all: (id, start, end) => {
+        return db.load(`select  *  from taikhoan join loaitaikhoan on taikhoan.MaLoaiTaiKhoan = loaitaikhoan.MaLoaiTaiKhoan where taikhoan.MaLoaiTaiKhoan = ${id} limit ${end} offset ${start}`);
     },
     sl: () =>{
         return db.load('select  *  from taikhoan join loaitaikhoan on taikhoan.MaLoaiTaiKhoan = loaitaikhoan.MaLoaiTaiKhoan');

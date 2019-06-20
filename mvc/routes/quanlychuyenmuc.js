@@ -122,20 +122,24 @@ router.post('/add', (req, res, next) => {
         })
         .catch(next);
 });
-router.get('/addchm', (req, res, next) => {
-    res.render('admin/quanlychuyenmuc/addchm');
+router.get('/addchm', async function (req, res, next) {
+    let data = {};
+    data.danhmuc = await danhmucgModel.sl();
+    console.log(data);
+    res.render('admin/quanlychuyenmuc/addchm', data);
 });
 router.post('/addchm', (req, res, next) => {
     var vm = {
         success: true
     }
     danhmucgModel.addchm(req.body)
-        .then(id => {
+        .then(n => {
             res.render('admin/quanlychuyenmuc/addchm', vm);
         })
         .catch(next);
 });
 router.post('/delete/:id', (req, res, next) => {
+    
     var id = req.params.id;
     danhmucgModel.delete(id)
         .then(n => {
@@ -144,6 +148,7 @@ router.post('/delete/:id', (req, res, next) => {
 });
 
 router.post('/deletechm/:id', (req, res, next) => {
+
     var id = req.params.id;
     danhmucgModel.deletechm(id)
         .then(n => {
@@ -151,13 +156,16 @@ router.post('/deletechm/:id', (req, res, next) => {
         }).catch(next);
 });
 router.post('/update', (req, res, next) => {
-    danhmucgModel.update(req.body).then(n => {
-        res.redirect('/quanlychuyenmuc');
-    }).catch(next);
+   
+    danhmucgModel.update(req.body)
+        .then(n => {
+            res.redirect('/quanlychuyenmuc' );
+        }).catch(next);
 });
 router.post('/updatechm', (req, res, next) => {
+  
     danhmucgModel.updatechm(req.body).then(n => {
-        res.redirect('/quanlychuyenmuc');
+        res.redirect('/quanlychuyenmuc',);
     }).catch(next);
 });
 module.exports = router;

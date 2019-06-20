@@ -1,0 +1,101 @@
+<footeradmin class="sticky-footer">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright © Your Website 2019</span>
+        </div>
+    </div>
+</footeradmin>
+
+</div>
+<!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Custom scripts for all pages-->
+<script src="/static/admin/js/sb-admin.min.js"></script>
+
+<!-- Demo scripts for this page-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    CKEDITOR.replace('ckeditor', {
+        "extraPlugins": 'imagebrowser',
+        "imageBrowser_listUrl": "/files"
+    });
+    CKEDITOR.editorConfig = function (config) {
+        // Define changes to default configuration here. For example:
+        // config.language = 'fr';
+        // config.uiColor = '#AADC6E';
+        config.height = '100px';
+    };
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        tinymce.init({
+            selector: "textarea",
+            theme: "modern",
+            paste_data_images: true,
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table contextmenu directionality",
+                "emoticons template paste textcolor colorpicker textpattern"
+            ],
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            toolbar2: "print preview media | forecolor backcolor emoticons",
+            image_advtab: true,
+            file_picker_callback: function (callback, value, meta) {
+                if (meta.filetype == 'image') {
+                    $('#upload').trigger('click');
+                    $('#upload').on('change', function () {
+                        var file = this.files[0];
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            callback(e.target.result, {
+                                alt: ''
+                            });
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                }
+            },
+            templates: [{
+                title: 'Test template 1',
+                content: 'Test 1'
+            }, {
+                title: 'Test template 2',
+                content: 'Test 2'
+            }]
+        });
+    });
+</script>
+</body>
+
+</html>

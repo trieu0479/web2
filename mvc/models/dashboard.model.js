@@ -1,6 +1,7 @@
 var db =require ("../connection");
 module.exports = {
     all:() => {
+        //đây cũng check
         var sql="select * from baiviet";
         return db.load(sql);
     },

@@ -17,21 +17,23 @@
                     {{#each baiviet}}
                     <div class="post post-widget">
                         <div class="post-img">
-                            <a  href="/baiviet/{{IDBaiViet}}"><img src="/images/{{AnhURL}}"
-                                    alt="{{TieuDeBaiViet}}"></a>
+                            <a href="/baiviet/{{IDBaiViet}}"><img src="/images/{{AnhURL}}" alt="{{TieuDeBaiViet}}"></a>
                         </div>
                         <div class="post-body">
                             <span class="badge badge-pill badge-danger">{{TenDanhMuc}}</span>
-                            <h4 class="post-title"><a href="/baiviet/{{IDBaiViet}}">{{TieuDeBaiViet}}</a></h4>
-                            <p>{{NDTomTat}}...</p>
+                            <h2 class="post-title"><a href="/baiviet/{{IDBaiViet}}">{{TieuDeBaiViet}}</a></h2>
+                            {{!-- <p class="ndtt"></p> --}}
+                            <p>{{NDTomTat}}</p>
                         </div>
                         <div class="text-right">
                             <span class="post-date">{{getDate NgayDang}}</span>
-                            <span class="post-date"><i class="fas fa-eye" style="color:#e8b92fed"></i>&nbsp;{{SoLuotXem}}</span>
+                            <span class="post-date"><i class="fas fa-eye"
+                                    style="color:#e8b92fed"></i>&nbsp;{{SoLuotXem}}</span>
                         </div>
                     </div>
                     {{/each}}
                     {{/if}}
+                   
                     <div class="post-shares sticky-shares">
                         <a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>
                         <a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a>
@@ -40,7 +42,7 @@
                         <a href="#" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
                         <a href="#"><i class="fa fa-envelope"></i></a>
                     </div>
-                </div>             
+                </div>
             </div>
             <!-- /Post content -->
             <!-- aside -->
@@ -56,7 +58,8 @@
                     <div class="category-widget">
                         {{#each laymenu1}}
                         <ul>
-                            <li><a href="/danhsach/{{IDChuyenMuc}}"class="cat-1">{{TenChuyenMuc}}<span>{{sl1}}</span></a>
+                            <li><a href="/danhsach/{{IDChuyenMuc}}"
+                                    class="cat-1">{{TenChuyenMuc}}<span>{{sl1}}</span></a>
                             </li>
                         </ul>
                         {{/each}}

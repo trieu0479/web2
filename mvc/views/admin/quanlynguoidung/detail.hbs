@@ -1,0 +1,90 @@
+{{> adminHeader }}
+<div id="content-wrapper">
+
+    <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Người dùng</a>
+            </li>
+            <li class="breadcrumb-item active">Overview</li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-table"></i>
+                Danh Sách Người dùng
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>ID </th>
+                                <th>Tên Tài Khoản</th>
+                                <th>Loại Tài Khoản</th>                          
+                                <th>Sửa</th>
+                            </tr>
+                        </thead>
+                       
+                        <tbody>
+                            {{#each nguoidung}}
+                            <tr>
+                                <td>{{@index}}</td>
+                                <td>{{MaTaiKhoan}}</td>
+                                <td>{{TenDangNhap}}</td>
+                                <td>{{TenLoaiTaiKhoan}}</td>
+                              
+                                <td>
+                                    <a class="btn btn-primary btn-sm" href="/quanlynguoidung/edit/{{MaTaiKhoan}}"
+                                        role="button" title="Edit">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+
+                    </table>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+
+                                    <li class="page-item ">
+                                        <a class="page-link" href="?page={{prevPage}}">Previous</a>
+                                    </li>
+                                    {{#each this.page_numbers}}
+                                    {{#if active}}
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">
+                                            {{value}}
+                                            <span class="sr-only">(current)</span>
+                                        </span>
+                                    </li>
+                                    {{else}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{value}}">{{value}}</a>
+                                    </li>
+                                    {{/if}}
+                                    {{/each}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{nextPage}}">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer small text-right">
+                <a class="btn btn-warning" href="/quanlynguoidung" role="button" title="Back">
+                    <i class="fa fa-backward" aria-hidden="true"></i>
+                    Back
+                </a>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+        <!-- Sticky Footer -->
+        {{> adminFooter}}

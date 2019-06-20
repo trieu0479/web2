@@ -18,23 +18,32 @@
                 <a class="btn btn-outline-success btn-sm" href="/quanlychuyenmuc/add" role="button" title="Edit">
                     <i class="fa fa-plus" aria-hidden="true"> Thêm danh mục</i>
                 </a>
+                <a class="btn btn-outline-success btn-sm" href="/quanlychuyenmuc/addchm" role="button" title="Edit">
+                    <i class="fa fa-plus" aria-hidden="true"> Thêm chuyên mục</i>
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>STT</th>
                                 <th>ID</th>
                                 <th>Tên Danh Mục</th>
+                                <th>Chi tiết</th>
                                 <th class="text-right">Sửa</th>
                             </tr>
                         </thead>
                         <tbody>
                             {{#each danhmuc}}
                             <tr>
+                                <td>{{@index}}</td>
                                 <td>{{IDDanhMuc}}</td>
                                 <td>
-                                    <a href="/quanlychuyenmuc/detail/{{IDDanhMuc}}">{{TenDanhMuc}}</a>
+                                    {{TenDanhMuc}}
+                                </td>
+                                <td>
+                                    <a href="/quanlychuyenmuc/detail/{{IDDanhMuc}}"><i style="color:#28a745" class="fas fa-list-ol"></i></a>
                                 </td>
                                 <td class="text-right">
                                     <a class="btn btn-primary btn-sm" href="/quanlychuyenmuc/edit/{{IDDanhMuc}}"
@@ -76,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            
         </div>
         <!-- /.container-fluid -->
         <!-- Sticky Footer -->

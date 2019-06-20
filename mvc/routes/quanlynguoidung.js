@@ -3,20 +3,31 @@ var nguoidungModel = require('../models/quanlynguoidung.model');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
+
+router.get('/', async function (req, res)  {  
+    let data = {};
+    data.nguoidung = await nguoidungModel.loai();
+    res.render('admin/quanlynguoidung/index', data);
+});
+
+
+router.get('/detail/:id', (req, res, next) => {
+    var id = req.params.id;
+    console.log(id);
     var page = parseInt(req.query.page) || 1;
-    var perPage = 8;
+    var perPage = 10;
 
     var start = (page - 1) * perPage;
     var end = perPage;
 
+
     Promise.all([
         nguoidungModel.sl(),
-        nguoidungModel.all(start, end)
+        nguoidungModel.all(id, start, end)
     ]).then(([Rows, rows]) => {
 
         var total = Rows.length;
-
+       
         var nPages = Math.floor(total / perPage);
         if (total % perPage > 0)
             nPages++;
@@ -32,7 +43,7 @@ router.get('/', (req, res, next) => {
         const hasPrevPage = page > 1;
         const hasNextPage = page < nPages;
 
-        res.render('admin/quanlynguoidung/index', {
+        res.render('admin/quanlynguoidung/detail', {
             error: false,
             nguoidung: rows,
             page_numbers,
@@ -44,6 +55,22 @@ router.get('/', (req, res, next) => {
 
     }).catch(next);
 });
+// router.get('/detail/:id', async function (req, res) {
+//     const viewName = 'admin/quanlynguoidung/detail.hbs';
+//     var vm = {
+//         error: true
+//     }
+//     var id = req.params.id;
+//     console.log(id);
+//     if (isNaN(id)) {
+//         res.render(viewName, vm);
+//         return;
+//     }
+//     let data = {};
+//     data.chuyenmuc = await nguoidungModel.detail(id);
+//     res.render(viewName, data);
+// });
+
 
 router.get('/edit/:id', async function (req, res) {
     const viewName = 'admin/quanlynguoidung/edit';

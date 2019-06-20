@@ -18,19 +18,19 @@ const { check, validationResult } = require("express-validator/check");
 //  ----------------------------------------
 var router = express.Router();
 //truyền req.session qua tất cả các view
-router.use(async function(req, res, next) {
+router.use(async function (req, res, next) {
   res.locals.req = req;
   res.locals.laymenu = await dashboardModel.laymenu();
 
   for (let x in res.locals.laymenu) {
     res.locals.laymenu[x].sub = await danhsachModel.danhsachMain(res.locals.laymenu[x].IDDanhMuc);
   }
-//   console.log(res.locals.laymenu);
+  //   console.log(res.locals.laymenu);
   next();
 });
 
 /* GET home page. */
-router.get("/", async function(req, res) {
+router.get("/", async function (req, res) {
   // const viewName = "user/index";
   // var vm = {
   //     error: true
@@ -47,13 +47,13 @@ router.get("/", async function(req, res) {
   data.top10chuyenmuc = await dashboardModel.top10chuyenmuc();
   data.laymenu1 = await dashboardModel.demchuyenmuc();
   data.tagindex = await tagindexModel.tagindex();
-  
+
   res.render("user/index", data);
 });
 
 ///===================router Sign Up======
 // Cái này hiển thị form đăng ký
-router.get("/dangky", function(req, res) {
+router.get("/dangky", function (req, res) {
   let viewData = {
     errors: false,
     input: {}
@@ -97,7 +97,7 @@ router.post(
       .custom(data => customValidate.checkDuplicate(data, "MatKhau"))
       .withMessage("Password already exists.Try passwod other!")
   ],
-  async function(req, res) {
+  async function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.send({
@@ -123,7 +123,7 @@ router.post(
 
 // ===============rouuter Login================================
 
-router.get("/dangnhap", function(req, res) {
+router.get("/dangnhap", function (req, res) {
   res.render("../views/user/dangnhapuser");
 });
 router.post(
@@ -136,7 +136,7 @@ router.post(
       .isLength({ min: 3, max: 50 })
       .withMessage("Password is length 3-50.Try again")
   ],
-  function(req, res, next) {
+  function (req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       // let viewData = {
@@ -148,7 +148,7 @@ router.post(
       });
     } else {
       // console.log('vao day nhe')
-      passport.authenticate("local", function(err, user, info) {
+      passport.authenticate("local", function (err, user, info) {
         if (err) {
           return next(err);
         }
@@ -170,21 +170,24 @@ router.post(
           return res.render("user/dangnhapuser", {
             errors: [{ msg: "Sai ten dang nhap hoac mat khau " }]
           });
-        } else if (
+        } 
+        else if (
           user.isValid === true &&
           user.user.Active === 0 &&
           user.user.MaLoaiTaiKhoan === 2
-        )
+        ) 
         {
           return res.render("user/dangnhapuser", {
             errors: [
               {
-                msg:"Tài khoản hiện tại của bạn là Sucbcriber hết hạn. Cần nạp card để kích hoạt"
+                msg: "Tài khoản hiện tại của bạn là Sucbcriber hết hạn. Cần nạp card để kích hoạt"
               }
             ]
           });
-        } else if (user.isValid === true && user.user.MaLoaiTaiKhoan === 5) {
-          return res.render("admin/index");
+        } 
+        else if (user.isValid === true && user.user.MaLoaiTaiKhoan === 5) 
+        {
+            return res.render("admin/index"); //thme elsif o day cho writer
         } else {
           req.session.user = user;
           // console.log(user);
@@ -195,8 +198,8 @@ router.post(
   }
 );
 
-router.get("/dangxuat", function(req, res) {
-  req.session.destroy(function(err) {
+router.get("/dangxuat", function (req, res) {
+  req.session.destroy(function (err) {
     if (err) {
       console.log(err);
     } else {
@@ -206,7 +209,7 @@ router.get("/dangxuat", function(req, res) {
   });
 });
 // ====doi mat khau======================
-router.get("/doimatkhau", function(req, res) {
+router.get("/doimatkhau", function (req, res) {
   const viewName = "user/thaydoimatkhau";
   res.render(viewName);
 });
@@ -232,7 +235,7 @@ router.post(
       .isLength({ min: 3, max: 50 })
       .withMessage("Retype Password is length 3-50.")
   ],
-  async function(req, res, next) {
+  async function (req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.render("user/thaydoimatkhau", {

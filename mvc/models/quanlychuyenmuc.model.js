@@ -17,9 +17,11 @@ module.exports = {
         return db.load(`select * from chuyemuc where IDChuyenMuc = ${id}`);
     },
     add: entity => {
+        console.log(entity);
         return db.add('danhmuc', entity);
     },
     addchm: entity => {
+        console.log(entity);
         return db.add('chuyemuc', entity);
     },
     delete: id => {

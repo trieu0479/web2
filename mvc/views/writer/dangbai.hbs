@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Writer</title>
+    <!-- Custom styles for this template-->
+    <script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+    {{!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {{!-- ================================================ --}}
+    <link href="/static/admin/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    {{!-- <script type="text/javascript" src="/ckeditor/ckeditor.js"></script> --}}
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        #mceu_41.mce-edit-area.mce-container.mce-panel.mce-stack-layout-item {
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+        <a class="navbar-brand mr-1" href="/writer">Tên writer</a>
+        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+            <i class="fas fa-bars"></i>
+        </button>
+        <!-- Navbar Search -->
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for..." aria-label="Search"
+                    aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <a href="/">Log out</a>
+        <!-- Navbar -->
+    </nav>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="sidebar navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="/dsbaiviet" id="pagesDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Danh sách bài viết</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="writer/dangbai">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Đăng bài</span></a>
+            </li>
+        </ul>
+
+        <!-- /.content-wrapper -->
+
+        <!-- /#wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active">Overview</li>
+                </ol>
+                <form method="post" action="/writer/add">
+                    <div class="form-group">
+                        <label for="txtID">Tiêu đề</label>
+                        <input type="text" class="form-control" id="tieude" name="TieuDeBaiViet">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtID">Nội dung</label>
+                        <textarea name="NoiDung" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <h6 for="txtcm">Chuyên mục</h6>
+                        <select id="txtcm" name="IDChuyenMuc" class="form-control">
+                            <option value="0">0. Thể thao</option>
+                            <option value="1">1. Du lịch</option>
+                            <option value="2">2. Ẩm thực</option>
+                            <option value="3">3. abs</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtID">Hình ảnh</label>
+                        <input name="AnhURL" type="file" id="upload" onchange="">
+                    </div>
+
+                    <div class="card-footer text-right">
+
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            tinymce.init({
+                selector: "textarea",
+                theme: "modern",
+                paste_data_images: true,
+                plugins: [
+                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen",
+                    "insertdatetime media nonbreaking save table contextmenu directionality",
+                    "emoticons template paste textcolor colorpicker textpattern"
+                ],
+                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+                toolbar2: "print preview media | forecolor backcolor emoticons",
+                image_advtab: true,
+                file_picker_callback: function (callback, value, meta) {
+                    if (meta.filetype == 'image') {
+                        $('#upload').trigger('click');
+                        $('#upload').on('change', function () {
+                            var file = this.files[0];
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                callback(e.target.result, {
+                                    alt: ''
+                                });
+                            };
+                            reader.readAsDataURL(file);
+                        });
+                    }
+                    /* Provide image and alt text for the image dialog */
+                    if (meta.filetype === 'image') {
+                        callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
+                    }
+
+                    /* Provide alternative source and posted for the media dialog */
+                    if (meta.filetype === 'media') {
+                        callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
+                    }
+                },
+                templates: [{
+                    title: 'Test template 1',
+                    content: 'Test 1'
+                }, {
+                    title: 'Test template 2',
+                    content: 'Test 2'
+                }]
+            });
+        });
+    </script>
+</body>
+
+</html>

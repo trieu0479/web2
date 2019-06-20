@@ -1,7 +1,7 @@
 var db = require("../connection");
 module.exports = {
   fulltextsearch: async search => {
-    let sql = `SELECT * FROM baiviet WHERE MATCH(TieuDeBaiViet,NoiDung,NDTomTat) Against (?)`;
+    let sql = `SELECT * FROM baiviet WHERE MATCH(TieuDeBaiViet,NoiDung,NDTomTat) Against (?) order by BaiVietPremium desc, NgayDang desc`;
     let loadsearch = await db.loadBind(sql, [search]);
     return loadsearch;
   }
