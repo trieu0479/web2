@@ -105,6 +105,7 @@
         <div id="content-wrapper">
 
             <div class="container-fluid">
+
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -112,7 +113,7 @@
                     </li>
                     <li class="breadcrumb-item active">Overview</li>
                 </ol>
-                <form method="post" action="./dangbai" >
+                <form method="post" action="./add">
                     <div class="form-group">
                         <label for="txtID">Tiêu đề</label>
                         <input type="text" class="form-control" id="tieude" name="TieuDeBaiViet">
@@ -137,17 +138,17 @@
                         <label for="txtID">Hình ảnh</label>
                         <input name="AnhURL" type="file" id="upload" onchange="">
                     </div>
-                    <div class="form-group">
-                        {{#if req.session.user.user }}
-                        <input type="hidden" class="form-control" id="tieude" name="IDWriter"
-                            value="{{req.session.user.user.MaTaiKhoan}}">
-                        {{/if}}
-                    </div>
                     <div class="card-footer text-right">
                         <button type="submit" class="btn btn-success">
                             <i class="fa fa-check" aria-hidden="true"></i>
                             Save
                         </button>
+                    </div>
+                    <div class="form-group">
+                        {{#if req.session.user.user }}
+                        <input type="hidden" class="form-control" id="tieude" name="IDWriter"
+                            value="{{req.session.user.user.MaTaiKhoan}}">
+                        {{/if}}
                     </div>
                 </form>
             </div>
@@ -157,39 +158,37 @@
         $(document).ready(function () {
             tinymce.init({
                 selector: "textarea",
-                theme: "modern",
-                paste_data_images: true,
-                plugins: [
-                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                    "searchreplace wordcount visualblocks visualchars code fullscreen",
-                    "insertdatetime media nonbreaking save table contextmenu directionality",
-                    "emoticons template paste textcolor colorpicker textpattern"
-                ],
-                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-                toolbar2: "print preview media | forecolor backcolor emoticons",
-                image_advtab: true,
-                file_picker_callback: function (callback, value, meta) {
-                    if (meta.filetype == 'image') {
-                        $('#upload').trigger('click');
-                        $('#upload').on('change', function () {
-                            var file = this.files[0];
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                callback(e.target.result, {
-                                    alt: ''
-                                });
-                            };
-                            reader.readAsDataURL(file);
-                        });
-                    }
-                },
-                templates: [{
-                    title: 'Test template 1',
-                    content: 'Test 1'
-                }, {
-                    title: 'Test template 2',
-                    content: 'Test 2'
-                }]
+                toolbar: "mybutton",
+                setup: function (editor) {
+                    editor.addButton('mybutton', {
+                        icon: 'image',
+                        onclick: function (e) {
+                            console.log(e.target);
+                            console.log(editor.getContent());
+                            var utf8length = 0;
+                            var string = editor.getContent();
+                            for (var n = 0; n < string.length; n++) {
+                                var c = string.charCodeAt(n);
+                                if (c < 128) {
+                                    utf8length++;
+                                }
+                                else if ((c > 127) && (c < 2048)) {
+                                    utf8length = utf8length + 2;
+                                }
+                                else {
+                                    utf8length = utf8length + 3;
+                                }
+                            }
+                            console.log(utf8length);
+                            var str = editor.getContent();
+                            var m = encodeURIComponent(str).match(/%[89ABab]/g);
+                            console.log(editor.getContent());
+                            console.log(str.length + (m ? m.length : 0));
+
+
+                        }
+                    });
+                }
             });
         });
     </script>

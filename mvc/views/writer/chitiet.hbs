@@ -54,7 +54,7 @@
                 </div>
             </div>
         </form>
-        <a href="./logout">Log out</a>
+        <a href="/writer/logout">Log out</a>
         {{/if}}
         <!-- Navbar -->
     </nav>
@@ -62,19 +62,19 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item dropdown">
-                <a class="nav-link" href="./dsbaiviet" id="pagesDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link" href="/writer/dsbaiviet" id="pagesDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Danh sách bài viết</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./dangbai">
+                <a class="nav-link" href="/writer/dangbai">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Đăng bài</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./hieuchinh">
+                <a class="nav-link" href="/writer/hieuchinh">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Hiệu Chỉnh</span></a>
             </li>
@@ -103,53 +103,54 @@
             </div>
         </div>
         <div id="content-wrapper">
-
             <div class="container-fluid">
-                <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="#">Dashboard</a>
-                    </li>
-                    <li class="breadcrumb-item active">Overview</li>
-                </ol>
-                <form method="post" action="./dangbai" >
-                    <div class="form-group">
-                        <label for="txtID">Tiêu đề</label>
-                        <input type="text" class="form-control" id="tieude" name="TieuDeBaiViet">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtND">Nội dung</label>
-                        <textarea name="NoiDung" id="" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtNDTT">Nội dung tóm tắt</label>
-                        <textarea name="NDTomTat" id="" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <h6 for="txtcm">Chuyên mục</h6>
-                        <select id="txtcm" name="IDChuyenMuc" class="form-control">
-                            {{#each chuyenmuc}}
-                            <option value="{{IDChuyenMuc}}">{{TenChuyenMuc}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtID">Hình ảnh</label>
-                        <input name="AnhURL" type="file" id="upload" onchange="">
-                    </div>
-                    <div class="form-group">
-                        {{#if req.session.user.user }}
-                        <input type="hidden" class="form-control" id="tieude" name="IDWriter"
-                            value="{{req.session.user.user.MaTaiKhoan}}">
-                        {{/if}}
-                    </div>
-                    <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                            Save
-                        </button>
-                    </div>
-                </form>
+                <div class="table-responsive">
+                    <form action="/writer/hieuchinh" method="POST">
+                        <div class="card shadow">
+                            <div class="card-body">
+
+                                {{#each chitiet}}
+                                <div class="form-group">
+                                    <label for="txtID">#</label>
+                                    <input readonly type="text" class="form-control" id="txtID" name="IDBaiViet"
+                                        value="{{IDBaiViet}}">
+                                </div>
+                                <div class="form-group">
+                                    <h6 for="txtTieuDe">Tiêu đề bài viết</h6>
+                                    <input type="text" class="form-control" id="txtTieuDe" name="TieuDeBaiViet"
+                                        value="{{TieuDeBaiViet}}">
+                                </div>
+                                <div class="form-group">
+                                    <h6 for="txtND">Nội dung</h6>
+                                    <textarea name="NoiDung" id="" cols="30" rows="10" value="">{{NoiDung}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <h6 for="txtND">Nội dung Tóm Tắt</h6>
+                                    <textarea name="NDTomTat" id="" cols="30" rows="10" value="">{{NDTomTat}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtID">Hình ảnh</label>
+                                    <input name="AnhURL" type="file" id="upload" onchange="">
+                                </div>
+                                {{/each}}
+                                <div class="form-group">
+                                    <h6 for="txtcm">Chuyên mục</h6>
+                                    <select id="txtcm" name="IDChuyenMuc" class="form-control">
+                                        {{#each chuyenmuc}}
+                                        <option value="{{IDChuyenMuc}}">{{TenChuyenMuc}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                                <div class="card-footer text-right">
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -181,6 +182,15 @@
                             };
                             reader.readAsDataURL(file);
                         });
+                    }
+                    /* Provide image and alt text for the image dialog */
+                    if (meta.filetype === 'image') {
+                        callback('https://www.google.com/logos/google.jpg', { alt: 'My alt text' });
+                    }
+
+                    /* Provide alternative source and posted for the media dialog */
+                    if (meta.filetype === 'media') {
+                        callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.google.com/logos/google.jpg' });
                     }
                 },
                 templates: [{

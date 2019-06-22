@@ -2,7 +2,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-
+<script>
+    function CheckSubmit () {
+        var tendanhmuc = document.getElementById("TenDanhMuc");
+        if (tendanhmuc.value == "") {
+            alert("Tên Danh Mục không được rỗng");
+            return false;
+        }
+        return true;
+    }
+</script>
 
 <div id="content-wrapper">
     <div class="container-fluid">
@@ -18,7 +27,7 @@
                 <i class="fas fa-table"></i>
                 Thêm Danh Mục
             </div>
-            <form id="add" novalidate method="POST">
+            <form id="add" novalidate method="POST" onsubmit="return CheckSubmit()">
                 <div class="card shadow">
                     {{#if success}}
                     <div class="alert alert-success" role="alert">

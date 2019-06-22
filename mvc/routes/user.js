@@ -41,12 +41,14 @@ router.get("/", async function (req, res) {
   //     return;
   // }
   let data = {};
+  var id =req.params.id;
   data.baiVietNoiBat = await dashboardModel.get3PostForDashborad();
   data.lay10baixemnhieu = await dashboardModel.lay10baixemnhieu();
   data.lay10baimoinhat = await dashboardModel.lay10baimoinhat();
   data.top10chuyenmuc = await dashboardModel.top10chuyenmuc();
   data.laymenu1 = await dashboardModel.demchuyenmuc();
   data.tagindex = await tagindexModel.tagindex();
+  //data.laydanhmuc = await danhsachModel.dsdanhmuc(id);
 
   res.render("user/index", data);
 });
@@ -152,43 +154,49 @@ router.post(
         if (err) {
           return next(err);
         }
-        // console.log('thongtin', user)
+        //console.log('thongtin', user)
         // if (!user) {
-        //     // let viewData = {
-        //     //     errors: [{msg: "Sai ten dang nhap hoac mat khau"}],
-        //     //     input: req.body,
-        //     // }
-        //     // console.log (viewData);
-        //     // res.render("user/dangnhapuser");
-        //     //   console.log(user);
+        //     let viewData = {
+        //         errors: [{msg: "Sai ten dang nhap hoac mat khau"}],
+        //         input: req.body,
+        //     }
+        //     console.log (viewData);
+        //     res.render("user/dangnhapuser");
+        //       console.log(user);
         // } else {
         //     // xử lý khi thành công ...
         // }
         // neu user isvalid false
-        // console.log('info', user)
+
+        //console.log(user.user.MaLoaiTaiKhoan);
         if (user.isValid === false) {
           return res.render("user/dangnhapuser", {
             errors: [{ msg: "Sai ten dang nhap hoac mat khau " }]
           });
-        } 
-        else if (
-          user.isValid === true &&
-          user.user.Active === 0 &&
-          user.user.MaLoaiTaiKhoan === 2
-        ) 
-        {
+        }
+        else if (user.isValid === true && user.user.Active === 0 && user.user.MaLoaiTaiKhoan === 2) {
+          //console.log('info', user)
           return res.render("user/dangnhapuser", {
             errors: [
               {
-                msg: "Tài khoản hiện tại của bạn là Sucbcriber hết hạn. Cần nạp card để kích hoạt"
+                msg: "Tài khoản hiện tại của bạn là Sucbcriber đã hết hạn. Cần liên hệ Admin để kích hoạt"
               }
             ]
           });
-        } 
-        else if (user.isValid === true && user.user.MaLoaiTaiKhoan === 5) 
-        {
-            return res.render("admin/index"); //thme elsif o day cho writer
-        } else {
+        }
+        else if (user.isValid === true && user.user.MaLoaiTaiKhoan === 5) {
+          return res.render("admin/index"); //thme elsif o day cho writer
+        }
+        else if (user.isValid === true && user.user.MaLoaiTaiKhoan === 3) {
+          req.session.user = user;
+          return res.redirect("/writer"); //thme elsif o day cho writer
+        }
+        else if (user.isValid === true && user.user.MaLoaiTaiKhoan === 4) {
+          console.log(user.user.MaLoaiTaiKhoan);
+          req.session.user = user;
+          return res.redirect("/editor"); //thme elsif o day cho writer
+        }
+        else {
           req.session.user = user;
           // console.log(user);
           res.redirect("/");

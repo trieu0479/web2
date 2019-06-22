@@ -1,0 +1,147 @@
+{{> userHeader }}
+
+<!-- section -->
+<div class="section">
+    <!-- container carousel-->
+    <div class="container">
+        <!-- row -->
+        <div class="row banner">
+            <!-- post -->
+            <div class="col-md-12">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel"></div>
+                <!-- Wrapper for slides -->
+                <div class="container-fluid">
+                    <div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="2500">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            {{#each baiVietNoiBat}}
+                            <div class="item {{#unless @index}}active{{/unless}}">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <a href="/baiviet/{{IDBaiViet}}">
+                                            <div class="col-md-4 col-sm-4"><img src="/images/{{AnhURL}}"
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="col-md-8 col-sm-8">
+                                                <a class="badge badge-danger" href="{{IDDanhMuc}}">{{TenDanhMuc}}</a>
+                                                <span class="post-date">{{getDate NgayDang}}</span>
+                                                <a href="/baiviet/{{IDBaiViet}}">
+                                                    <h4>{{TieuDeBaiViet}}</h4>
+                                                </a>
+                                                <p class="ndtt">{{NoiDung}}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                            <!-- End Item -->
+                        </div>
+                        <!-- End Carousel Inner -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /row -->
+    <!--het 2 o vuong to -->
+    <!-- TOP 10 bai viet moi -->
+    <div class="container bv">
+        <div class="row">
+            <div class="col-md-8 top10bvmn">
+                <div class="row">
+                    <h3 class="widget-title">Top 10 Bài Viết Xem Nhiều Nhất</h3>
+                    {{#each lay10baixemnhieu}}
+                    <div class="col-sm-12 col-xs-12">
+
+                        <div class="post post-widget">
+                            <div class="post-img">
+                                <a href="/baiviet/{{IDBaiViet}}"><img src="/images/{{AnhURL}}"
+                                        alt="{{TieuDeBaiViet}}"></a>
+                            </div>
+                            <div class="post-body">
+                                <span class="badge badge-pill badge-danger">{{TenDanhMuc}}</span>
+                                <h4 class="post-title"><a href="/baiviet/{{IDBaiViet}}">{{TieuDeBaiViet}}</a></h4>
+
+                            </div>
+                            <div class="text-right">
+                                <span class="post-date">{{getDate NgayDang}}</span>
+                                <span class="post-date"><i class="fas fa-eye"
+                                        style="color:#e8b92fed"></i>&nbsp;{{SoLuotXem}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="row">
+                     <h3 class="widget-title">Top 10 Bài Viết Mới Nhất</h3>
+                    {{#each lay10baimoinhat}}
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="post post-widget">
+                            <div class="post-img">
+                                <a href="/baiviet/{{IDBaiViet}}"><img src="/images/{{AnhURL}}"
+                                        alt="{{TieuDeBaiViet}}"></a>
+                            </div>
+                            <div class="post-body">
+                                <span class="badge badge-pill badge-danger">{{TenDanhMuc}}</span>
+                                <h4 class="post-title"><a href="/baiviet/{{IDBaiViet}}">{{TieuDeBaiViet}}</a></h4>
+
+                            </div>
+                            <div class="text-right">
+                                <span class="post-date">{{getDate NgayDang}}</span>
+                                <span class="post-date"><i class="fas fa-eye"
+                                        style="color:#e8b92fed"></i>&nbsp;{{SoLuotXem}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+
+            <!--        top 10 xem nhiều nhất       --->
+
+            <div class="col-md-4">
+                <!-- post widget -->
+                <div class="aside-widget">
+                    <h3 class="widget-title"> Top 10 Chuyên Mục</h3>
+                    {{#each top10chuyenmuc}}
+                    <div class="tab-pane active" role="tabpanel">
+                        <a href="/baiviet/{{IDBaiViet}}">
+                            <div class="media">
+                                <img class="d-flex mr-3" src="/images/{{AnhURL}}" alt="{{TieuDeBaiViet}}">
+                                <div class="media-body">
+                                    <div>
+                                        <span class="badge badge-pill badge-danger">{{TenDanhMuc}}</span>
+                                        <div class="news-title">
+                                            <h4 class=" title-small"> {{TieuDeBaiViet}}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="news-auther"><small
+                                            class="text-time"><em>{{getDate NgayDang}}</em></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {{/each}}
+                    <div class="section-title">
+                        <h3 class="widget-title"> Chuyên Mục</h3>
+                    </div>
+                    <div class="category-widget">
+                        {{#each laymenu1}}
+                        <ul>
+                            <li><a href="/danhsach/{{IDChuyenMuc}}"
+                                    class="cat-1">{{TenChuyenMuc}}<span>{{sl1}}</span></a></li>
+                            </li>
+                        </ul>
+                        {{/each}}
+                    </div>
+                </div> <!-- #aside-widget -->
+                <!-- /postwidged -->
+            </div> <!-- #row -->
+        </div> <!-- #container -->
+    </div>
+
+    {{> userFooter}}

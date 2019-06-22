@@ -1,22 +1,12 @@
 var db =require("../connection");
 
 module.exports = {
-    add: (bv) => {
-        function date(date) {
-            return new Date().setDate(date);
-        }
-        //var salt = bcrypt.genSaltSync(10);
-        //var password = bcrypt.hashSync(userData.password, salt);
-        // Store hash in your password DB.          
-        // let sql = `INSERT INTO taikhoan
-        // (TenDangNhap,TenHienThi,MatKhau,NgayThangNamSinh,NgayDangKy,NgayHetHan,Email,MaLoaiTaiKhoan,Active) 
-        // VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    add: (bv) => {             
         let sql = `INSERT INTO baiviet
-        (IDChuyenMuc, TieuDeBaiViet,AnhURL, NgayDang, NoiDung, NDTomTat, SoLuotXem, TinhTrang, BaiVietPremium, IDDanhMuc) 
+        (IDChuyenMuc, TieuDeBaiViet, AnhURL, NgayDang, NoiDung, NDTomTat, SoLuotXem, TinhTrang, BaiVietPremium, 
+             IDWriter) 
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        // ===ngay het han==========          
-        current = new Date().getDate();
-        date = new Date(date(current + 7));
+        // ===ngay het han==========          s
         let today = new Date;    
         let soluotxem = 0;
         let tinhtrang = 0;
@@ -28,11 +18,11 @@ module.exports = {
             bv.AnhURL,
             today,
             bv.NoiDung,
-            bv.NoiDung,
+            bv.NDTomTat,
             soluotxem,
             tinhtrang,    
             premium,
-            bv.IDChuyenMuc
+            bv.IDWriter
         ];
         console.log(bv.IDChuyenMuc);
         console.log(bv.TieuDeBaiViet);
@@ -41,7 +31,47 @@ module.exports = {
         console.log(bv.NoiDung);
         console.log(soluotxem),
         console.log(tinhtrang),
-
+        console.log(bv.IDDanhMuc);        
         db.loadBind(sql, data);
     },
+    update: entity => {
+        var id = entity.IDBaiViet;
+        delete entity.IDBaiViet;
+        console.log(id);
+        return db.update('baiviet', 'IDBaiViet', entity, id);
+    },
+    detail: id => {
+        return db.load(`SELECT * FROM baiviet, taikhoan, tinhtrang WHERE taikhoan.MaTaiKhoan = ${id} and baiviet.IDWriter = taikhoan.MaTaiKhoan `);
+    },
+    infor: id =>{
+        return db.load(`select * from taikhoan where MaTaiKhoan = ${id}`);
+    }, 
+    baiviet: (id, start, end) => {
+        return db.load(`select * from baiviet join tinhtrang on baiviet.TinhTrang = tinhtrang.ID where IDWriter = ${id} limit ${end} offset ${start} `);        
+        //return db.load(`select * from baiviet where baiviet.IDWriter = ${id} and baiviet.TinhTrang = 0 or baiviet.TinhTrang = 1 limit ${end} offset ${start} `);
+    }, 
+    sl: id =>{
+        return db.load(`select * from baiviet where IDWriter = ${id}`);
+    },
+    chitiet: id =>{
+        return db.load(`select * from baiviet where IDBaiViet = ${id}`);
+    },
+    hieuchinh: id =>{
+        return db.load(`select * from baiviet where baiviet.IDWriter = ${id} and baiviet.TinhTrang = 0 or  baiviet.IDWriter = ${id} and baiviet.TinhTrang = 1 `);
+    }, 
+    laychuyenmuc: () => {
+        return db.load('select * from chuyemuc');
+    },
+    addtag: entity =>{
+        return db.add('lienkettag', entity);
+    },
+    danhsachtag: id => {
+        return db.load(`SELECT * FROM lienkettag join tag on lienkettag.IDTag = tag.IDTag WHERE lienkettag.IDBaiViet = ${id}`);
+    },
+    themtag: id => {
+        return db.load(`SELECT tag.IDTag, tag.TenTag FROM tag WHERE tag.IDTag not in (select lienkettag.IDTag from lienkettag WHERE lienkettag.IDBaiViet = ${id})`);
+    },
+    bv: id => {
+        return db.load(`select * from baiviet where IDBaiViet = ${id}`);
+    }
 };

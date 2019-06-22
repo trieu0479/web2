@@ -20,6 +20,8 @@ var searchRouter = require ("./routes/search");
 var thongtinRouter = require ("./routes/thongtin");
 var writerRouer = require("./routes/writer");
 var phancongRouter = require("./routes/phancong");
+var editorRouter = require("./routes/editor");
+var dsdanhmucRouter = require("./routes/dsdanhmuc");
 
 var passport = require('./passport');
 var session = require("express-session"),
@@ -57,6 +59,8 @@ let headeradmin = fs.readFileSync(path.join(__dirname,"views","admin","template"
 let footeradmin = fs.readFileSync(path.join(__dirname,"views","admin","template","footer.hbs"), 'utf-8');
 let headerwriter = fs.readFileSync(path.join(__dirname,"views","writer","template","header.hbs"), 'utf-8');
 let footerwriter = fs.readFileSync(path.join(__dirname,"views","writer","template","footer.hbs"), 'utf-8');
+let headereditor = fs.readFileSync(path.join(__dirname,"views","editor","template","header.hbs"), 'utf-8');
+let footerediter = fs.readFileSync(path.join(__dirname,"views","editor","template","footer.hbs"), 'utf-8');
 
 hbs.registerPartial('userHeader',  header);
 hbs.registerPartial('userFooter',  footer);
@@ -64,7 +68,16 @@ hbs.registerPartial('adminHeader',  headeradmin);
 hbs.registerPartial('adminFooter',  footeradmin);
 hbs.registerPartial('writerHeader',  headerwriter);
 hbs.registerPartial('writerFooter',  footerwriter);
+hbs.registerPartial('headerEditor',  headereditor);
+hbs.registerPartial('footerEditer',  footerediter);
 
+var str = "{TinyMCE HTML string}"; /* however you get it */
+str = str.replace(/^\<p\>/,"").replace(/\<\/p\>$/,"");
+
+hbs.registerHelper('Sub', function(str) { //bỏ múi giờ
+ 
+  return str
+});
 hbs.registerHelper('getDate', function(date) { //bỏ múi giờ
   if (date instanceof Date) {
     return date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
@@ -102,6 +115,9 @@ app.use ('/search',searchRouter);
 app.use('/phancong', phancongRouter);
 app.use('/thongtin', thongtinRouter);
 app.use('/writer', writerRouer);
+app.use('/editor', editorRouter);
+app.use('/dsdanhmuc', dsdanhmucRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -73,11 +73,11 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Đăng bài</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./hieuchinh">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Hiệu Chỉnh</span></a>
-            </li>
+             <li class="nav-item">
+                    <a class="nav-link" href="./hieuchinh">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Hiệu Chỉnh</span></a>
+                </li>
         </ul>
         <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded" href="#page-top">
@@ -105,94 +105,79 @@
         <div id="content-wrapper">
 
             <div class="container-fluid">
+
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="#">Dashboard</a>
+                        <a href="./dsbaiviet">Danh sách bài viết</a>
                     </li>
                     <li class="breadcrumb-item active">Overview</li>
                 </ol>
-                <form method="post" action="./dangbai" >
-                    <div class="form-group">
-                        <label for="txtID">Tiêu đề</label>
-                        <input type="text" class="form-control" id="tieude" name="TieuDeBaiViet">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtND">Nội dung</label>
-                        <textarea name="NoiDung" id="" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtNDTT">Nội dung tóm tắt</label>
-                        <textarea name="NDTomTat" id="" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <h6 for="txtcm">Chuyên mục</h6>
-                        <select id="txtcm" name="IDChuyenMuc" class="form-control">
-                            {{#each chuyenmuc}}
-                            <option value="{{IDChuyenMuc}}">{{TenChuyenMuc}}</option>
+                <div class="table-responsive">
+                    <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>ID </th>
+                                <th>Tiêu Đề Bài Viết</th>
+                                <th>Tình Trạng</th>
+                                <th>Thêm Tag</th>
+                            </tr>
+                        </thead>                    
+                        <tbody>
+                            {{#if this.empty}}
+                            <p class="card-text">Không có bài viết</p>
+                            {{else}}
+                            {{#each baiviet}}
+                            <tr>
+                                <td>{{@index}}</td>
+                                <td>{{IDBaiViet}}</td>
+                                <td>{{TieuDeBaiViet}}</td>
+                                <td>{{Ten}}</td>
+                                <td>
+                                    <a class="btn btn-danger btn-sm" href="/writer/addtag/{{IDBaiViet}}"
+                                        role="button" title="Add">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                </td>
+                            </tr>
                             {{/each}}
-                        </select>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+
+                                    <li class="page-item ">
+                                        <a class="page-link" href="?page={{prevPage}}">Previous</a>
+                                    </li>
+                                    {{#each this.page_numbers}}
+                                    {{#if active}}
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">
+                                            {{value}}
+                                            <span class="sr-only">(current)</span>
+                                        </span>
+                                    </li>
+                                    {{else}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{value}}">{{value}}</a>
+                                    </li>
+                                    {{/if}}
+                                    {{/each}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{nextPage}}">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="txtID">Hình ảnh</label>
-                        <input name="AnhURL" type="file" id="upload" onchange="">
-                    </div>
-                    <div class="form-group">
-                        {{#if req.session.user.user }}
-                        <input type="hidden" class="form-control" id="tieude" name="IDWriter"
-                            value="{{req.session.user.user.MaTaiKhoan}}">
-                        {{/if}}
-                    </div>
-                    <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                            Save
-                        </button>
-                    </div>
-                </form>
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            tinymce.init({
-                selector: "textarea",
-                theme: "modern",
-                paste_data_images: true,
-                plugins: [
-                    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                    "searchreplace wordcount visualblocks visualchars code fullscreen",
-                    "insertdatetime media nonbreaking save table contextmenu directionality",
-                    "emoticons template paste textcolor colorpicker textpattern"
-                ],
-                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-                toolbar2: "print preview media | forecolor backcolor emoticons",
-                image_advtab: true,
-                file_picker_callback: function (callback, value, meta) {
-                    if (meta.filetype == 'image') {
-                        $('#upload').trigger('click');
-                        $('#upload').on('change', function () {
-                            var file = this.files[0];
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                callback(e.target.result, {
-                                    alt: ''
-                                });
-                            };
-                            reader.readAsDataURL(file);
-                        });
-                    }
-                },
-                templates: [{
-                    title: 'Test template 1',
-                    content: 'Test 1'
-                }, {
-                    title: 'Test template 2',
-                    content: 'Test 2'
-                }]
-            });
-        });
-    </script>
 </body>
 
 </html>

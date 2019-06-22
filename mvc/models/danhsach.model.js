@@ -10,5 +10,9 @@ module.exports = {
     danhsachMain: (id) => {
        return db.load(`select * from chuyemuc where chuyemuc.IDDanhMuc = "${id}" `);
     },
+    dsdanhmuc: id => {
+        return db.load(`SELECT *from danhmuc,chuyemuc,baiviet WHERE chuyemuc.IDDanhMuc=danhmuc.IDDanhMuc and baiviet.IDChuyenMuc = chuyemuc.IDChuyenMuc
+         and danhmuc.IDDanhMuc=${id} `);
+    }
     
 }

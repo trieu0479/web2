@@ -62,6 +62,7 @@ router.get('/edit/:id', async function (req, res) {
   }
   let data = {};
   data.chitiet = await baivietModel.detail(id);
+  console.log(data);
   res.render(viewName, data);
 });
 router.post('/update', (req, res, next) => {
