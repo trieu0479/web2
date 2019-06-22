@@ -40,14 +40,20 @@ module.exports = {
         console.log(id);
         return db.update('baiviet', 'IDBaiViet', entity, id);
     },
+    edit: entity => {
+        var id = entity.IDBaiViet;
+        delete entity.IDBaiViet;
+        console.log(id);
+        return db.update('baiviet', 'IDBaiViet', entity, id);
+    },
     detail: id => {
         return db.load(`SELECT * FROM baiviet, taikhoan, tinhtrang WHERE taikhoan.MaTaiKhoan = ${id} and baiviet.IDWriter = taikhoan.MaTaiKhoan `);
     },
     infor: id =>{
         return db.load(`select * from taikhoan where MaTaiKhoan = ${id}`);
     }, 
-    baiviet: (id, start, end) => {
-        return db.load(`select * from baiviet join tinhtrang on baiviet.TinhTrang = tinhtrang.ID where IDWriter = ${id} limit ${end} offset ${start} `);        
+    baiviet: (idtk, id,  start, end) => {
+        return db.load(`select * from baiviet join tinhtrang on baiviet.TinhTrang = tinhtrang.ID where IDWriter = ${idtk} and baiviet.TinhTrang = ${id} limit ${end} offset ${start} `);        
         //return db.load(`select * from baiviet where baiviet.IDWriter = ${id} and baiviet.TinhTrang = 0 or baiviet.TinhTrang = 1 limit ${end} offset ${start} `);
     }, 
     sl: id =>{
@@ -57,7 +63,8 @@ module.exports = {
         return db.load(`select * from baiviet where IDBaiViet = ${id}`);
     },
     hieuchinh: id =>{
-        return db.load(`select * from baiviet where baiviet.IDWriter = ${id} and baiviet.TinhTrang = 0 or  baiviet.IDWriter = ${id} and baiviet.TinhTrang = 1 `);
+        return db.load(`select baiviet.IDBaiViet, baiviet.TieuDeBaiViet, lydo.LyDo from baiviet left join lydo on baiviet.IDBaiViet = lydo.IDBaiViet 
+        where baiviet.IDWriter = ${id} and baiviet.TinhTrang = 0 or baiviet.IDWriter = ${id} and baiviet.TinhTrang = 1`);
     }, 
     laychuyenmuc: () => {
         return db.load('select * from chuyemuc');
@@ -73,5 +80,8 @@ module.exports = {
     },
     bv: id => {
         return db.load(`select * from baiviet where IDBaiViet = ${id}`);
+    },
+    tinhtrang: () => {
+        return db.load('select * from tinhtrang');
     }
 };

@@ -47,16 +47,25 @@ router.get('/hieuchinh', async function (req, res) {
   res.render('writer/hieuchinh', data);
 });
 
-router.get('/dsbaiviet', (req, res, next) => {
-  console.log("danh sach bv writer");
+router.get('/dstinhtrang', async function (req, res) {
+ 
+  let data = {};
+  data.tinhtrang = await writerModel.tinhtrang();
+  //console.log(data);
+  res.render('writer/dstinhtrang', data);
+});
+
+router.get('/dstheotinhtrang/:id', (req, res, next) => {
+  
   var page = parseInt(req.query.page) || 1;
   var perPage = 10;
   var start = (page - 1) * perPage;
   var end = perPage;
-  var id = req.session.user.user.MaTaiKhoan;
+  var idtk = req.session.user.user.MaTaiKhoan;
+  var id = req.params.id;
   Promise.all([
     writerModel.sl(id),
-    writerModel.baiviet(id, start, end)
+    writerModel.baiviet(idtk,id, start, end)
   ]).then(([Rows, rows]) => {
     //console.log(rows);
     var total = Rows.length;
@@ -76,7 +85,7 @@ router.get('/dsbaiviet', (req, res, next) => {
     const hasPrevPage = page > 1;
     const hasNextPage = page < nPages;
 
-    res.render('writer/dsbaiviet', {
+    res.render('writer/dstheotinhtrang', {
       error: false,
       baiviet: rows,
       page_numbers,
@@ -107,6 +116,15 @@ router.post('/update', (req, res, next) => {
   }).catch(next);
 })
 
+router.post('/edit', async function (req, res, next) {
+  var id = req.session.user.user.MaTaiKhoan;
+  //console.log(id);
+  let data = {};
+  data.hieuchinh = await writerModel.hieuchinh(id);
+  writerModel.edit(req.body)
+    res.render('writer/hieuchinh', data);
+})
+
 router.get('/:id', async function (req, res, next) {
 
   var id = req.params.id;
@@ -122,7 +140,7 @@ router.get('/addtag/:id', async function (req, res, next) {
   data.danhsachtag = await writerModel.danhsachtag(id);
   data.danhsach = await writerModel.themtag(id);
   data.bv = await writerModel.bv(id);
-  console.log(data);
+  //console.log(data);
   res.render('writer/addtag', data);
 })
 
@@ -148,7 +166,7 @@ router.get('/chitiet/:id', async function (req, res) {
   let data = {};
   data.chitiet = await writerModel.chitiet(id);
   data.chuyenmuc = await writerModel.laychuyenmuc();
-  console.log(data);
+ // console.log(data);
   res.render(viewName, data);
 });
 //router.get ()

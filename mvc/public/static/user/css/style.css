@@ -348,7 +348,9 @@
         #nav {
             height: 70px;
         }
-
+        .pagination{
+            text-align: center;
+        }
         #nav:after {
             content: "";
             position: fixed;

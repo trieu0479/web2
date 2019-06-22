@@ -13,7 +13,5 @@ module.exports = {
     chuyenmuc: () => {
         return db.load('select count(*) as sl from chuyemuc');
     },
-    dangnhap:async (username,password) => {
-
-    }
+   
 };

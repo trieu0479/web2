@@ -54,7 +54,7 @@
                 </div>
             </div>
         </form>
-        <a href="./logout">Log out</a>
+        <a href="/writer/logout">Log out</a>
         {{/if}}
         <!-- Navbar -->
     </nav>
@@ -62,22 +62,22 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item dropdown">
-                <a class="nav-link" href="./dsbaiviet" id="pagesDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link" href="/writer/dstinhtrang" id="pagesDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Danh sách bài viết</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./dangbai">
+                <a class="nav-link" href="/writer/dangbai">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Đăng bài</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./hieuchinh">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Hiệu Chỉnh</span></a>
-            </li>
+             <li class="nav-item">
+                    <a class="nav-link" href="/writer/hieuchinh">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Hiệu Chỉnh</span></a>
+                </li>
         </ul>
         <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded" href="#page-top">
@@ -109,89 +109,75 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="#">Dashboard</a>
+                        <a href="./dstinhtrang">Danh sách bài viết</a>
                     </li>
                     <li class="breadcrumb-item active">Overview</li>
                 </ol>
-                <form method="post" action="./add">
-                    <div class="form-group">
-                        <label for="txtID">Tiêu đề</label>
-                        <input type="text" class="form-control" id="tieude" name="TieuDeBaiViet">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtND">Nội dung</label>
-                        <textarea name="NoiDung" id="" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtNDTT">Nội dung tóm tắt</label>
-                        <textarea name="NDTomTat" id="" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <h6 for="txtcm">Chuyên mục</h6>
-                        <select id="txtcm" name="IDChuyenMuc" class="form-control">
-                            {{#each chuyenmuc}}
-                            <option value="{{IDChuyenMuc}}">{{TenChuyenMuc}}</option>
+                <div class="table-responsive">
+                    <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>ID </th>
+                                <th>Tiêu Đề Bài Viết</th>
+                                <th>Tình Trạng</th>                             
+                                <th>Thêm Tag</th>
+                            </tr>
+                        </thead>                    
+                        <tbody>
+                            {{#if this.empty}}
+                            <p class="card-text">Không có bài viết</p>
+                            {{else}}
+                            {{#each baiviet}}
+                            <tr>
+                                <td>{{@index}}</td>
+                                <td>{{IDBaiViet}}</td>
+                                <td>{{TieuDeBaiViet}}</td>
+                                <td>{{Ten}}</td>
+                                <td>
+                                    <a class="btn btn-danger btn-sm" href="/writer/addtag/{{IDBaiViet}}"
+                                        role="button" title="Add">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                </td>
+                            </tr>
                             {{/each}}
-                        </select>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+
+                                    <li class="page-item ">
+                                        <a class="page-link" href="?page={{prevPage}}">Previous</a>
+                                    </li>
+                                    {{#each this.page_numbers}}
+                                    {{#if active}}
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">
+                                            {{value}}
+                                            <span class="sr-only">(current)</span>
+                                        </span>
+                                    </li>
+                                    {{else}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{value}}">{{value}}</a>
+                                    </li>
+                                    {{/if}}
+                                    {{/each}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{nextPage}}">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="txtID">Hình ảnh</label>
-                        <input name="AnhURL" type="file" id="upload" onchange="">
-                    </div>
-                    <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                            Save
-                        </button>
-                    </div>
-                    <div class="form-group">
-                        {{#if req.session.user.user }}
-                        <input type="hidden" class="form-control" id="tieude" name="IDWriter"
-                            value="{{req.session.user.user.MaTaiKhoan}}">
-                        {{/if}}
-                    </div>
-                </form>
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            tinymce.init({
-                selector: "textarea",
-                toolbar: "mybutton",
-                setup: function (editor) {
-                    editor.addButton('mybutton', {
-                        icon: 'image',
-                        onclick: function (e) {
-                            console.log(e.target);
-                            console.log(editor.getContent());
-                            var utf8length = 0;
-                            var string = editor.getContent();
-                            for (var n = 0; n < string.length; n++) {
-                                var c = string.charCodeAt(n);
-                                if (c < 128) {
-                                    utf8length++;
-                                }
-                                else if ((c > 127) && (c < 2048)) {
-                                    utf8length = utf8length + 2;
-                                }
-                                else {
-                                    utf8length = utf8length + 3;
-                                }
-                            }
-                            console.log(utf8length);
-                            var str = editor.getContent();
-                            var m = encodeURIComponent(str).match(/%[89ABab]/g);
-                            console.log(editor.getContent());
-                            console.log(str.length + (m ? m.length : 0));
-
-
-                        }
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>

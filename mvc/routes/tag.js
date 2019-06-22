@@ -29,7 +29,7 @@ router.get("/:id", async function(req, res) {
   let data = {};
   data.taglk = await tagindexModel.taglk(id);
   data.laymenu1 = await baivietModel.demchuyenmuc();
-  data.tagindex = await tagindexModel.tagindex();
+
   res.render(viewName, data);
 });
 module.exports = router;

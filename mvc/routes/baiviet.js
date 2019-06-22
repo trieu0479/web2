@@ -31,7 +31,7 @@ router.get("/:id", async function(req, res) {
   data.nambaiviet = await chitietModel.nambaiviet(id);
   data.tagindex = await tagindexModel.tagindex();
   data.demchuyenmuc = await chitietModel.demchuyenmuc();
-  data.taglk = await tagindexModel.taglk(id);
+  data.taglk = await chitietModel.tag(id);
   data.result = await chitietModel.binhluan(data,req);   
   data.showbinhluan = await chitietModel.showbinhluan(id); 
   data.luotxem = await chitietModel.soluotxem(req);

@@ -16,11 +16,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
+    {{!-- ================================================ --}}
     <link href="/static/admin/css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    
+    {{!-- <script type="text/javascript" src="/ckeditor/ckeditor.js"></script> --}}
     <style>
         .hidden {
             display: none;
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </form>
-        <a href="./logout">Log out</a>
+        <a href="/writer/logout">Log out</a>
         {{/if}}
         <!-- Navbar -->
     </nav>
@@ -62,7 +62,7 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item dropdown">
-                <a class="nav-link" href="./dsbaiviet" id="pagesDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link" href="./dstheotinhtrang" id="pagesDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Danh sách bài viết</span>
@@ -109,7 +109,7 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="./dsbaiviet">Danh sách bài viết</a>
+                        <a href="/writer/dstinhtrang">Danh sách bài viết</a>
                     </li>
                     <li class="breadcrumb-item active">Overview</li>
                 </ol>
@@ -118,62 +118,29 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>ID </th>
-                                <th>Tiêu Đề Bài Viết</th>
-                                <th>Tình Trạng</th>
-                                <th>Thêm Tag</th>
+                                <th>Tình Trạng</th>                             
+                                <th>Xem</th>
                             </tr>
                         </thead>                    
                         <tbody>
                             {{#if this.empty}}
-                            <p class="card-text">Không có bài viết</p>                        
+                            <p class="card-text">Không có bài viết</p>
                             {{else}}
-                            {{#each baiviet}}
+                            {{#each tinhtrang}}
                             <tr>
-                                <td>{{@index}}</td>                                
-                                <td>{{IDBaiViet}}</td>
-                                <td>{{TieuDeBaiViet}}</td>
+                                <td>{{@index}}</td>                                            
                                 <td>{{Ten}}</td>
                                 <td>
-                                    <a class="btn btn-danger btn-sm" href="/writer/addtag/{{IDBaiViet}}"
-                                        role="button" title="Add">
-                                        <i class="fas fa-plus"></i>
+                                    <a href="./dstheotinhtrang/{{ID}}">
+                                        <i class="fas fa-eye" style="color:#e8b92fed"></i>
                                     </a>
                                 </td>
                             </tr>
                             {{/each}}
+                            {{/if}}
                         </tbody>
                     </table>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-
-                                    <li class="page-item ">
-                                        <a class="page-link" href="?page={{prevPage}}">Previous</a>
-                                    </li>
-                                    {{#each this.page_numbers}}
-                                    {{#if active}}
-                                    <li class="page-item active" aria-current="page">
-                                        <span class="page-link">
-                                            {{value}}
-                                            <span class="sr-only">(current)</span>
-                                        </span>
-                                    </li>
-                                    {{else}}
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{value}}">{{value}}</a>
-                                    </li>
-                                    {{/if}}
-                                    {{/each}}
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{nextPage}}">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    {{/if}}
+                    
                 </div>
             </div>
         </div>

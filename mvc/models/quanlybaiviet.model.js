@@ -12,7 +12,8 @@ module.exports ={
         return db.load(`select  *  from baiviet limit ${end} offset ${start}`);
     },
     detail: id => {
-        return db.load(`select * from baiviet join danhmuc on baiviet.IDDanhMuc = danhmuc.IDDanhMuc where IDBaiViet = ${id}`);
+        return db.load(`select * from baiviet , chuyemuc, danhmuc where baiviet.IDChuyenMuc = chuyemuc.IDChuyenMuc 
+        and chuyemuc.IDDanhMuc = danhmuc.IDDanhMuc and IDBaiViet = ${id}`);
     },
     update: entity => {
         var id = entity.IDBaiViet;

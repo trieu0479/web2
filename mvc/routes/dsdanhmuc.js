@@ -19,24 +19,25 @@ router.use(async function (req, res, next) {
 router.get("/:id", (req, res, next) => {
     var id = req.params.id;
     var page = parseInt(req.query.page) || 1;
-    var perPage = 10;
+    var perPage = 5;
 
     var start = (page - 1) * perPage;
-    var end = perPage;
+    var end = perPage * page;
     //var Rows = 37;
     Promise.all([
         dsdanhmuc.sl(id),
-        dsdanhmuc.dsdanhmuc(start, end, id)
-    ]).then(([Rows, rows]) => {
+        dsdanhmuc.dsdanhmuc(start, end, id),
+        dashboardModel.demchuyenmuc(),
+    ]).then(([Rows, rows, rows1]) => {
 
         var total = Rows.length;
-        console.log(total);
+
         var nPages = Math.floor(total / perPage);
         if (total % perPage > 0)
             nPages++;
 
         var page_numbers = [];
-        for (i = 1; i <= 8; i++) {
+        for (i = 1; i <= nPages; i++) {
             page_numbers.push({
                 value: i,
                 active: i === +page
@@ -48,11 +49,9 @@ router.get("/:id", (req, res, next) => {
         res.render('user/dsdanhmuc', {
             error: false,
             baiviet: rows,
+            laymenu1: rows1,
             page_numbers,
-            hasPrevPage,
-            prevPage: page - 1,
-            hasNextPage,
-            nextPage: page + 1
+            
         });
 
     }).catch(next);
