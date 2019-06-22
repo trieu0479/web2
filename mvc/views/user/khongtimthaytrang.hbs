@@ -1,49 +1,58 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Error Page</title>
-    <style>
-        body {
-            background: lightblue;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Express App - Error</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    html,
+    body {
+      height: 100%
+    }
 
-        h1 {
-            text-align: center;
-            color:blue;
-        }
-
-        a {
-            display: block;
-            text-align: center;
-            font-size: 2rem;
-            color: blue;
-            text-decoration: none;
-            font-family: Tahoma;
-        }
-        .imgset {
-               width: 230px;
-    height: 251px;
-    margin-left: 634px;
-        }
-        .back {
-            margin-top: 101px;
-        }
-       
-    </style>
+    .stackErr {
+      max-height: 25rem;
+      overflow-y: auto;
+    }
+  </style>
 </head>
 
 <body>
-    <h1>Bài viết bạn đang tìm kiếm không tìm thấy vì tài khoản của bạn không cho phép.Vui lòng liên hệ Admin nâng cấp tài khoản để xem bài viết này. </h1>
-   
-    <img src="/images/sad.jpg" alt="" style="margin: 0 auto" class="img-responsive center">
-     <a href="/" style="color: red" class="back">
-        << Back Home </a>
-    
-                  
-</body> 
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-sm-12">
+        <div class="card mx-auto shadow">
+          <div class="card-body text-center">
+            <h1 class="card-title">Oops! <img src="/images/sad.jpg" alt="" style="width:10%" class="img-responsive center"></h1>
+            <h5 class="text-danger">Bài viết bạn đang tìm kiếm không tìm thấy vì tài khoản của bạn không cho phép.Vui lòng liên hệ Admin nâng cấp tài khoản để xem bài viết này.</h5>
+            <div class="text-monospace stackErr">
+              
+            </div>
+            <div class="mt-4">
+              <a class="btn btn-primary btn-lg" href="/">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                Home
+              </a>
+             
+              <a class="btn btn-success btn-lg" href="mailto:trieu0479@gmail.com">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
 </html>
         

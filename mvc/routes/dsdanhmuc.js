@@ -22,7 +22,7 @@ router.get("/:id", (req, res, next) => {
     var perPage = 5;
 
     var start = (page - 1) * perPage;
-    var end = perPage * page;
+    var end = perPage;
     //var Rows = 37;
     Promise.all([
         dsdanhmuc.sl(id),
@@ -34,14 +34,14 @@ router.get("/:id", (req, res, next) => {
 
         var nPages = Math.floor(total / perPage);
         if (total % perPage > 0)
-            nPages++;
-
+          nPages++;
+    
         var page_numbers = [];
         for (i = 1; i <= nPages; i++) {
-            page_numbers.push({
-                value: i,
-                active: i === +page
-            })
+          page_numbers.push({
+            value: i,
+            active: i === +page
+          })
         }
         const hasPrevPage = page > 1;
         const hasNextPage = page < nPages;
@@ -51,7 +51,7 @@ router.get("/:id", (req, res, next) => {
             baiviet: rows,
             laymenu1: rows1,
             page_numbers,
-            
+
         });
 
     }).catch(next);

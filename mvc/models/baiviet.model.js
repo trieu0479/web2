@@ -12,7 +12,7 @@ module.exports = {
     },
     nambaiviet: (id) => {
         return db.load(`select * from baiviet bv1 join baiviet bv2 on bv1.IDChuyenMuc = bv2.IDChuyenMuc
-        where bv1.IDBaiViet = ${id} order by rand() limit 5`);
+        where bv1.IDBaiViet = ${id} and bv1.TinhTrang = 2 order by rand() limit 5`);
     },
     demchuyenmuc: () => {
         let sql = `select TenChuyenMuc, chuyemuc.IDChuyenMuc, count(baiviet.IDBaiViet) as sl1 from chuyemuc join baiviet where chuyemuc.IDChuyenMuc = baiviet.IDChuyenMuc group by TenChuyenMuc,IDChuyenMuc`;

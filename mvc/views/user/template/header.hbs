@@ -58,12 +58,27 @@
                         </ul>
                     </div>
                     <div class="col-sm-4">
-                        <div class="search-container">
-                            <form action="/search">
+                        {{!-- <div class="search-container"> --}}
+                        {{!-- <form action="/search">
                                 <input type="text" placeholder="Search.." name="search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
+                            </form> --}}
+                        <form action="/search">
+                            <div id="exampleContainer">
+                                <div class="input-group">
+                                    <div class="form-group has-feedback has-clear">
+                                        <input type="text" class="form-control" placeholder="Search.." name="search">
+                                        <span
+                                            class="form-control-clear glyphicon glyphicon-remove form-control-feedback hidden"></span>
+                                    </div>
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </form>
+                        {{!-- </div> --}}
                     </div>
                 </div>
             </div>
@@ -75,7 +90,7 @@
                         <a href="/"><img src="/images/logo.jpg" alt="" style="width:40%" class="img-responsive"></a>
                     </div>
                     <div class="col-sm-6 col-xs-6 top-banner-adv ban clearfix">
-                        <img src="/images/banner.jpg" alt=""  style="width:70%" class="img-responsive">
+                        <img src="/images/banner.jpg" alt="" style="width:70%" class="img-responsive">
                     </div>
                 </div>
             </div>
@@ -103,7 +118,7 @@
                 </div>
             </div>
         </div>
-        
+
         {{!-- <div class="header-main">
             <nav class="navbar" id="main-navbar">
                 <div class="container">

@@ -140,7 +140,7 @@
             border-color: #3d455c;
         }
         .badge-danger{
-            background-color: #109be6;
+            background-color: #ca7d2296;
             padding: 7px; 
         }
         textarea.input {
@@ -1454,12 +1454,12 @@
 
 .main-menu .sub-menu li:hover>a, .main-menu .sub-menu li.current-menu-item>a {
     text-decoration: none;
-    color: #fff;
+    
 }
 
 @media screen and (min-width: 992px) {
     .menu-box .main-menu li:hover>a, .menu-box .main-menu li.current-menu-item>a {
-        color: #0291d6;
+       
     }
     .main-menu li.menu-item-has-children:hover>.sub-menu {
         display: block;
@@ -1535,7 +1535,7 @@
         padding: 7px 10px;
     }
     .main-menu li:hover>a, .main-menu li.current-menu-item>a {
-        background-color: #0291d6;
+        
         color: #fff;
     }
     .main-menu>li.menu-item-has-children>a>i {
@@ -1575,7 +1575,7 @@
   padding: 6px;
   margin-top: 8px;
   font-size: 17px;
-  border:1px solid greenyellow; 
+  border:2px solid #0cec9a; 
 }
 
 .topnav .search-container button {
