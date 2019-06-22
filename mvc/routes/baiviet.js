@@ -53,35 +53,7 @@ router.get("/:id", async function(req, res) {
    else return res.render("user/baiviet",data);
   
   
-  // =======================================
-//   if (!req.session.user ) {
-//     if (data.baivietpremium.status===201) {
-//     console.log("ko co user dang nhap");    
-//     console.log(data.baivietpremium.status);    
-//     return res.render("user/khongtimthaytrang"); }
-//     else res.render("user/baiviet");
-//   }
-//   if (req.session.user.MaLoaiTaiKhoan==2) {
-//      if (data.baivietpremium.status===201) {
-//         console.log("201");    
-//      {
-//       console.log("thanh cong");
-//       return res.render("user/baiviet");
-//     }
-//   }
-//     else return res.render("user/khongtimthaytrang");    
-//     // return res.redirect(`/baiviet/${id}`)  
-//   }
-//   else {
-//     if (data.baivietpremium.status===201) {
-//       console.log("401");    
-//    {
-//     console.log(" day la ma loai tai khoan khac");
-//     return res.render("user/khongtimthaytrang");
-//   }
-// }
-//   else return res.render("user/baiviet"); 
-// }
+  
 });
 // ==========================================================
 router.post("/:id", async function(req, res) {
@@ -107,12 +79,18 @@ router.post("/:id", async function(req, res) {
 //  ====xu ly khi tai khoan là subcribers đc xem bai viết premium 
 // ========Xử lý bình luận=====================
 console.log(req.session.user);
-if (data.baivietpremium.status===201) {
-  if (req.session.user.MaLoaiTaiKhoan==2) {
+if (data.baivietpremium.status===201)
+{
+  if (req.session.user.user.MaLoaiTaiKhoan==2) 
+  {
     console.log("mltk =2 ");      
-    return res.render("user/baiviet");
+    return res.render("user/baiviet", data);
   }
-  else return res.render("user/khongtimthaytrang");
+  else 
+  {
+    console.log("error ");      
+    return res.render("user/khongtimthaytrang");
+  }
 }
 if (data.result.status===400) {
     console.log("400");

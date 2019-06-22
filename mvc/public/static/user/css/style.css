@@ -1208,7 +1208,7 @@
         #footer {
             padding-bottom: 33px;
             margin-top: 25px;
-            background: #e5c8ff;
+            background: rgb(249, 249, 249);
         }
 
         #footer .container-fluid {
@@ -1216,7 +1216,7 @@
             padding-left: 15px;
             margin-right: auto;
             margin-left: auto;
-            /* background: #c9bbd6; */
+            background: rgb(249, 249, 249); 
             padding-top: 18px;
         }
 
@@ -1416,6 +1416,7 @@
     font-size: 14px;
     font-weight: bold;
     text-decoration: none;
+    
     color: #fff;
     height: 50px;
     line-height: 50px;

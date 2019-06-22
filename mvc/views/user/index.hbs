@@ -1,18 +1,75 @@
 {{> userHeader }}
+<style>
+    #myCarousel .thumbnail {
+        margin-bottom: 0;
+    }
 
+    .carousel-control.left,
+    .carousel-control.right {
+        background-image: none !important;
+    }
+
+    .carousel-control {
+        color: #fff;
+        top: 40%;
+        color: #428BCA;
+        bottom: auto;
+        padding-top: 4px;
+        width: 30px;
+        height: 30px;
+        text-shadow: none;
+        opacity: 1;
+    }
+
+    .carousel-control:hover {
+        color: #d9534f;
+    }
+
+    .carousel-control.left,
+    .carousel-control.right {
+        background-image: none !important;
+    }
+
+    .carousel-control.right {
+        left: auto;
+        right: -32px;
+    }
+
+    .carousel-control.left {
+        right: auto;
+        left: -32px;
+    }
+
+    .carousel-indicators {
+        bottom: -30px;
+    }
+
+    .carousel-indicators li {
+        border-radius: 0;
+        width: 10px;
+        height: 10px;
+        
+    }
+
+    .carousel-indicators .active {
+        width: 12px;
+        height: 12px;
+        background: #3276b1;
+        border-color: #3276b1;
+    }
+</style>
 <!-- section -->
 <div class="section">
     <!-- container carousel-->
     <div class="container">
-        <!-- row -->
-        <div class="row banner">
-            <!-- post -->
-            <div class="col-md-12">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel"></div>
-                <!-- Wrapper for slides -->
-                <div class="container-fluid">
-                    <div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="2500">
-                        <!-- Wrapper for slides -->
+
+        {{!--  --}}
+        <div class="container">
+            <div class="row">
+                <div class="">
+                    <!-- Carousel
+            ================================================== -->
+                    <div id="myCarousel" class="carousel slide">
                         <div class="carousel-inner">
                             {{#each baiVietNoiBat}}
                             <div class="item {{#unless @index}}active{{/unless}}">
@@ -35,14 +92,24 @@
                                 </div>
                             </div>
                             {{/each}}
-                            <!-- End Item -->
                         </div>
-                        <!-- End Carousel Inner -->
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i
+                                class="fa fa-chevron-left fa-2x"></i></a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next"><i
+                                class="fa fa-chevron-right fa-2x"></i></a>
 
-                    </div>
-                </div>
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+                    </div><!-- End Carousel -->
+                </div><!-- End Well -->
             </div>
         </div>
+        {{!--  --}}
+    
+        <!-- row -->
     </div>
     <!-- /row -->
     <!--het 2 o vuong to -->
@@ -75,7 +142,7 @@
                     {{/each}}
                 </div>
                 <div class="row">
-                     <h3 class="widget-title">Top 10 Bài Viết Mới Nhất</h3>
+                    <h3 class="widget-title">Top 10 Bài Viết Mới Nhất</h3>
                     {{#each lay10baimoinhat}}
                     <div class="col-sm-12 col-xs-12">
                         <div class="post post-widget">

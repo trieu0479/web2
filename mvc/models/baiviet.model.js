@@ -8,7 +8,7 @@ module.exports = {
     chitiet: (id) => {
         // return db.load(`select * from baiviet join danhmuc on baiviet.IDDanhMuc =  danhmuc.IDDanhMuc where baiviet.IDBaiViet = ${id}`);
         return db.load(`select * from baiviet join chuyemuc on 
-       baiviet.IDChuyenMuc = chuyemuc.IDChuyenMuc where baiviet.IDBaiViet = ${id} `);
+       baiviet.IDChuyenMuc = chuyemuc.IDChuyenMuc where baiviet.IDBaiViet = ${id} and baiviet.TinhTrang = 2 `);
     },
     nambaiviet: (id) => {
         return db.load(`select * from baiviet bv1 join baiviet bv2 on bv1.IDChuyenMuc = bv2.IDChuyenMuc

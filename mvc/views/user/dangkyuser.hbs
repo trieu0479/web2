@@ -14,7 +14,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
+
 
   <style>
     @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
@@ -227,7 +227,8 @@
         {{!-- <input type="date" name="ngaythangnamsinh" class="startdate" placeholder="DateofBirth" id="namsinh"
           min="1980-01-01" max="2090-12-30" /> --}}
 
-        <input readonly = "true" type="text" autocomplete="off" name="ngaythangnamsinh"  placeholder="Năm sinh" id="namsinh"/>
+        <input readonly="true" type="text" autocomplete="off" name="ngaythangnamsinh" placeholder="Năm sinh"
+          id="namsinh" />
         <input type="submit" name="signin_submit" id="signUp_btn" value="SUBMIT">
       </div>
 
@@ -251,8 +252,8 @@
       </ul>
       {{/if}}
     </div>
-
   </form>
+
   <script>
     document.getElementById('main-form').onsubmit = function () {
       if (CheckSubmit()) {
@@ -263,24 +264,24 @@
   </script>
   <script>
     $(function () {
-     
-        /*$("#main-form").validate({
-        rules: {
-          NgayThangNamSinh: {
-            required: true
-          }
-        },
-        messages: {
-          NgayThangNamSinh: {
-            required: "chua co ngay kia"
-          }
-        },
-      }); */
+
+      /*$("#main-form").validate({
+      rules: {
+        NgayThangNamSinh: {
+          required: true
+        }
+      },
+      messages: {
+        NgayThangNamSinh: {
+          required: "chua co ngay kia"
+        }
+      },
+    }); */
       //=====
       $("#namsinh").datepicker({
-          dateFormat:"yy/mm/dd",
-          minDate: new Date('1930-02-01'),
-          maxDate: new Date('2050-12-01'),
+        dateFormat: "yy/mm/dd",
+        minDate: new Date('1930-02-01'),
+        maxDate: new Date('1999-12-01'),
       });
     });
   </script>
@@ -325,14 +326,14 @@
         password: $("#matkhau").val(),
         ngaythangnamsinh: $("#namsinh").val()
       })
-      .then((data) => {
-        if (data.status) {
-          alert("Đăng ký thành công.Chuyển sang đăng nhập nhé");
-          window.location.href = "/dangnhap"
-        } else {
-          alert(data.errors[0].msg);
-        }
-      })
+        .then((data) => {
+          if (data.status) {
+            alert("Đăng ký thành công.Chuyển sang đăng nhập nhé");
+            window.location.href = "/dangnhap"
+          } else {
+            alert(data.errors[0].msg);
+          }
+        })
     }
  //=====kiem tra =ajax ==========
     /* $(function () {
