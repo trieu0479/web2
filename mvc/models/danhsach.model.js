@@ -2,17 +2,21 @@ var db = require('../connection');
 
 
 module.exports = {
-    danhsach: (id) => {
+    danhsach: (start, end,id) => {
         //check tài khoản chô
        return db.load(`select * from chuyemuc join baiviet on baiviet.IDChuyenMuc = chuyemuc.IDChuyenMuc
-        where chuyemuc.IDChuyenMuc = "${id}" and baiviet.TinhTrang = 2 order by BaiVietPremium desc, NgayDang desc `);
+        where chuyemuc.IDChuyenMuc = "${id}" and baiviet.TinhTrang = 2 order by BaiVietPremium desc, NgayDang desc limit ${end} offset ${start}`);
     },
     danhsachMain: (id) => {
        return db.load(`select * from chuyemuc where chuyemuc.IDDanhMuc = "${id}" `);
     },
-    dsdanhmuc: id => {
+    dsdanhmuc: ( id) => {
         return db.load(`SELECT *from danhmuc,chuyemuc,baiviet WHERE chuyemuc.IDDanhMuc=danhmuc.IDDanhMuc and baiviet.IDChuyenMuc = chuyemuc.IDChuyenMuc
-         and danhmuc.IDDanhMuc=${id} and baiviet.TinhTrang = 2`);
-    }
-    
+         and danhmuc.IDDanhMuc=${id} and baiviet.TinhTrang = 2 `);
+    },
+    sl: id => {
+        return db.load(`select * from chuyemuc join baiviet on baiviet.IDChuyenMuc = chuyemuc.IDChuyenMuc
+        where chuyemuc.IDChuyenMuc = "${id}" and baiviet.TinhTrang = 2 order by BaiVietPremium desc, NgayDang desc`);
+    },
+
 }

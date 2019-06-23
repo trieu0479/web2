@@ -33,7 +33,30 @@
                     </div>
                     {{/each}}
                     {{/if}}
-                   
+                    <div class="row">
+                        <div class="col-sm-12 pagination">
+                            <nav aria-label="Page navigation example text-center">
+                                <ul class="pagination justify-content-center">
+                                    {{#each this.page_numbers}}
+                                    {{#if active}}
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">
+                                            {{value}}
+                                            <span class="sr-only">(current)</span>
+                                        </span>
+                                    </li>
+                                    {{else}}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{value}}">{{value}}</a>
+                                    </li>
+                                    {{/if}}
+                                    {{/each}}
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
                     <div class="post-shares sticky-shares">
                         <a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>
                         <a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a>
