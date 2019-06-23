@@ -14,7 +14,7 @@ module.exports = {
         return db.load(sql);
     },
     get3PostForDashborad: () => {
-        let sql = 'SELECT * FROM `baiviet` ,`danhmuc` , chuyemuc WHERE baiviet.TinhTrang = 2 and baiviet.IDChuyenMuc = chuyemuc.IDChuyenMuc and danhmuc.IDDanhMuc = chuyemuc.IDDanhMuc and YEARWEEK(`NgayDang`, 1) = YEARWEEK(CURDATE(), 1) ORDER BY SoLuotXem DESC LIMIT 5';
+        let sql = 'SELECT * FROM `baiviet` ,`danhmuc` , chuyemuc WHERE baiviet.TinhTrang = 2 and baiviet.IDChuyenMuc = chuyemuc.IDChuyenMuc and danhmuc.IDDanhMuc = chuyemuc.IDDanhMuc and YEARWEEK(`NgayDang`, 1) = YEARWEEK(CURDATE(), 1) ORDER BY SoLuotXem DESC LIMIT 4';
         return db.load(sql);
     },
     lay10baixemnhieu: () =>{

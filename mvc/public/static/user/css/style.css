@@ -1438,6 +1438,7 @@
 .main-menu .sub-menu li a {
     display: block;
     padding: 7px 15px;
+   
 }
 
 .main-menu .sub-menu li {
@@ -1517,7 +1518,7 @@
         overflow-x: hidden;
         overflow-y: auto;
         float: left;
-        background-color: #fff;
+        background-color: #0078ff;
     }
     .menu-box .btn-hide-menu {
         position: relative;
