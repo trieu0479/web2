@@ -5,7 +5,7 @@ var createConnection = () =>
     host: "localhost",
     user: "root",
     password: "",
-    database: "webtest",
+    database: "docbaonodejs",
     port: 3306
   }); //createconnection thứ 2 is  phương thức kết nối
 
@@ -16,6 +16,7 @@ module.exports = {
       connection.connect();
       connection.query(sql, (error, results, fields) => {
         if (error) {
+          console.log(error);
           reject(error);
         } else {
           resolve(results);
@@ -89,44 +90,3 @@ module.exports = {
   }
 };
 
-// load: (sql,fn) => {
-//     var connection =createConnection();
-//     connection.connect();
-//     connection.query(sql,(error,results,fields)=> {
-//         if (error){
-//             console.log(error.sqlMessage);
-//          } else
-//          {
-//             fn(results);
-//         }
-//         connection.end();
-//     });
-// },
-
-//     add:(tableName,entity,fn )=> {
-//           var connection =createConnection();
-//           var sql =`insert into ${tableName} set ? `;
-//           connection.connect() ;
-//           connection.query (sql,entity,(error,results,fields) => {
-//               if (error) {
-//                   console.log(error.sqlMessage);
-//               } else {
-//                   fn (results.insertId);
-//               }
-//           connection.end();
-//     });
-// },
-
-//   update: (tableName,idField,entity,id,fn=> {
-//       var connection =createConnection();
-//       var sql=`update ${tableName} set ? where ${idField} =?`;
-//       connection.connect();
-//       connection.query (sql,entity,(error,results,fields) => {
-//           if (error) {
-//               console.log(error.sqlMessage);
-//           }else {
-//               fn (results.changeRows);
-//           }
-//           connection.end();
-//       });
-//   });;

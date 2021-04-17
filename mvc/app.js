@@ -97,7 +97,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({ secret: "cats" }));
+app.use(session({
+  secret: 'something',
+  resave: true,
+  saveUninitialized: true
+  }
+  ));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -136,7 +141,7 @@ app.use(function(err, req, res, next) {
     err: err
   });
 });
-var port = process.env.PORT || 78;
+var port = process.env.PORT || 81;
 app.listen(port, () => {
   var env = app.get('env');
   console.log(`server is running in ${env} mode at http://localhost:${port}`);
