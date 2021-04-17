@@ -6,7 +6,7 @@ var createConnection = () =>
     user: "root",
     password: "usbw",
     database: "webtest",
-    port: 3306
+    port: 3306,
   }); //createconnection thứ 2 is  phương thức kết nối
 
 module.exports = {
