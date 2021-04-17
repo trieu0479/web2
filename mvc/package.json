@@ -5,9 +5,8 @@
   "scripts": {
     "start": "node ./bin/www"
   },
-  
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "ckeditor": "^4.11.4",
@@ -19,7 +18,7 @@
     "express-handlebars-sections": "^1.0.1",
     "express-session": "^1.16.1",
     "express-validator": "^5.3.1",
-    "hbs": "~4.0.1",
+    "hbs": "^4.1.1",
     "http-errors": "^1.6.3",
     "jquery-validation": "^1.19.0",
     "length": "0.0.1",

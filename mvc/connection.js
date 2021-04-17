@@ -2,11 +2,10 @@ var mysql = require("mysql");
 
 var createConnection = () =>
   mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "usbw",
-    database: "webtest",
-    port: 3306,
+    host: "sql6.freemysqlhosting.net",
+    user: "sql6406225",
+    password: "wC7sDWSqB3",
+    database: "sql6406225"
   }); //createconnection thứ 2 is  phương thức kết nối
 
 module.exports = {
