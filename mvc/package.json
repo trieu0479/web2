@@ -20,7 +20,7 @@
     "express-validator": "^5.3.1",
     "hbs": "^4.1.1",
     "http-errors": "^1.6.3",
-    "jquery-validation": "^1.19.0",
+    "jquery-validation": "^1.19.3",
     "length": "0.0.1",
     "moment": "^2.24.0",
     "morgan": "~1.9.0",
