@@ -2,14 +2,14 @@ var mysql = require("mysql");
 
 var createConnection = () =>
   mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "docbaonodejs",
-    port: 3306
+    host: "sql6.freemysqlhosting.net",
+    user: "sql6406225",
+    password: "wC7sDWSqB3",
+    database: "sql6406225"
   }); //createconnection thứ 2 is  phương thức kết nối
+  /// đăng ký free = db4free.net rồi nhập thông tin login và đây em
 
-module.exports = {
+  module.exports = {
   load: sql => {
     return new Promise((resolve, reject) => {
       var connection = createConnection();
